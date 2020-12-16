@@ -1,0 +1,82 @@
+
+package org.v2x.vehicle;
+
+
+import org.bn.CoderFactory;
+import org.bn.annotations.ASN1Enum;
+import org.bn.annotations.ASN1EnumItem;
+import org.bn.annotations.ASN1PreparedElement;
+import org.bn.coders.IASN1PreparedElement;
+import org.bn.coders.IASN1PreparedElementData;
+
+
+/**
+ * @author zhangyong
+ */
+@ASN1PreparedElement
+@ASN1Enum(
+        name = "TransmissionState"
+)
+public class TransmissionState implements IASN1PreparedElement {
+    public enum EnumType {
+        /**
+         *
+         */
+        @ASN1EnumItem(name = "neutral", hasTag = true, tag = 0)
+        neutral,
+        @ASN1EnumItem(name = "park", hasTag = true, tag = 1)
+        park,
+        @ASN1EnumItem(name = "forwardGears", hasTag = true, tag = 2)
+        forwardGears,
+        @ASN1EnumItem(name = "reverseGears", hasTag = true, tag = 3)
+        reverseGears,
+        @ASN1EnumItem(name = "reserved1", hasTag = true, tag = 4)
+        reserved1,
+        @ASN1EnumItem(name = "reserved2", hasTag = true, tag = 5)
+        reserved2,
+        @ASN1EnumItem(name = "reserved3", hasTag = true, tag = 6)
+        reserved3,
+        @ASN1EnumItem(name = "unavailable", hasTag = true, tag = 7)
+        unavailable
+    }
+
+    private EnumType value;
+    private Integer integerForm;
+
+    public EnumType getValue() {
+        return this.value;
+    }
+
+    public void setValue(EnumType value) {
+        this.value = value;
+    }
+
+    public Integer getIntegerForm() {
+        return integerForm;
+    }
+
+    public void setIntegerForm(Integer value) {
+        integerForm = value;
+    }
+    @Override
+    public void initWithDefaults() {
+    }
+
+    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(TransmissionState.class);
+    @Override
+    public IASN1PreparedElementData getPreparedData() {
+        return preparedData;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"value\":")
+                .append(value);
+        sb.append(",\"integerForm\":")
+                .append(integerForm);
+        sb.append('}');
+        return sb.toString();
+    }
+}
+            

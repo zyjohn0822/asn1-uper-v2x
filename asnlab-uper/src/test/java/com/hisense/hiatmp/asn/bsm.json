@@ -1,0 +1,57 @@
+{
+  "msgCnt": 35,
+  "id": [48, 48, 49, 52, 51, 49, 48, 49],
+  "secMark": 47091,
+  "timeConfidence": null,
+  "pos": {
+    "lat": 281260343,
+    "long_": 1128799971,
+    "elevation": 1233
+  },
+  "posAccuracy": {
+    "semiMajor": 48,
+    "semiMinor": 48,
+    "orientation": 12339
+  },
+  "posConfidence": null,
+  "transmission": {
+    "value": 0
+  },
+  "speed": 6,
+  "heading": 5944,
+  "angle": 15,
+  "motionCfd": null,
+  "accelSet": {
+    "long_": 5,
+    "lat": 0,
+    "vert": 0,
+    "yaw": 0
+  },
+  "brakes": {
+    "brakePadel": {
+      "value": 1
+    },
+    "wheelBrakes": null,
+    "traction": null,
+    "abs": null,
+    "scs": null,
+    "brakeBoost": null,
+    "auxBrakes": null
+  },
+  "size": {
+    "width": 180,
+    "length": 500,
+    "height": null
+  },
+  "vehicleClass": {
+    "classification": 54,
+    "fuelType": null
+  },
+  "safetyExt": {
+    "events": "0000000000000",
+    "pathHistory": null,
+    "pathPrediction": null,
+    "lights": "000000000"
+  },
+  "emergencyExt": null
+}

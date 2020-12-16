@@ -1,0 +1,29 @@
+# Eclipse
+.settings
+.project
+.classpath
+
+# IDEA
+.idea/
+*.iml
+
+# Build tool
+target
+project/target
+project/project/target
+bin/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+doc/img/stack.aux
+
+doc/img/stack.log
+
+doc/img/stack.pdf
