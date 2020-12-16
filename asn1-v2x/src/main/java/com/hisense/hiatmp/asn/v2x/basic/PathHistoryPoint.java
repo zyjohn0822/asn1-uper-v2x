@@ -24,6 +24,9 @@ public class PathHistoryPoint {
     @Asn1Optional
     CoarseHeading heading;
 
+    public PathHistoryPoint() {
+    }
+
     public PathHistoryPoint(PositionOffsetLLV llvOffset,
                             DDateTime.TimeOffset timeOffset,
                             Speed speed,

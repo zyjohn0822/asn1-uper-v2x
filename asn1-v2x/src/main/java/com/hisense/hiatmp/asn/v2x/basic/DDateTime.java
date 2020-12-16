@@ -289,7 +289,7 @@ public class DDateTime {
         }
     }
 
-    @IntRange(minValue = -720, maxValue = 720)
+    @IntRange(minValue = -720, maxValue = 721)
     public static class DTimeOffset extends Asn1Integer {
         public DTimeOffset() {
             this(0);
@@ -324,8 +324,9 @@ public class DDateTime {
 
     }
 
-    @IntRange(minValue = 0, maxValue = 65535)
+    @IntRange(minValue = 1, maxValue = 65535)
     public static class TimeOffset extends Asn1Integer {
+
         public TimeOffset() {
             this(0);
         }

@@ -16,7 +16,9 @@ import java.util.Collection;
 @Getter
 @HasExtensionMarker
 public class PathHistory {
+    @Asn1Optional
     FullPositionVector initialPosition;
+    @Asn1Optional
     GNSSstatus currGNSSstatus;
     PathHistoryPointList crumbData;
 
