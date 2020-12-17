@@ -2,10 +2,7 @@ package com.hisense.hiatmp.asn.v2x.basic;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.gcdc.asn1.datatypes.Asn1Integer;
-import net.gcdc.asn1.datatypes.Asn1Optional;
-import net.gcdc.asn1.datatypes.IntRange;
-import net.gcdc.asn1.datatypes.Sequence;
+import net.gcdc.asn1.datatypes.*;
 
 /**
  * @author zhangyong
@@ -15,21 +12,24 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Setter
 @Getter
 public class Position3D {
+    @Component(0)
     Latitude lat;
+    @Component(1)
     Longitude lon;
+    @Component(2)
     @Asn1Optional
     Elevation elevation;
 
     public Position3D() {
     }
 
-    public Position3D(Longitude lon, Latitude lat) {
+    public Position3D(Latitude lat, Longitude lon) {
         this.lat = lat;
         this.lon = lon;
     }
 
-    public Position3D(Longitude lon, Latitude lat, Elevation elevation) {
-        this(lon, lat);
+    public Position3D(Latitude lat, Longitude lon, Elevation elevation) {
+        this(lat, lon);
         this.elevation = elevation;
     }
 

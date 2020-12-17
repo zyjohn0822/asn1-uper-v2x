@@ -29,7 +29,7 @@ public class FullPositionVector {
     @Asn1Optional
     PositionConfidenceSet posConficence;
     @Asn1Optional
-    DDateTime.TimeConfidence timeConfidence;
+    TimeConfidence timeConfidence;
     @Asn1Optional
     MotionConfidenceSet motionCfd;
 
@@ -48,7 +48,7 @@ public class FullPositionVector {
             Speed speed,
             PositionalAccuracy posAccuracy,
             PositionConfidenceSet posConficence,
-            DDateTime.TimeConfidence timeConfidence,
+            TimeConfidence timeConfidence,
             MotionConfidenceSet motionCfd
     ) {
         this.utcTime = utcTime;

@@ -84,5 +84,20 @@ public class PathHistoryPoint {
         TYPE.encode(this, align ? EncodingRules.ALIGNED_PACKED_ENCODING_RULES : EncodingRules.UNALIGNED_PACKED_ENCODING_RULES, CONV, out);
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"llvOffset\":")
+                .append(llvOffset);
+        sb.append(",\"timeOffset\":")
+                .append(timeOffset);
+        sb.append(",\"speed\":")
+                .append(speed);
+        sb.append(",\"posAccuracy\":")
+                .append(posAccuracy);
+        sb.append(",\"heading\":")
+                .append(heading);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -18,9 +18,16 @@ public class PathHistoryTest {
 
     @Before
     public void setUp() throws Exception {
-        FullPositionVector fullPositionVector = new FullPositionVector();
+        Position3D position3D = new Position3D(
+                new Position3D.Latitude(283433333),
+                new Position3D.Longitude(1202323232)
+                );
+        FullPositionVector fullPositionVector = new FullPositionVector(position3D);
+        //---------------------------------------------------------------------
         List<Boolean> gs = Arrays.asList(true, true, true, true, false, false, false, false);
+        //---------------------------------------------------------------------
         GNSSstatus gnsSstatus = new GNSSstatus(gs);
+        //---------------------------------------------------------------------
         List<PathHistoryPoint> pathHistoryPoints = new ArrayList<>();
         //positionOffsetLL
         PositionOffsetLL.OffsetLLB12 offsetLLB12 = new PositionOffsetLL.OffsetLLB12(22);
@@ -40,7 +47,7 @@ public class PathHistoryTest {
                 new Speed(500), null, new CoarseHeading(20)));
         PathHistory.PathHistoryPointList pathHistoryPointList = new PathHistory.PathHistoryPointList(pathHistoryPoints);
 
-        pathHistory = new PathHistory(null, gnsSstatus, pathHistoryPointList);
+        pathHistory = new PathHistory(fullPositionVector, gnsSstatus, pathHistoryPointList);
     }
 
     @After
@@ -51,6 +58,7 @@ public class PathHistoryTest {
     public void encode() throws Exception {
         //62, 0, 88, -127, 104, 21, 19, -64, -98, 67, -24, 40
         //62, 0, 88, -127, 104, 21, 19, -64, -98, 3, -24, 40
+        //
         final byte[] encode = UperEncoder.encode(pathHistory);
         System.out.println(Arrays.toString(encode));
 

@@ -2,10 +2,7 @@ package com.hisense.hiatmp.asn.v2x.basic;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.gcdc.asn1.datatypes.Asn1Optional;
-import net.gcdc.asn1.datatypes.Asn1SequenceOf;
-import net.gcdc.asn1.datatypes.Sequence;
-import net.gcdc.asn1.datatypes.SizeRange;
+import net.gcdc.asn1.datatypes.*;
 
 import java.util.List;
 
@@ -17,18 +14,25 @@ import java.util.List;
 @Setter
 @Getter
 public class BrakeSystemStatus {
+    @Component(0)
     @Asn1Optional
     BrakePedalStatus brakePadel;
+    @Component(1)
     @Asn1Optional
     BrakeAppliedStatus wheelBrakes;
+    @Component(2)
     @Asn1Optional
     TractionControlStatus traction;
+    @Component(3)
     @Asn1Optional
     AntiLockBrakeStatus abs;
+    @Component(4)
     @Asn1Optional
     StabilityControlStatus scs;
+    @Component(5)
     @Asn1Optional
     BrakeBoostApplied brakeBoost;
+    @Component(6)
     @Asn1Optional
     AuxiliaryBrakeStatus auxBrakes;
 
@@ -225,7 +229,7 @@ public class BrakeSystemStatus {
         }
     }
 
-    @SizeRange(minValue = 5, maxValue = 5, hasExtensionMarker = true)
+    @SizeRange(minValue = 5, maxValue = 5)
     public static class BrakeAppliedStatus extends Asn1SequenceOf<Boolean> {
         public BrakeAppliedStatus() {
             super();

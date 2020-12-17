@@ -32,7 +32,7 @@ public class BasicSafetyMessage {
     /** 3 */
     @Component(3)
     @Asn1Optional
-    DDateTime.TimeConfidence timeConfidence;
+    TimeConfidence timeConfidence;
     /** 4 */
     @Component(4)
     Position3D pos;
@@ -87,7 +87,7 @@ public class BasicSafetyMessage {
             MsgCount msgCnt,
             ID id,
             DDateTime.DSecond secMark,
-            DDateTime.TimeConfidence timeConfidence,
+            TimeConfidence timeConfidence,
             Position3D pos,
             PositionalAccuracy posAccuracy,
             PositionConfidenceSet posConfidence,
@@ -122,7 +122,7 @@ public class BasicSafetyMessage {
         this.safetyExt = safetyExt;
         this.emergencyExt = emergencyExt;
     }
-    @SizeRange(minValue = 8, maxValue = 8)
+    @SizeRange(minValue = 8, maxValue = 8, hasExtensionMarker = true)
     public static class ID extends Asn1SequenceOf<Byte> {
         // Two constructors -- choose any, or add more.
         public ID(Byte... coll)          { this(Arrays.asList(coll)); }

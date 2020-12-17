@@ -3,6 +3,7 @@ package com.hisense.hiatmp.asn.v2x.basic;
 import lombok.Getter;
 import lombok.Setter;
 import net.gcdc.asn1.datatypes.Asn1Optional;
+import net.gcdc.asn1.datatypes.Component;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
@@ -13,10 +14,13 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Setter
 @Getter
 public class MotionConfidenceSet {
+    @Component(0)
     @Asn1Optional
     SpeedConfidence speedCfd;
+    @Component(1)
     @Asn1Optional
     HeadingConfidence headingCfd;
+    @Component(2)
     @Asn1Optional
     SteeringWheelAngleConfidence steerCfd;
 

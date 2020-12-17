@@ -31,7 +31,7 @@ public class PathHistoryTest {
 
     @Test
     public void encode() throws Exception{
-        byte[] decodeBytes = new byte[]{62, 0, 88, -127, 104, 21, 19, -64, -98, 3, -24, 40};
+        byte[] decodeBytes = new byte[]{96, 4, 104, -100, 39, 91, 47, 61, 17, -1, 0, 44, 64, -76, 10, -119, -32, 79, 1, -12, 20};
         final PathHistory pathHistory = PathHistory.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(pathHistory);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

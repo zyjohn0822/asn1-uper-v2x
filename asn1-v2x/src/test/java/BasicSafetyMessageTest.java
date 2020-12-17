@@ -1,7 +1,5 @@
 import com.hisense.hiatmp.asn.v2x.BasicSafetyMessage;
-import com.hisense.hiatmp.asn.v2x.MessageFrame;
 import com.hisense.hiatmp.asn.v2x.basic.*;
-import com.hisense.hiatmp.asn.v2x.basic.DDateTime.TimeConfidence;
 import com.hisense.hiatmp.asn.v2x.basic.VehStatus.TransmissionState;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleClassification.BasicVehicleClass;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleSize.VehicleLength;
@@ -11,7 +9,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,18 +29,18 @@ public class BasicSafetyMessageTest {
 
     @BeforeClass
     public static void newInstanceTest() throws Exception {
-        List<Byte> bytes = Arrays.asList((byte)12, (byte)14, (byte)67, (byte)77, (byte)78, (byte)100, (byte)64, (byte)88);
+        List<Byte> bytes = Arrays.asList((byte) 12, (byte) 14, (byte) 67, (byte) 77, (byte) 78, (byte) 100, (byte) 64, (byte) 88);
         basicSafetyMessage = BasicSafetyMessage.builder()
                 //0
                 .msgCnt(new MsgCount(12))
                 //1
-                .id(new BasicSafetyMessage.ID(bytes))
+                //.id(new BasicSafetyMessage.ID(bytes))
                 //2
                 .secMark(new DDateTime.DSecond(665))
                 //3
                 .timeConfidence(TimeConfidence.time_000_000_000_000_1)
                 //4
-                .pos(new Position3D(new Longitude(11), new Latitude(12)))
+                .pos(new Position3D(new Latitude(12), new Longitude(11)))
                 //5
                 .posAccuracy(null)
                 //6
@@ -63,9 +60,9 @@ public class BasicSafetyMessageTest {
                 //13
                 .brakes(new BrakeSystemStatus())
                 //14
-                .size(new VehicleSize(new VehicleWidth(50), new VehicleLength(50),null))
+                .size(new VehicleSize(new VehicleWidth(50), new VehicleLength(50), null))
                 //15
-                .vehicleClass(new VehicleClassification(new BasicVehicleClass(2),new VehicleClassification.FuelType(11)))
+                .vehicleClass(new VehicleClassification(new BasicVehicleClass(2), new VehicleClassification.FuelType(11)))
                 //16
                 .safetyExt(null)
                 //17
@@ -81,21 +78,24 @@ public class BasicSafetyMessageTest {
         Assert.assertArrayEquals(encode, actual);
 
     }
+
     @Test
-    public void decodeMsgCountTest(){
+    public void decodeMsgCountTest() {
         MsgCount msgCount = new MsgCount(35);
         final byte[] encode = UperEncoder.encode(msgCount);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decodeDSecondTest(){
+    public void decodeDSecondTest() {
         DDateTime.DSecond dSecond = new DDateTime.DSecond(655);
         final byte[] encode = UperEncoder.encode(dSecond);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
     public void encodePosition3DTest() {
-        final Position3D position3D = new Position3D(new Longitude(11), new Latitude(12));
+        final Position3D position3D = new Position3D(new Latitude(12), new Longitude(11));
         final byte[] encode = UperEncoder.encode(position3D);
         System.out.println(Arrays.toString(encode));
     }
@@ -107,8 +107,9 @@ public class BasicSafetyMessageTest {
         final byte[] encode = UperEncoder.encode(time_000_000_000_000_1);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeBrakeSystemStatus(){
+    public void encodeBrakeSystemStatus() {
         BrakePedalStatus brakePedalStatus = BrakePedalStatus.off;
         BrakeAppliedStatus brakeAppliedStatus = new BrakeAppliedStatus(Arrays.asList(true, true, true, true, true));
         TractionControlStatus tractionControlStatus = TractionControlStatus.off;
@@ -117,79 +118,90 @@ public class BasicSafetyMessageTest {
         BrakeBoostApplied brakeBoostApplied = BrakeBoostApplied.off;
         AuxiliaryBrakeStatus auxiliaryBrakeStatus = AuxiliaryBrakeStatus.off;
         BrakeSystemStatus brakeSystemStatus = new BrakeSystemStatus(
-                brakePedalStatus,brakeAppliedStatus,tractionControlStatus,antiLockBrakeStatus,
-                stabilityControlStatus,brakeBoostApplied,auxiliaryBrakeStatus
+                brakePedalStatus, brakeAppliedStatus, tractionControlStatus, antiLockBrakeStatus,
+                stabilityControlStatus, brakeBoostApplied, auxiliaryBrakeStatus
         );
         final byte[] encode = UperEncoder.encode(brakeSystemStatus);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeBrakeAppliedStatusTest(){
+    public void encodeBrakeAppliedStatusTest() {
 
         BrakeAppliedStatus brakeAppliedStatus = new BrakeAppliedStatus(Arrays.asList(true, true, true, true, true));
         final byte[] encode = UperEncoder.encode(brakeAppliedStatus);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeVehicleSizeTest(){
-        VehicleSize vehicleSize = new VehicleSize(new VehicleWidth(10),new VehicleLength(11));
+    public void encodeVehicleSizeTest() {
+        VehicleSize vehicleSize = new VehicleSize(new VehicleWidth(10), new VehicleLength(11));
         final byte[] encode = UperEncoder.encode(vehicleSize);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodePositionalAccuracyTest(){
+    public void encodePositionalAccuracyTest() {
         PositionalAccuracy positionalAccuracy = new PositionalAccuracy(new PositionalAccuracy.SemiMajorAxisAccuracy(100),
                 new PositionalAccuracy.SemiMinorAxisAccuracy(200),
                 new PositionalAccuracy.SemiMajorAxisOrientation(500));
         final byte[] encode = UperEncoder.encode(positionalAccuracy);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodePositionConfidenceSetTest(){
+    public void encodePositionConfidenceSetTest() {
         PositionConfidenceSet positionConfidenceSet = new PositionConfidenceSet(PositionConfidence.a1cm, ElevationConfidence.elev_000_01);
         final byte[] encode = UperEncoder.encode(positionConfidenceSet);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeTransmissionStateTest(){
+    public void encodeTransmissionStateTest() {
         TransmissionState transmissionState = TransmissionState.park;
         final byte[] encode = UperEncoder.encode(transmissionState);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeSpeedTest(){
+    public void encodeSpeedTest() {
         Speed speed = new Speed(700);
         final byte[] encode = UperEncoder.encode(speed);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeHeadingTest(){
+    public void encodeHeadingTest() {
         Heading heading = new Heading(700);
         final byte[] encode = UperEncoder.encode(heading);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeSteeringWheelAngleTest(){
+    public void encodeSteeringWheelAngleTest() {
         SteeringWheelAngle steeringWheelAngle = new SteeringWheelAngle(50);
         final byte[] encode = UperEncoder.encode(steeringWheelAngle);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeMotionConfidenceSetTest(){
-        MotionConfidenceSet  motionConfidenceSet = new MotionConfidenceSet(MotionConfidenceSet.SpeedConfidence.prec0_1deg,
+    public void encodeMotionConfidenceSetTest() {
+        MotionConfidenceSet motionConfidenceSet = new MotionConfidenceSet(MotionConfidenceSet.SpeedConfidence.prec0_1deg,
                 MotionConfidenceSet.HeadingConfidence.prec0_01ms,
                 MotionConfidenceSet.SteeringWheelAngleConfidence.prec1deg);
         final byte[] encode = UperEncoder.encode(motionConfidenceSet);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
     public void encodeAccelerationSet4WayTest() {
         final AccelerationSet4Way accelerationSet4Way = new AccelerationSet4Way(new Acceleration(11), new Acceleration(12), new VerticalAcceleration(20), new YawRate(30));
         final byte[] encode = UperEncoder.encode(accelerationSet4Way);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeBrakeSystemStatusTest(){
+    public void encodeBrakeSystemStatusTest() {
         List<Boolean> b1 = new ArrayList<>(5);
         b1.add(true);
         b1.add(false);
@@ -214,7 +226,7 @@ public class BasicSafetyMessageTest {
      * cause --1
      */
     @Test
-    public void encodeVehicleClassificationTest(){
+    public void encodeVehicleClassificationTest() {
         VehicleClassification vehicleClassification = new VehicleClassification(
                 new VehicleClassification.BasicVehicleClass(54),
                 null
@@ -229,13 +241,13 @@ public class BasicSafetyMessageTest {
      * cause--
      */
     @Test
-    public void encodeVehicleSafetyExtensionsTest(){
+    public void encodeVehicleSafetyExtensionsTest() {
         List<Boolean> event = new ArrayList<>(13);
-        for(int i = 0; i<13; i++){
+        for (int i = 0; i < 13; i++) {
             event.add(true);
         }
         List<Boolean> exteriorLights = new ArrayList<>(13);
-        for(int i = 0; i<9; i++){
+        for (int i = 0; i < 9; i++) {
             exteriorLights.add(true);
         }
 
@@ -254,8 +266,9 @@ public class BasicSafetyMessageTest {
         final byte[] encode = UperEncoder.encode(vehicleSafetyExtensions);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void encodeVehicleEmergencyExtensionsTest(){
+    public void encodeVehicleEmergencyExtensionsTest() {
         VehicleEmergencyExtensions vehicleEmergencyExtensions = new VehicleEmergencyExtensions(
                 ResponseType.nonEmergency,
                 SirenInUse.inUse,
@@ -267,12 +280,8 @@ public class BasicSafetyMessageTest {
     }
 
 
-
-
-
-
     @Test
-    public void decodeBsmFrame(){
+    public void decodeBsmFrame() {
         String hex = "07A4660606268666260636FE6063344D1BD748F8710A68800000004018018B9C46BEABE83FBFFFE07E2D07D03648000000";
         String hex2 = "2A463030313433313031B7F3E046689A37C0AE91F0E214D13030303300000617388D07D507D07F7FFF808000B401F4003648000000";
         byte[] bytes1 = bytesFromHexString(hex2);

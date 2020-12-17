@@ -16,10 +16,13 @@ import java.util.Collection;
 @Getter
 @HasExtensionMarker
 public class PathHistory {
+    @Component(0)
     @Asn1Optional
     FullPositionVector initialPosition;
+    @Component(1)
     @Asn1Optional
     GNSSstatus currGNSSstatus;
+    @Component(2)
     PathHistoryPointList crumbData;
 
     public PathHistory() {

@@ -29,5 +29,7 @@ public class ResponseTypeTest {
     }
     @Test
     public void decode() throws Exception{
+        final ResponseType decode = UperEncoder.decode(new byte[]{32}, ResponseType.class);
+        System.out.println(decode);
     }
 }

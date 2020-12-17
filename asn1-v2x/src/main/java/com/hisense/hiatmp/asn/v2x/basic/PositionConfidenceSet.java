@@ -3,6 +3,7 @@ package com.hisense.hiatmp.asn.v2x.basic;
 import lombok.Getter;
 import lombok.Setter;
 import net.gcdc.asn1.datatypes.Asn1Optional;
+import net.gcdc.asn1.datatypes.Component;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
@@ -13,7 +14,9 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Setter
 @Getter
 public class PositionConfidenceSet {
+    @Component(0)
     PositionConfidence pos;
+    @Component(1)
     @Asn1Optional
     ElevationConfidence elevation;
 

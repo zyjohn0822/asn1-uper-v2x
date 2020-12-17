@@ -30,7 +30,7 @@ public class AccelerationSet4Way {
         this.yaw = yaw;
     }
 
-    @IntRange(minValue = -2000, maxValue = 2000)
+    @IntRange(minValue = -2000, maxValue = 2001)
     public static class Acceleration extends Asn1Integer {
 
         public Acceleration() {

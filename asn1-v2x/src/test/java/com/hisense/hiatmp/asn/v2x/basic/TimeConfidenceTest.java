@@ -11,14 +11,13 @@ import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
- * @date 2020/12/15  16:36
+ * @date 2020/12/17  14:49
  */
-public class PathPredictionTest {
-    PathPrediction pathPrediction;
+public class TimeConfidenceTest {
+    TimeConfidence timeConfidence;
     @Before
     public void setUp() throws Exception {
-        pathPrediction = new PathPrediction(new PathPrediction.RadiusOfCurvature(3276),
-                new PathPrediction.Confidence(100));
+        timeConfidence = TimeConfidence.time_000_000_000_000_01;
     }
 
     @After
@@ -26,7 +25,7 @@ public class PathPredictionTest {
     }
     @Test
     public void encode() throws Exception{
-        final byte[] encode = UperEncoder.encode(pathPrediction);
+        final byte[] encode = UperEncoder.encode(timeConfidence);
         System.out.println(Arrays.toString(encode));
     }
     @Test
