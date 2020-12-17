@@ -1,5 +1,7 @@
 package com.hisense.hiatmp.asn.v2x.basic;
 
+import net.gcdc.asn1.datatypes.HasExtensionMarker;
+
 /**
  * @author zhangyong
  * @date 2020/12/17  14:49
