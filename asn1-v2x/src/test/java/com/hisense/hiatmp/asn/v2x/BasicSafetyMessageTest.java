@@ -10,9 +10,10 @@ import static org.junit.Assert.*;
  * @date 2020/12/15  16:53
  */
 public class BasicSafetyMessageTest {
-
+    BasicSafetyMessage basicSafetyMessage;
     @Before
     public void setUp() throws Exception {
+
     }
 
     @After

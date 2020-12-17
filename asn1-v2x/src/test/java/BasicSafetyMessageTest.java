@@ -30,44 +30,44 @@ public class BasicSafetyMessageTest {
     @BeforeClass
     public static void newInstanceTest() throws Exception {
         List<Byte> bytes = Arrays.asList((byte) 12, (byte) 14, (byte) 67, (byte) 77, (byte) 78, (byte) 100, (byte) 64, (byte) 88);
-        basicSafetyMessage = BasicSafetyMessage.builder()
-                //0
-                .msgCnt(new MsgCount(12))
-                //1
-                //.id(new BasicSafetyMessage.ID(bytes))
-                //2
-                .secMark(new DDateTime.DSecond(665))
-                //3
-                .timeConfidence(TimeConfidence.time_000_000_000_000_1)
-                //4
-                .pos(new Position3D(new Latitude(12), new Longitude(11)))
-                //5
-                .posAccuracy(null)
-                //6
-                .posConfidence(new PositionConfidenceSet(PositionConfidence.a1cm, ElevationConfidence.elev_000_02))
-                //7
-                .transmission(TransmissionState.park)
-                //8
-                .speed(new Speed(60))
-                //9
-                .heading(new Heading(23))
-                //10
-                .angle(new SteeringWheelAngle(11))
-                //11
-                .motionCfd(null)
-                //12
-                .accelSet(new AccelerationSet4Way(new Acceleration(11), new Acceleration(12), new VerticalAcceleration(22), new YawRate(222)))
-                //13
-                .brakes(new BrakeSystemStatus())
-                //14
-                .size(new VehicleSize(new VehicleWidth(50), new VehicleLength(50), null))
-                //15
-                .vehicleClass(new VehicleClassification(new BasicVehicleClass(2), new VehicleClassification.FuelType(11)))
-                //16
-                .safetyExt(null)
-                //17
-                .emergencyExt(null)
-                .build();
+//        basicSafetyMessage = BasicSafetyMessage.builder()
+//                //0
+//                .msgCnt(new MsgCount(12))
+//                //1
+//                //.id(new BasicSafetyMessage.ID(bytes))
+//                //2
+//                .secMark(new DDateTime.DSecond(665))
+//                //3
+//                .timeConfidence(TimeConfidence.time_000_000_000_000_1)
+//                //4
+//                .pos(new Position3D(new Latitude(12), new Longitude(11)))
+//                //5
+//                .posAccuracy(null)
+//                //6
+//                .posConfidence(new PositionConfidenceSet(PositionConfidence.a1cm, ElevationConfidence.elev_000_02))
+//                //7
+//                .transmission(TransmissionState.park)
+//                //8
+//                .speed(new Speed(60))
+//                //9
+//                .heading(new Heading(23))
+//                //10
+//                .angle(new SteeringWheelAngle(11))
+//                //11
+//                .motionCfd(null)
+//                //12
+//                .accelSet(new AccelerationSet4Way(new Acceleration(11), new Acceleration(12), new VerticalAcceleration(22), new YawRate(222)))
+//                //13
+//                .brakes(new BrakeSystemStatus())
+//                //14
+//                .size(new VehicleSize(new VehicleWidth(50), new VehicleLength(50), null))
+//                //15
+//                .vehicleClass(new VehicleClassification(new BasicVehicleClass(2), new VehicleClassification.FuelType(11)))
+//                //16
+//                .safetyExt(null)
+//                //17
+//                .emergencyExt(null)
+//                .build();
     }
 
     @Test
@@ -281,7 +281,7 @@ public class BasicSafetyMessageTest {
 
 
     @Test
-    public void decodeBsmFrame() {
+    public void decodeBsmFrame(){
         String hex = "07A4660606268666260636FE6063344D1BD748F8710A68800000004018018B9C46BEABE83FBFFFE07E2D07D03648000000";
         String hex2 = "2A463030313433313031B7F3E046689A37C0AE91F0E214D13030303300000617388D07D507D07F7FFF808000B401F4003648000000";
         byte[] bytes1 = bytesFromHexString(hex2);

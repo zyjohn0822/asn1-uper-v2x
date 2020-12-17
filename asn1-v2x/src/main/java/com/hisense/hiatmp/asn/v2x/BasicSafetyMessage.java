@@ -17,7 +17,6 @@ import java.util.List;
 @Sequence
 @Getter
 @Setter
-@Builder
 @HasExtensionMarker
 public class BasicSafetyMessage {
     /** 0 */
