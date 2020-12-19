@@ -1,0 +1,51 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Thu Apr 11 15:26:27 CST 2019
+ */
+VehEmgExt DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS VehicleEmergencyExtensions;
+IMPORTS ;
+	
+	-- type assignments	
+	
+	VehicleEmergencyExtensions ::= SEQUENCE {
+		responseType ResponseType OPTIONAL,
+		sirenUse SirenInUse OPTIONAL,
+		lightsUse LightbarInUse OPTIONAL,
+		...
+	}
+	
+	ResponseType ::= ENUMERATED {
+		notInUseOrNotEquipped (0),
+		emergency (1), -- active service call at emergency level
+		nonEmergency (2), -- also used when returning from service call
+		pursuit (3), -- sender driving may be erratic
+		stationary (4), -- sender is not moving, stopped along roadside
+		slowMoving (5), -- such a litter trucks, etc.
+		stopAndGoMovement (6), -- such as school bus or garbage truck
+		...
+	}
+	
+	SirenInUse ::= ENUMERATED {
+		unavailable (0), -- Not Equipped or unavailable
+		notInUse (1),
+		inUse (2),
+		reserved (3) -- for future use
+	}
+	
+	LightbarInUse ::= ENUMERATED {
+		unavailable (0), -- Not Equipped or unavailable
+		notInUse (1), -- none active
+		inUse (2),
+		yellowCautionLights (3),
+		schooldBusLights (4),
+		arrowSignsActive (5),
+		slowMovingVehicle (6),
+		freqStops (7)
+	}
+	
+END

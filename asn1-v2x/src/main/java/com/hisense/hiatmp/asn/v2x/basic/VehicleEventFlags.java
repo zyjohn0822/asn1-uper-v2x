@@ -8,6 +8,21 @@ import java.util.Collection;
 
 
 /**
+ * VehicleEventFlags ::= BIT STRING {<br/>
+ * 		eventHazardLights (0),<br/>
+ * 		eventStopLineViolation (1), -- Intersection Violation<br/>
+ * 		eventABSactivated (2),<br/>
+ * 		eventTractionControlLoss (3),<br/>
+ * 		eventStabilityControlactivated (4),<br/>
+ * 		eventHazardousMaterials (5),<br/>
+ * 		eventReserved1 (6),<br/>
+ * 		eventHardBraking (7),<br/>
+ * 		eventLightsChanged (8),<br/>
+ * 		eventWipersChanged (9),<br/>
+ * 		eventFlatTire (10),<br/>
+ * 		eventDisabledVehicle (11), -- The DisabledVehicle DF may also be sent<br/>
+ * 		eventAirBagDeployment (12)<br/>
+ *                } (SIZE (13, ...))<br/>
  * @author zhangyong
  * @date 2020/11/5  14:16
  */

@@ -8,6 +8,18 @@ import net.gcdc.asn1.datatypes.HasExtensionMarker;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
+ * PathHistoryPoint ::= SEQUENCE {<br/>
+ * 		llvOffset PositionOffsetLLV,<br/>
+ * 		timeOffset TimeOffset,<br/>
+ * 		-- Offset backwards in time<br/>
+ * 		speed Speed OPTIONAL,<br/>
+ * 		-- Speed over the reported period<br/>
+ * 		posAccuracy PositionConfidenceSet OPTIONAL,<br/>
+ * 		-- The accuracy of this value<br/>
+ * 		heading CoarseHeading OPTIONAL,<br/>
+ * 		-- overall heading<br/>
+ * 		...<br/>
+ *                }
  * @author zhangyong
  * @date 2020/11/5  14:44
  */
@@ -43,5 +55,22 @@ public class PathHistoryPoint {
         this.speed = speed;
         this.posAccuracy = posAccuracy;
         this.heading = heading;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"llvOffset\":")
+                .append(llvOffset);
+        sb.append(",\"timeOffset\":")
+                .append(timeOffset);
+        sb.append(",\"speed\":")
+                .append(speed);
+        sb.append(",\"posAccuracy\":")
+                .append(posAccuracy);
+        sb.append(",\"heading\":")
+                .append(heading);
+        sb.append('}');
+        return sb.toString();
     }
 }

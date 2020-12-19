@@ -1,0 +1,120 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Sat Jul 23 21:57:43 CST 2016
+ */
+VehClass DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS VehicleClassification;
+IMPORTS ;
+	
+	VehicleClassification ::= SEQUENCE {
+		classification BasicVehicleClass,
+		fuelType FuelType OPTIONAL,
+		...
+	}
+	
+	--********************************Basic Vehicle Class**************************
+	BasicVehicleClass ::= INTEGER (0..255)
+	
+	unknownVehicleClass BasicVehicleClass ::= 0
+	-- Not Equipped, Not known or unavailable
+	specialVehicleClass BasicVehicleClass ::= 1
+	-- Special use
+	--
+	-- Basic Passenger Motor Vehicle Types
+	--
+	passenger-Vehicle-TypeUnknown BasicVehicleClass ::= 10 -- default type
+	passenger-Vehicle-TypeOther BasicVehicleClass ::= 11
+	-- various fuel types are handled in another element
+	--
+	-- Light Trucks, Pickup, Van, Panel
+	--
+	lightTruck-Vehicle-TypeUnknown BasicVehicleClass ::= 20 -- default type
+	lightTruck-Vehicle-TypeOther BasicVehicleClass ::= 21
+	--
+	-- Trucks, Various axle types, includes HPMS items
+	--
+	truck-Vehicle-TypeUnknown BasicVehicleClass ::= 25 -- default type
+	truck-Vehicle-TypeOther BasicVehicleClass ::= 26
+	truck-axleCnt2 BasicVehicleClass ::= 27 -- Two axle, six tire single units
+	truck-axleCnt3 BasicVehicleClass ::= 28 -- Three axle, single units
+	truck-axleCnt4 BasicVehicleClass ::= 29 -- Four or more axle, single unit
+	truck-axleCnt4Trailer BasicVehicleClass ::= 30 -- Four or less axle, single trailer
+	truck-axleCnt5Trailer BasicVehicleClass ::= 31 -- Five or less axle, single trailer
+	truck-axleCnt6Trailer BasicVehicleClass ::= 32 -- Six or more axle, single trailer
+	truck-axleCnt5MultiTrailer BasicVehicleClass ::= 33 -- Five or less axle, multi-trailer
+	truck-axleCnt6MultiTrailer BasicVehicleClass ::= 34 -- Six axle, multi-trailer
+	truck-axleCnt7MultiTrailer BasicVehicleClass ::= 35 -- Seven or more axle, multi-trailer
+	--
+	-- Motorcycle Types
+	--
+	motorcycle-TypeUnknown BasicVehicleClass ::= 40 -- default type
+	motorcycle-TypeOther BasicVehicleClass ::= 41
+	motorcycle-Cruiser-Standard BasicVehicleClass ::= 42
+	motorcycle-SportUnclad BasicVehicleClass ::= 43
+	motorcycle-SportTouring BasicVehicleClass ::= 44
+	motorcycle-SuperSport BasicVehicleClass ::= 45
+	motorcycle-Touring BasicVehicleClass ::= 46
+	motorcycle-Trike BasicVehicleClass ::= 47
+	motorcycle-wPassengers BasicVehicleClass ::= 48 -- type not stated
+	--
+	-- Transit Types
+	--
+	transit-TypeUnknown BasicVehicleClass ::= 50 -- default type
+	transit-TypeOther BasicVehicleClass ::= 51
+	transit-BRT BasicVehicleClass ::= 52
+	transit-ExpressBus BasicVehicleClass ::= 53
+	transit-LocalBus BasicVehicleClass ::= 54
+	transit-SchoolBus BasicVehicleClass ::= 55
+	transit-FixedGuideway BasicVehicleClass ::= 56
+	transit-Paratransit BasicVehicleClass ::= 57
+	transit-Paratransit-Ambulance BasicVehicleClass ::= 58
+	--
+	-- Emergency Vehicle Types
+	--
+	emergency-TypeUnknown BasicVehicleClass ::= 60 -- default type
+	emergency-TypeOther BasicVehicleClass ::= 61 -- includes federal users
+	emergency-Fire-Light-Vehicle BasicVehicleClass ::= 62
+	emergency-Fire-Heavy-Vehicle BasicVehicleClass ::= 63
+	emergency-Fire-Paramedic-Vehicle BasicVehicleClass ::= 64
+	emergency-Fire-Ambulance-Vehicle BasicVehicleClass ::= 65
+	emergency-Police-Light-Vehicle BasicVehicleClass ::= 66
+	emergency-Police-Heavy-Vehicle BasicVehicleClass ::= 67
+	emergency-Other-Responder BasicVehicleClass ::= 68
+	emergency-Other-Ambulance BasicVehicleClass ::= 69
+	--
+	-- Other V2X Equipped Travelers
+	--
+	otherTraveler-TypeUnknown BasicVehicleClass ::= 80 -- default type
+	otherTraveler-TypeOther BasicVehicleClass ::= 81
+	otherTraveler-Pedestrian BasicVehicleClass ::= 82
+	otherTraveler-Visually-Disabled BasicVehicleClass ::= 83
+	otherTraveler-Physically-Disabled BasicVehicleClass ::= 84
+	otherTraveler-Bicycle BasicVehicleClass ::= 85
+	otherTraveler-Vulnerable-Roadworker BasicVehicleClass ::= 86
+	--
+	-- Other V2X Equipped Device Types
+	--
+	infrastructure-TypeUnknown BasicVehicleClass ::= 90 -- default type
+	infrastructure-Fixed BasicVehicleClass ::= 91
+	infrastructure-Movable BasicVehicleClass ::= 92
+	equipped-CargoTrailer BasicVehicleClass ::= 93
+	
+	--********************************Vehicle Fuel Type**************************
+	FuelType ::= INTEGER (0..15)
+	
+	unknownFuel FuelType::= 0 -- Gasoline Powered
+	gasoline FuelType::= 1
+	ethanol FuelType::= 2 -- Including blends
+	diesel FuelType::= 3 -- All types
+	electric FuelType::= 4
+	hybrid FuelType::= 5 -- All types
+	hydrogen FuelType::= 6
+	natGasLiquid FuelType::= 7 -- Liquefied
+	natGasComp FuelType::= 8 -- Compressed
+	propane FuelType::= 9
+	
+END

@@ -1,0 +1,76 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Sat Jul 23 15:48:40 CST 2016
+ */
+VehBrake DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS BrakeSystemStatus;
+IMPORTS ;
+	
+	BrakeSystemStatus ::= SEQUENCE {
+		brakePadel BrakePedalStatus OPTIONAL,
+		wheelBrakes BrakeAppliedStatus OPTIONAL,
+		traction TractionControlStatus OPTIONAL,
+		abs AntiLockBrakeStatus OPTIONAL,
+		scs StabilityControlStatus OPTIONAL,
+		brakeBoost BrakeBoostApplied OPTIONAL,
+		auxBrakes AuxiliaryBrakeStatus OPTIONAL
+	}
+	
+	BrakePedalStatus ::= ENUMERATED {
+		unavailable (0), -- Vehicle brake pedal detector is unavailable
+		off (1), -- Vehicle's brake pedal is not pressed
+		on (2) -- Vehicle's brake pedal is pressed
+	}
+	
+	BrakeAppliedStatus ::= BIT STRING {
+		unavailable (0), -- When set, the brake applied status is unavailable
+		leftFront (1), -- Left Front Active
+		leftRear (2), -- Left Rear Active
+		rightFront (3), -- Right Front Active
+		rightRear (4) -- Right Rear Active
+	} (SIZE (5))
+	
+	BrakeBoostApplied ::= ENUMERATED {
+		unavailable (0), -- Vehicle not equipped with brake boost
+		-- or brake boost data is unavailable
+		off (1), -- Vehicle's brake boost is off
+		on (2) -- Vehicle's brake boost is on (applied)
+	}
+	
+	TractionControlStatus ::= ENUMERATED {
+		unavailable (0), -- Not Equipped with traction control
+		-- or traction control status is unavailable
+		off (1), -- traction control is Off
+		on (2), -- traction control is On (but not Engaged)
+		engaged (3) -- traction control is Engaged
+	}
+	
+	AntiLockBrakeStatus ::= ENUMERATED {
+		unavailable (0), -- Vehicle Not Equipped with ABS Brakes
+		-- or ABS Brakes status is unavailable
+		off (1), -- Vehicle's ABS are Off
+		on (2), -- Vehicle's ABS are On ( but not Engaged )
+		engaged (3) -- Vehicle's ABS control is Engaged on any wheel
+	}
+	
+	StabilityControlStatus ::= ENUMERATED {
+		unavailable (0), -- Not Equipped with SC
+		-- or SC status is unavailable
+		off (1), -- Off
+		on (2), -- On or active (but not engaged)
+		engaged (3) -- stability control is Engaged
+	}
+	
+	AuxiliaryBrakeStatus ::= ENUMERATED {
+		unavailable (0), -- Vehicle Not Equipped with Aux Brakes
+		-- or Aux Brakes status is unavailable
+		off (1), -- Vehicle's Aux Brakes are Off
+		on (2), -- Vehicle's Aux Brakes are On ( Engaged )
+		reserved (3)
+	}
+	
+END

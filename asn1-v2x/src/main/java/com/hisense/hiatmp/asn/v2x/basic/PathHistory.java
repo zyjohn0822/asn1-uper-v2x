@@ -8,6 +8,12 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
+ * PathHistory ::= SEQUENCE {<br/>
+ * 		initialPosition FullPositionVector OPTIONAL,<br/>
+ * 		currGNSSstatus GNSSstatus OPTIONAL,<br/>
+ * 		crumbData PathHistoryPointList,<br/>
+ * 		...<br/>
+ *                }<br/>
  * @author zhangyong
  * @date 2020/11/5  14:13
  */
@@ -34,6 +40,24 @@ public class PathHistory {
         this.crumbData = crumbData;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"initialPosition\":")
+                .append(initialPosition);
+        sb.append(",\"currGNSSstatus\":")
+                .append(currGNSSstatus);
+        sb.append(",\"crumbData\":")
+                .append(crumbData);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    /**
+     * PathHistoryPointList ::= SEQUENCE (SIZE(1..23)) OF PathHistoryPoint<br/>
+     * @author zhangyong
+     * @date 2020-12-19 12:10
+     */
     @SizeRange(minValue = 1, maxValue = 23)
     public static class PathHistoryPointList extends Asn1SequenceOf<PathHistoryPoint> {
         public PathHistoryPointList(PathHistoryPoint... pathHistoryPoints) {

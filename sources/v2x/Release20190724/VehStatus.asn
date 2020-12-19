@@ -1,0 +1,53 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Sat Jul 23 16:34:25 CST 2016
+ */
+VehStatus DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS TransmissionState, VehicleEventFlags, ExteriorLights;
+IMPORTS ;
+	
+	TransmissionState ::= ENUMERATED {
+		neutral (0), -- Neutral
+		park (1), -- Park
+		forwardGears (2), -- Forward gears
+		reverseGears (3), -- Reverse gears
+		reserved1 (4),
+		reserved2 (5),
+		reserved3 (6),
+		unavailable (7)-- not-equipped or unavailable value,
+		-- Any related speed is relative to the vehicle reference frame used
+	}
+	
+	VehicleEventFlags ::= BIT STRING {
+		eventHazardLights (0),
+		eventStopLineViolation (1), -- Intersection Violation
+		eventABSactivated (2),
+		eventTractionControlLoss (3),
+		eventStabilityControlactivated (4),
+		eventHazardousMaterials (5),
+		eventReserved1 (6),
+		eventHardBraking (7),
+		eventLightsChanged (8),
+		eventWipersChanged (9),
+		eventFlatTire (10),
+		eventDisabledVehicle (11), -- The DisabledVehicle DF may also be sent
+		eventAirBagDeployment (12)
+		} (SIZE (13, ...))	
+	
+	ExteriorLights ::= BIT STRING { 
+		-- All lights off is indicated by no bits set
+		lowBeamHeadlightsOn (0),
+		highBeamHeadlightsOn (1),
+		leftTurnSignalOn (2),
+		rightTurnSignalOn (3),
+		hazardSignalOn (4),
+		automaticLightControlOn (5),
+		daytimeRunningLightsOn (6),
+		fogLightOn (7),
+		parkingLightsOn (8)
+		} (SIZE (9, ...))
+END

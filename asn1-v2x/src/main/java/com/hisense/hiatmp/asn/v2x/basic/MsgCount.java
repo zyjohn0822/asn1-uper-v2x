@@ -4,6 +4,7 @@ import net.gcdc.asn1.datatypes.Asn1Integer;
 import net.gcdc.asn1.datatypes.IntRange;
 
 /**
+ * MsgCount ::= INTEGER (0..127)<br/>
  * @author zhangyong
  * @date 2020/11/4  19:15
  */

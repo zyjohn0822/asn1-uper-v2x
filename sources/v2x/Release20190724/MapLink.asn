@@ -1,0 +1,59 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Fri Sep 16 11:53:31 CST 2016
+ */
+MapLink DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS LinkList;
+IMPORTS DescriptiveName, NodeReferenceID FROM MapNode
+		PositionOffsetLLV FROM DefPositionOffset
+		SpeedLimitList FROM MapSpeedLimit
+		LaneList, LaneWidth FROM MapLane
+		Position3D FROM DefPosition
+		PointList FROM MapPoint
+		PhaseID FROM SPATIntersectionState;
+	
+	LinkList ::= SEQUENCE (SIZE(1..32)) OF Link
+	
+	Link ::= SEQUENCE {
+		name DescriptiveName OPTIONAL,
+		-- Link name
+		
+		upstreamNodeId NodeReferenceID,
+		-- this link is from upstreamNode to the Node it belongs to
+		
+		speedLimits SpeedLimitList OPTIONAL,
+		-- List all the speed limits
+		
+		linkWidth LaneWidth OPTIONAL,
+		-- Width of this link
+		
+		points PointList OPTIONAL,
+		-- Define road points along the center of this link
+		
+		movements MovementList OPTIONAL,
+		-- Define movements at intersection
+		
+		lanes LaneList,
+		-- Lanes belong to this link
+		...
+	}
+	
+	MovementList ::= SEQUENCE (SIZE(1..32)) OF Movement
+	
+	Movement ::= SEQUENCE {
+		remoteIntersection NodeReferenceID,
+		-- This entry indicates the downstream intersection of the link this lane connects to. 
+		-- This provides a means to create meshes of lanes
+		
+		phaseId PhaseID OPTIONAL
+		-- The matching signal group send by
+		-- the SPAT message for this lane/maneuver.
+		-- Shall be present unless the connectingLane
+		-- has no signal group (is un-signalized)
+	}
+	
+END

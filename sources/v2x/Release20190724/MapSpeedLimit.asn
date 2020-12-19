@@ -1,0 +1,42 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Fri Sep 16 11:56:58 CST 2016
+ */
+MapSpeedLimit DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS SpeedLimitList;
+IMPORTS Speed FROM DefMotion;
+	
+	SpeedLimitList ::= SEQUENCE (SIZE(1..9)) OF RegulatorySpeedLimit
+	
+	RegulatorySpeedLimit ::= SEQUENCE {
+		type SpeedLimitType,
+		-- The type of regulatory speed which follows
+		speed Speed
+		-- The speed in units of 0.02 m/s
+		-- See Section 11 for converting and translating
+		-- speed expressed in mph into units of m/s
+		}
+	
+	SpeedLimitType ::= ENUMERATED {
+		unknown, -- Speed limit type not available
+		maxSpeedInSchoolZone, -- Only sent when the limit is active
+		maxSpeedInSchoolZoneWhenChildrenArePresent, -- Sent at any time
+		maxSpeedInConstructionZone, -- Used for work zones, incident zones, etc.
+		-- where a reduced speed is present
+		vehicleMinSpeed,
+		vehicleMaxSpeed, -- Regulatory speed limit for general traffic
+		vehicleNightMaxSpeed,
+		truckMinSpeed,
+		truckMaxSpeed,
+		truckNightMaxSpeed,
+		vehiclesWithTrailersMinSpeed,
+		vehiclesWithTrailersMaxSpeed,
+		vehiclesWithTrailersNightMaxSpeed,
+		...
+		}
+
+END

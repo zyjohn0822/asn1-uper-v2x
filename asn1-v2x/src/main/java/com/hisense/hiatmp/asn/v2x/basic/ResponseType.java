@@ -3,6 +3,17 @@ package com.hisense.hiatmp.asn.v2x.basic;
 import net.gcdc.asn1.datatypes.HasExtensionMarker;
 
 /**
+ * ResponseType
+ *ResponseType ::= ENUMERATED {<br/>
+ * 		notInUseOrNotEquipped (0),<br/>
+ * 		emergency (1), -- active service call at emergency level<br/>
+ * 		nonEmergency (2), -- also used when returning from service call<br/>
+ * 		pursuit (3), -- sender driving may be erratic<br/>
+ * 		stationary (4), -- sender is not moving, stopped along roadside<br/>
+ * 		slowMoving (5), -- such a litter trucks, etc.<br/>
+ * 		stopAndGoMovement (6), -- such as school bus or garbage truck<br/>
+ * 		...<br/>
+ *        }<br/>
  * @author zhangyong
  * @date 2020/12/9  22:32
  */

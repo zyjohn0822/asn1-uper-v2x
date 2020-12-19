@@ -1,7 +1,6 @@
 package com.hisense.hiatmp.asn.v2x;
 
 import com.hisense.hiatmp.asn.v2x.basic.*;
-import com.hisense.hiatmp.asn.v2x.basic.VehStatus.TransmissionState;
 import net.gcdc.asn1.uper.UperEncoder;
 import org.junit.After;
 import org.junit.Before;
@@ -61,7 +60,7 @@ public class BasicSafetyMessageTest {
         VehicleEventFlags vehicleEventFlags = new VehicleEventFlags(vs);
         List<Boolean> es = Arrays.asList(false, false, false, false, false, false, false, false, false);
         ExteriorLights exteriorLights = new ExteriorLights(es);
-        VehicleSafetyExtensions safetyExt = new VehicleSafetyExtensions(vehicleEventFlags,null, null, exteriorLights);
+        VehicleSafetyExtensions safetyExt = new VehicleSafetyExtensions(vehicleEventFlags, null, null, exteriorLights);
         VehicleEmergencyExtensions emergencyExt = null;
         basicSafetyMessage = new BasicSafetyMessage(
                 msgCount,
@@ -89,13 +88,15 @@ public class BasicSafetyMessageTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(basicSafetyMessage);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         byte[] bs = new byte[]{42, 70, 96, 96, 98, 104, 102, 98,
                 96, 99, 111, -25, -116, -47, 52, 111, 93, 35, -31,
                 -60, 41, -94, 96, 96, 96, 102, 0, 12, 92, -30, 53,

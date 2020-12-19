@@ -1,0 +1,23 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Tue Sep 06 17:32:36 CST 2016
+ */
+Map DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS MapData;
+IMPORTS MinuteOfTheYear FROM DefTime
+		MsgCount FROM MsgFrame
+		NodeList FROM MapNode;
+	
+	MapData ::=	SEQUENCE {
+		msgCnt MsgCount,
+		timeStamp MinuteOfTheYear OPTIONAL,
+		nodes NodeList,
+		-- intersections or road endpoints
+		...
+	}
+	
+END

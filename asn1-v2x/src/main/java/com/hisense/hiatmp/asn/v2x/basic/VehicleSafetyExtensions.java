@@ -8,6 +8,25 @@ import net.gcdc.asn1.datatypes.HasExtensionMarker;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
+ * VehSafetyExt DEFINITIONS AUTOMATIC TAGS ::= BEGIN<br/>
+ *
+ * -- imports and exports<br/>
+ *
+ * EXPORTS VehicleSafetyExtensions, Confidence, FullPositionVector, GNSSstatus;<br/>
+ * IMPORTS VehicleEventFlags, ExteriorLights, TransmissionState FROM VehStatus<br/>
+ * 		PositionOffsetLLV FROM DefPositionOffset<br/>
+ * 		Speed, Heading, MotionConfidenceSet, CoarseHeading FROM DefMotion<br/>
+ * 		Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition<br/>
+ * 		DDateTime, TimeOffset, TimeConfidence FROM DefTime;<br/>
+ *
+ * 	VehicleSafetyExtensions ::= SEQUENCE {<br/>
+ * 		events VehicleEventFlags OPTIONAL,<br/>
+ * 		pathHistory PathHistory OPTIONAL,<br/>
+ * 		pathPrediction PathPrediction OPTIONAL,<br/>
+ * 		lights ExteriorLights OPTIONAL,<br/>
+ * 		...<br/>
+ *                }<br/>
+ * END<br/>
  * @author zhangyong
  * @date 2020/11/4  19:15
  */
@@ -42,5 +61,20 @@ public class VehicleSafetyExtensions {
         this.pathHistory = pathHistory;
         this.pathPrediction = pathPrediction;
         this.lights = lights;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"events\":")
+                .append(events);
+        sb.append(",\"pathHistory\":")
+                .append(pathHistory);
+        sb.append(",\"pathPrediction\":")
+                .append(pathPrediction);
+        sb.append(",\"lights\":")
+                .append(lights);
+        sb.append('}');
+        return sb.toString();
     }
 }

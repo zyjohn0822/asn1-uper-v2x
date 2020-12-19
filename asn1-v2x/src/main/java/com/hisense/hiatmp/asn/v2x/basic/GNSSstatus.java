@@ -7,6 +7,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
+ *GNSSstatus ::= BIT STRING {<br/>
+ * 		unavailable (0), -- Not Equipped or unavailable<br/>
+ * 		isHealthy (1),<br/>
+ * 		isMonitored (2),<br/>
+ * 		baseStationType (3), -- Set to zero if a moving base station,<br/>
+ * 		-- or if a rover device (an OBU),<br/>
+ * 		-- set to one if it is a fixed base station<br/>
+ * 		aPDOPofUnder5 (4), -- A dilution of precision greater than 5<br/>
+ * 		inViewOfUnder5 (5), -- Less than 5 satellites in view<br/>
+ * 		localCorrectionsPresent (6), -- pseudo range corrections used<br/>
+ * 		networkCorrectionsPresent (7) -- RTK type corrections used<br/>
+ *                } (SIZE(8))<br/>
  * @author zhangyong
  * @date 2020/11/5  14:40
  */

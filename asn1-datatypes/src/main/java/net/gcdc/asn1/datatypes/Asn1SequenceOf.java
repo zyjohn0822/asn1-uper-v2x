@@ -59,6 +59,15 @@ public abstract class Asn1SequenceOf<T> extends AbstractList<T> {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"bakingList\":")
+                .append(bakingList);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), bakingList);
     }

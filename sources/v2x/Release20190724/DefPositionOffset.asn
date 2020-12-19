@@ -1,0 +1,160 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Tue Sep 06 18:50:17 CST 2016
+ */
+DefPositionOffset DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS PositionOffsetLLV;
+IMPORTS Longitude, Latitude, Elevation FROM DefPosition;
+	
+	PositionOffsetLLV ::= SEQUENCE {
+		offsetLL PositionOffsetLL,
+		-- offset in lon/lat
+		offsetV VerticalOffset OPTIONAL
+		-- offset in elevation
+	}
+	
+	OffsetLL-B12 ::= INTEGER (-2048..2047) 
+	-- A range of +- 0.0002047 degrees 
+	-- Units of 0.1 microdegrees 
+	OffsetLL-B14 ::= INTEGER (-8192..8191) 
+	-- A range of +- 0.0008191 degrees 
+	-- Units of 0.1 microdegrees
+	OffsetLL-B16 ::= INTEGER (-32768..32767) 
+	-- A range of +- 0.0032767 degrees 
+	-- Units of 0.1 microdegrees
+	OffsetLL-B18 ::= INTEGER (-131072..131071) 
+	-- A range of +- 0.0131071 degrees 
+	-- Units of 0.1 microdegrees
+	OffsetLL-B22 ::= INTEGER (-2097152..2097151) 
+	-- A range of +- 0.2097151 degrees 
+	-- Units of 0.1 microdegrees
+	OffsetLL-B24 ::= INTEGER (-8388608..8388607) 
+	-- A range of +- 0.8388607 degrees 
+	-- Units of 0.1 microdegrees
+	
+	Position-LL-24B ::= SEQUENCE { 
+		-- ranges of +- 0.0002047 degrees 
+		-- ranges of +- 22.634554 meters at the equator
+		lon OffsetLL-B12,
+		lat OffsetLL-B12
+		}
+	
+	Position-LL-28B ::= SEQUENCE { 
+		-- ranges of +- 0.0008191 degrees 
+		-- ranges of +- 90.571389 meters at the equator
+		lon OffsetLL-B14,
+		lat OffsetLL-B14
+		}
+	
+	Position-LL-32B ::= SEQUENCE { 
+		-- ranges of +- 0.0032767 degrees 
+		-- ranges of +- 362.31873 meters at the equator
+		lon OffsetLL-B16,
+		lat OffsetLL-B16
+		}
+	
+	Position-LL-36B ::= SEQUENCE { 
+		-- ranges of +- 0.0131071 degrees 
+		-- ranges of +- 01.449308 Kmeters at the equator
+		lon OffsetLL-B18,
+		lat OffsetLL-B18
+		}
+	
+	Position-LL-44B ::= SEQUENCE { 
+		-- ranges of +- 0.2097151 degrees 
+		-- ranges of +- 23.189096 Kmeters at the equator
+		lon OffsetLL-B22,
+		lat OffsetLL-B22
+		}
+	
+	Position-LL-48B ::= SEQUENCE { 
+		-- ranges of +- 0.8388607 degrees 
+		-- ranges of +- 92.756481 Kmeters at the equator
+		lon OffsetLL-B24,
+		lat OffsetLL-B24
+		}
+	
+	Position-LLmD-64b ::= SEQUENCE {
+		-- a full 32b Lat/Lon range
+		lon Longitude,
+		lat Latitude
+		}
+	
+	PositionOffsetLL ::= CHOICE { 
+		-- Locations with LL content Span at the equator when using a zoom of one:
+		position-LL1 Position-LL-24B, 
+		-- within +- 22.634554 meters of the reference position
+		position-LL2 Position-LL-28B, 
+		-- within +- 90.571389 meters of the reference position
+		position-LL3 Position-LL-32B, 
+		-- within +- 362.31873 meters of the reference position
+		position-LL4 Position-LL-36B, 
+		-- within +- 01.449308 Kmeters of the reference position
+		position-LL5 Position-LL-44B, 
+		-- within +- 23.189096 Kmeters of the reference position
+		position-LL6 Position-LL-48B, 
+		-- within +- 92.756481 Kmeters of the reference position
+		position-LatLon Position-LLmD-64b 
+		-- node is a Lat/Lon absolute coordinates
+		-- not a reference position
+	}
+	
+	VerticalOffset ::= CHOICE { 
+		-- Vertical Offset 
+		-- All below in steps of 10cm above or below the reference ellipsoid
+		offset1 VertOffset-B07, -- with a range of +- 6.3 meters vertical
+		offset2 VertOffset-B08, -- with a range of +- 12.7 meters vertical
+		offset3 VertOffset-B09, -- with a range of +- 25.5 meters vertical
+		offset4 VertOffset-B10, -- with a range of +- 51.1 meters vertical
+		offset5 VertOffset-B11, -- with a range of +- 102.3 meters vertical
+		offset6 VertOffset-B12, -- with a range of +- 204.7 meters vertical
+		elevation Elevation -- with a range of -409.5 to + 6143.9 meters
+		}
+	
+	VertOffset-B07 ::= INTEGER (-64..63) 
+	-- Units of of 10 cm 
+	-- with a range of +- 6.3 meters vertical 
+	-- value 63 to be used for 63 or greater 
+	-- value -63 to be used for -63 or greater 
+	-- value -64 to be unavailable
+	
+	VertOffset-B08 ::= INTEGER (-128..127) 
+	-- Units of of 10 cm 
+	-- with a range of +- 12.7 meters vertical 
+	-- value 127 to be used for 127 or greater 
+	-- value -127 to be used for -127 or greater 
+	-- value -128 to be unavailable
+	
+	VertOffset-B09 ::= INTEGER (-256..255) 
+	-- Units of of 10 cm 
+	-- with a range of +- 25.5 meters vertical 
+	-- value 255 to be used for 255 or greater 
+	-- value -255 to be used for -255 or greater 
+	-- value -256 to be unavailable
+	
+	VertOffset-B10 ::= INTEGER (-512..511) 
+	-- Units of of 10 cm 
+	-- with a range of +- 51.1 meters vertical 
+	-- value 511 to be used for 511 or greater 
+	-- value -511 to be used for -511 or greater 
+	-- value -512 to be unavailable
+	
+	VertOffset-B11 ::= INTEGER (-1024..1023) 
+	-- Units of of 10 cm 
+	-- with a range of +- 102.3 meters vertical 
+	-- value 1023 to be used for 1023 or greater 
+	-- value -1023 to be used for -1023 or greater 
+	-- value -1024 to be unavailable
+	
+	VertOffset-B12 ::= INTEGER (-2048..2047) 
+	-- Units of of 10 cm 
+	-- with a range of +- 204.7 meters vertical 
+	-- value 2047 to be used for 2047 or greater 
+	-- value -2047 to be used for -2047 or greater 
+	-- value -2048 to be unavailable
+	
+END

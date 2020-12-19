@@ -1,6 +1,5 @@
 import com.hisense.hiatmp.asn.v2x.BasicSafetyMessage;
 import com.hisense.hiatmp.asn.v2x.basic.*;
-import com.hisense.hiatmp.asn.v2x.basic.VehStatus.TransmissionState;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleSize.VehicleLength;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleSize.VehicleWidth;
 import net.gcdc.asn1.uper.UperEncoder;

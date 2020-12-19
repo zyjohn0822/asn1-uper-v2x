@@ -1,0 +1,49 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Sat Jul 23 14:50:00 CST 2016
+ */
+BSM DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS BasicSafetyMessage;
+IMPORTS AccelerationSet4Way FROM DefAcceleration
+		BrakeSystemStatus FROM VehBrake
+		VehicleSize FROM VehSize
+		Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition
+		DSecond, TimeConfidence FROM DefTime
+		TransmissionState FROM VehStatus
+		Speed, Heading, SteeringWheelAngle, MotionConfidenceSet FROM DefMotion
+		MsgCount FROM MsgFrame
+		VehicleClassification FROM VehClass
+		VehicleSafetyExtensions FROM VehSafetyExt
+		VehicleEmergencyExtensions FROM VehEmgExt;
+	
+	BasicSafetyMessage ::= SEQUENCE {
+		msgCnt MsgCount,
+		id OCTET STRING (SIZE(8)),
+		-- temperary vehicle ID
+		secMark DSecond,
+		timeConfidence TimeConfidence OPTIONAL,
+		pos Position3D,
+		posAccuracy PositionalAccuracy OPTIONAL,
+		-- Accuracy for GNSS system
+		posConfidence PositionConfidenceSet OPTIONAL,
+		-- Realtime position confidence
+		transmission TransmissionState,
+		speed Speed,
+		heading Heading,
+		angle SteeringWheelAngle OPTIONAL,
+		motionCfd MotionConfidenceSet OPTIONAL,
+		accelSet AccelerationSet4Way,
+		brakes BrakeSystemStatus,
+		size VehicleSize,
+		vehicleClass VehicleClassification,
+		-- VehicleClassification includes BasicVehicleClass and other extendible type
+		safetyExt VehicleSafetyExtensions OPTIONAL,
+		emergencyExt VehicleEmergencyExtensions OPTIONAL,
+		...
+	}
+	
+END

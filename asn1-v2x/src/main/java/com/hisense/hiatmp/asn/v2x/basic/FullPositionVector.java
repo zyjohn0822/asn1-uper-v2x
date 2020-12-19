@@ -3,10 +3,23 @@ package com.hisense.hiatmp.asn.v2x.basic;
 import lombok.Getter;
 import lombok.Setter;
 import net.gcdc.asn1.datatypes.Asn1Optional;
+import net.gcdc.asn1.datatypes.Component;
 import net.gcdc.asn1.datatypes.HasExtensionMarker;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
+ * FullPositionVector ::= SEQUENCE {<br/>
+ * 		utcTime DDateTime OPTIONAL, -- time with mSec precision<br/>
+ * 		pos Position3D,<br/>
+ * 		heading Heading OPTIONAL,<br/>
+ * 		transmission TransmissionState OPTIONAL,<br/>
+ * 		speed Speed OPTIONAL,<br/>
+ * 		posAccuracy PositionalAccuracy OPTIONAL,<br/>
+ * 		posConficence PositionConfidenceSet OPTIONAL,<br/>
+ * 		timeConfidence TimeConfidence OPTIONAL,<br/>
+ * 		motionCfd MotionConfidenceSet OPTIONAL,<br/>
+ * 		...<br/>
+ *                }<br/>
  * @author zhangyong
  * @date 2020/11/5  14:28
  */
@@ -15,21 +28,30 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Getter
 @HasExtensionMarker
 public class FullPositionVector {
+    @Component(0)
     @Asn1Optional
     DDateTime utcTime;
+    @Component(1)
     Position3D pos;
+    @Component(2)
     @Asn1Optional
     Heading heading;
+    @Component(3)
     @Asn1Optional
-    VehStatus.TransmissionState transmission;
+    TransmissionState transmission;
+    @Component(4)
     @Asn1Optional
     Speed speed;
+    @Component(5)
     @Asn1Optional
     PositionalAccuracy posAccuracy;
+    @Component(6)
     @Asn1Optional
     PositionConfidenceSet posConficence;
+    @Component(7)
     @Asn1Optional
     TimeConfidence timeConfidence;
+    @Component(8)
     @Asn1Optional
     MotionConfidenceSet motionCfd;
 
@@ -44,7 +66,7 @@ public class FullPositionVector {
             DDateTime utcTime,
             Position3D pos,
             Heading heading,
-            VehStatus.TransmissionState transmission,
+            TransmissionState transmission,
             Speed speed,
             PositionalAccuracy posAccuracy,
             PositionConfidenceSet posConficence,
@@ -60,5 +82,30 @@ public class FullPositionVector {
         this.posConficence = posConficence;
         this.timeConfidence = timeConfidence;
         this.motionCfd = motionCfd;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"utcTime\":")
+                .append(utcTime);
+        sb.append(",\"pos\":")
+                .append(pos);
+        sb.append(",\"heading\":")
+                .append(heading);
+        sb.append(",\"transmission\":")
+                .append(transmission);
+        sb.append(",\"speed\":")
+                .append(speed);
+        sb.append(",\"posAccuracy\":")
+                .append(posAccuracy);
+        sb.append(",\"posConficence\":")
+                .append(posConficence);
+        sb.append(",\"timeConfidence\":")
+                .append(timeConfidence);
+        sb.append(",\"motionCfd\":")
+                .append(motionCfd);
+        sb.append('}');
+        return sb.toString();
     }
 }

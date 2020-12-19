@@ -1,0 +1,30 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Wed Nov 23 13:53:37 CST 2016
+ */
+SignalPhaseAndTiming DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS SPAT;
+IMPORTS MinuteOfTheYear FROM DefTime
+		DescriptiveName FROM MapNode
+		IntersectionStateList FROM SPATIntersectionState
+		MsgCount FROM MsgFrame
+		DSecond FROM DefTime;
+	
+	SPAT ::= SEQUENCE {
+		msgCnt MsgCount,
+		moy MinuteOfTheYear OPTIONAL,
+		timeStamp DSecond OPTIONAL,
+		-- Time stamp when this message is formed
+		name DescriptiveName OPTIONAL,
+		-- human readable name for this collection
+		-- to be used only in debug mode
+		intersections IntersectionStateList,
+		-- sets of SPAT data (one per intersection)
+		...
+	}
+	
+END
