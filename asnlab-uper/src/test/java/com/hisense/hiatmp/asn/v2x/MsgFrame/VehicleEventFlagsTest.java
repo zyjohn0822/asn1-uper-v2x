@@ -26,7 +26,9 @@ public class VehicleEventFlagsTest {
     }
     @Test
     public void decode() throws Exception {
-        byte[] decodeBytes = new byte[]{14, 60};
+        //0, 0
+        //14, 60
+        byte[] decodeBytes = new byte[]{0, 0};
         final VehicleEventFlags vehicleEventFlags =
                 VehicleEventFlags.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(vehicleEventFlags);

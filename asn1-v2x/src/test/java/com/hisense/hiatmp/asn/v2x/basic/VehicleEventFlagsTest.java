@@ -17,7 +17,7 @@ public class VehicleEventFlagsTest {
 
     @Before
     public void setUp() throws Exception {
-        final List<Boolean> eventFlags = Arrays.asList(false, false, false, true, true, true, false, false, false, true, true, true, true);
+        final List<Boolean> eventFlags = Arrays.asList(false, false, false, false, false, false, false, false, false, false, false, false, false);
         vehicleEventFlags = new VehicleEventFlags(eventFlags);
     }
 

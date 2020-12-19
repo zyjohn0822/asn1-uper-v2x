@@ -121,7 +121,7 @@ public class BasicSafetyMessage {
         this.safetyExt = safetyExt;
         this.emergencyExt = emergencyExt;
     }
-    @SizeRange(minValue = 8, maxValue = 8, hasExtensionMarker = true)
+    @SizeRange(minValue = 8, maxValue = 8)
     public static class ID extends Asn1SequenceOf<Byte> {
         // Two constructors -- choose any, or add more.
         public ID(Byte... coll)          { this(Arrays.asList(coll)); }

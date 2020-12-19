@@ -28,7 +28,7 @@ public class ApiTest {
         System.out.println(Arrays.toString(bytes));
         System.out.println("bsm" + bsmFrame.bsmFrame);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        bsmFrame.bsmFrame.per_encode(true, out);
+        bsmFrame.bsmFrame.per_encode(false, out);
         byte[] bytes1 = out.toByteArray();
         System.out.println(Arrays.toString(bytes1));
         //byte 转 hex

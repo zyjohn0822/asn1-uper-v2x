@@ -17,9 +17,10 @@ public class Position3DTest {
 
     @Test
     public void per_decode() throws IOException {
-        //-58, 104, -102, 55, -82, -111, -16, -30, 20, -47
+        //    -58, 104, -102, 55, -82, -111, -16, -30, 20, -47
         //has marker 99, 52, 77, 27, -41, 72, -8, 113, 10, 104, -128
-        byte[] decodeBytes = new byte[]{99, 52, 77, 27, -41, 72, -8, 113, 10, 104, -128};
+        //asn -32, 70, 104, -102, 55, -64, -82, -111, -16, -30, 20, -47
+        byte[] decodeBytes = new byte[]{-32, 70, 104, -102, 55, -64, -82, -111, -16, -30, 20, -47};
         Position3D position3D = Position3D.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(position3D);
     }

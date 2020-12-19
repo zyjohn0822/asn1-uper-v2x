@@ -1,7 +1,6 @@
 import com.hisense.hiatmp.asn.v2x.BasicSafetyMessage;
 import com.hisense.hiatmp.asn.v2x.basic.*;
 import com.hisense.hiatmp.asn.v2x.basic.VehStatus.TransmissionState;
-import com.hisense.hiatmp.asn.v2x.basic.VehicleClassification.BasicVehicleClass;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleSize.VehicleLength;
 import com.hisense.hiatmp.asn.v2x.basic.VehicleSize.VehicleWidth;
 import net.gcdc.asn1.uper.UperEncoder;
@@ -281,10 +280,21 @@ public class BasicSafetyMessageTest {
 
 
     @Test
-    public void decodeBsmFrame(){
+    public void decodeBsmFrame() {
         String hex = "07A4660606268666260636FE6063344D1BD748F8710A68800000004018018B9C46BEABE83FBFFFE07E2D07D03648000000";
         String hex2 = "2A463030313433313031B7F3E046689A37C0AE91F0E214D13030303300000617388D07D507D07F7FFF808000B401F4003648000000";
-        byte[] bytes1 = bytesFromHexString(hex2);
+        byte[] bytes1 = new byte[]{
+                42, 70, 48, 48, 49,
+                52, 51, 49, 48, 49,
+                -73, -13, -32, 70,
+                104, -102, 55, -64,
+                -82, -111, -16, -30,
+                20, -47, 48, 48, 48,
+                51, 0, 0, 6, 23, 56,
+                -115, 7, -43, 7, -48,
+                127, 127, -1, -128,
+                -128, 0, -76, 1, -12,
+                0, 54, 72, 0, 0, 0};
         BasicSafetyMessage basicSafetyMessage = UperEncoder.decode(bytes1, BasicSafetyMessage.class);
         System.out.println(Arrays.toString(bytes1));
         System.out.println(basicSafetyMessage);
