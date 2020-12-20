@@ -356,8 +356,6 @@ public abstract class Decoder implements IDecoder, IASN1TypesDecoder {
                 break;
             }
         }
-        ;
-
         DecodedObject itemValue = decodeEnumItem(decodedTag, field.getType(), enumClass, elementInfo, stream);
 
         Field param = null;

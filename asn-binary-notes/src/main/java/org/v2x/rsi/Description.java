@@ -1,21 +1,19 @@
-
 package org.v2x.rsi;
 
 
-import org.bn.CoderFactory;
-import org.bn.annotations.*;
+import org.bn.annotations.ASN1Choice;
+import org.bn.annotations.ASN1Element;
+import org.bn.annotations.ASN1OctetString;
+import org.bn.annotations.ASN1String;
 import org.bn.annotations.constraints.ASN1ValueRangeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.bn.coders.UniversalTag;
 
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Choice(name = "Description")
-public class Description implements IASN1PreparedElement {
+public class Description {
 
     @ASN1String(name = "",
             stringType = UniversalTag.IA5String, isUCS = false)
@@ -39,14 +37,13 @@ public class Description implements IASN1PreparedElement {
         return this.textString;
     }
 
-    public boolean isTextStringSelected() {
-        return this.textString != null;
-    }
-
     private void setTextString(String value) {
         this.textString = value;
     }
 
+    public boolean isTextStringSelected() {
+        return this.textString != null;
+    }
 
     public void selectTextString(String value) {
         this.textString = value;
@@ -60,14 +57,13 @@ public class Description implements IASN1PreparedElement {
         return this.textGB2312;
     }
 
-    public boolean isTextGB2312Selected() {
-        return this.textGB2312 != null;
-    }
-
     private void setTextGB2312(byte[] value) {
         this.textGB2312 = value;
     }
 
+    public boolean isTextGB2312Selected() {
+        return this.textGB2312 != null;
+    }
 
     public void selectTextGB2312(byte[] value) {
         this.textGB2312 = value;
@@ -75,17 +71,6 @@ public class Description implements IASN1PreparedElement {
         setTextString(null);
 
     }
-
-
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(Description.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

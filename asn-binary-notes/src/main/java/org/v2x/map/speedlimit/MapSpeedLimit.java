@@ -1,4 +1,3 @@
-
 package org.v2x.map.speedlimit;
 
 import org.bn.annotations.ASN1Module;

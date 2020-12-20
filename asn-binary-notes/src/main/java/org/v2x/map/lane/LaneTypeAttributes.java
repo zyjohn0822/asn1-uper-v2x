@@ -1,20 +1,14 @@
-
 package org.v2x.map.lane;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Choice;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Choice(name = "LaneTypeAttributes")
-public class LaneTypeAttributes implements IASN1PreparedElement {
+public class LaneTypeAttributes {
 
     @ASN1Element(name = "vehicle", isOptional = false, hasTag = false, hasDefaultValue = false)
     private LaneAttributes_Vehicle vehicle = null;
@@ -45,14 +39,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.vehicle;
     }
 
-    public boolean isVehicleSelected() {
-        return this.vehicle != null;
-    }
-
     private void setVehicle(LaneAttributes_Vehicle value) {
         this.vehicle = value;
     }
 
+    public boolean isVehicleSelected() {
+        return this.vehicle != null;
+    }
 
     public void selectVehicle(LaneAttributes_Vehicle value) {
         this.vehicle = value;
@@ -78,14 +71,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.crosswalk;
     }
 
-    public boolean isCrosswalkSelected() {
-        return this.crosswalk != null;
-    }
-
     private void setCrosswalk(LaneAttributes_Crosswalk value) {
         this.crosswalk = value;
     }
 
+    public boolean isCrosswalkSelected() {
+        return this.crosswalk != null;
+    }
 
     public void selectCrosswalk(LaneAttributes_Crosswalk value) {
         this.crosswalk = value;
@@ -111,14 +103,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.bikeLane;
     }
 
-    public boolean isBikeLaneSelected() {
-        return this.bikeLane != null;
-    }
-
     private void setBikeLane(LaneAttributes_Bike value) {
         this.bikeLane = value;
     }
 
+    public boolean isBikeLaneSelected() {
+        return this.bikeLane != null;
+    }
 
     public void selectBikeLane(LaneAttributes_Bike value) {
         this.bikeLane = value;
@@ -144,14 +135,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.sidewalk;
     }
 
-    public boolean isSidewalkSelected() {
-        return this.sidewalk != null;
-    }
-
     private void setSidewalk(LaneAttributes_Sidewalk value) {
         this.sidewalk = value;
     }
 
+    public boolean isSidewalkSelected() {
+        return this.sidewalk != null;
+    }
 
     public void selectSidewalk(LaneAttributes_Sidewalk value) {
         this.sidewalk = value;
@@ -177,14 +167,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.median;
     }
 
-    public boolean isMedianSelected() {
-        return this.median != null;
-    }
-
     private void setMedian(LaneAttributes_Barrier value) {
         this.median = value;
     }
 
+    public boolean isMedianSelected() {
+        return this.median != null;
+    }
 
     public void selectMedian(LaneAttributes_Barrier value) {
         this.median = value;
@@ -210,14 +199,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.striping;
     }
 
-    public boolean isStripingSelected() {
-        return this.striping != null;
-    }
-
     private void setStriping(LaneAttributes_Striping value) {
         this.striping = value;
     }
 
+    public boolean isStripingSelected() {
+        return this.striping != null;
+    }
 
     public void selectStriping(LaneAttributes_Striping value) {
         this.striping = value;
@@ -243,14 +231,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.trackedVehicle;
     }
 
-    public boolean isTrackedVehicleSelected() {
-        return this.trackedVehicle != null;
-    }
-
     private void setTrackedVehicle(LaneAttributes_TrackedVehicle value) {
         this.trackedVehicle = value;
     }
 
+    public boolean isTrackedVehicleSelected() {
+        return this.trackedVehicle != null;
+    }
 
     public void selectTrackedVehicle(LaneAttributes_TrackedVehicle value) {
         this.trackedVehicle = value;
@@ -276,14 +263,13 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         return this.parking;
     }
 
-    public boolean isParkingSelected() {
-        return this.parking != null;
-    }
-
     private void setParking(LaneAttributes_Parking value) {
         this.parking = value;
     }
 
+    public boolean isParkingSelected() {
+        return this.parking != null;
+    }
 
     public void selectParking(LaneAttributes_Parking value) {
         this.parking = value;
@@ -303,17 +289,6 @@ public class LaneTypeAttributes implements IASN1PreparedElement {
         setTrackedVehicle(null);
 
     }
-
-    @Override
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(LaneTypeAttributes.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

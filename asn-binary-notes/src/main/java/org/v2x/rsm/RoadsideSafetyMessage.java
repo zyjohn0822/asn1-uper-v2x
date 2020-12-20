@@ -1,14 +1,9 @@
-
 package org.v2x.rsm;
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
 import org.bn.annotations.ASN1OctetString;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
 import org.bn.annotations.constraints.ASN1SizeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.MsgCount;
 import org.v2x.position.Position3D;
 
@@ -16,9 +11,9 @@ import org.v2x.position.Position3D;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
+
 @ASN1Sequence(name = "RoadsideSafetyMessage", isSet = false)
-public class RoadsideSafetyMessage implements IASN1PreparedElement {
+public class RoadsideSafetyMessage {
 
     @ASN1Element(name = "msgCnt", isOptional = false, hasTag = false, hasDefaultValue = false)
     private MsgCount msgCnt = null;
@@ -72,17 +67,6 @@ public class RoadsideSafetyMessage implements IASN1PreparedElement {
 
     public void setParticipants(ParticipantList value) {
         this.participants = value;
-    }
-
-
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(RoadsideSafetyMessage.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

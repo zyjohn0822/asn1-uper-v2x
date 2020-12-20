@@ -1,4 +1,3 @@
-
 package org.v2x.vehicle;
 
 import org.bn.annotations.ASN1Module;

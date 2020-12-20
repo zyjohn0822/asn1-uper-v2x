@@ -1,20 +1,14 @@
-
 package org.v2x.position;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Choice;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Choice(name = "PositionOffsetLL")
-public class PositionOffsetLL implements IASN1PreparedElement {
+public class PositionOffsetLL {
 
     @ASN1Element(name = "position-LL1", isOptional = false, hasTag = false, hasDefaultValue = false)
     private Position_LL_24B position_LL1 = null;
@@ -42,14 +36,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL1;
     }
 
-    public boolean isPosition_LL1Selected() {
-        return this.position_LL1 != null;
-    }
-
     private void setPosition_LL1(Position_LL_24B value) {
         this.position_LL1 = value;
     }
 
+    public boolean isPosition_LL1Selected() {
+        return this.position_LL1 != null;
+    }
 
     public void selectPosition_LL1(Position_LL_24B value) {
         this.position_LL1 = value;
@@ -73,14 +66,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL2;
     }
 
-    public boolean isPosition_LL2Selected() {
-        return this.position_LL2 != null;
-    }
-
     private void setPosition_LL2(Position_LL_28B value) {
         this.position_LL2 = value;
     }
 
+    public boolean isPosition_LL2Selected() {
+        return this.position_LL2 != null;
+    }
 
     public void selectPosition_LL2(Position_LL_28B value) {
         this.position_LL2 = value;
@@ -104,14 +96,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL3;
     }
 
-    public boolean isPosition_LL3Selected() {
-        return this.position_LL3 != null;
-    }
-
     private void setPosition_LL3(Position_LL_32B value) {
         this.position_LL3 = value;
     }
 
+    public boolean isPosition_LL3Selected() {
+        return this.position_LL3 != null;
+    }
 
     public void selectPosition_LL3(Position_LL_32B value) {
         this.position_LL3 = value;
@@ -135,14 +126,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL4;
     }
 
-    public boolean isPosition_LL4Selected() {
-        return this.position_LL4 != null;
-    }
-
     private void setPosition_LL4(Position_LL_36B value) {
         this.position_LL4 = value;
     }
 
+    public boolean isPosition_LL4Selected() {
+        return this.position_LL4 != null;
+    }
 
     public void selectPosition_LL4(Position_LL_36B value) {
         this.position_LL4 = value;
@@ -166,14 +156,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL5;
     }
 
-    public boolean isPosition_LL5Selected() {
-        return this.position_LL5 != null;
-    }
-
     private void setPosition_LL5(Position_LL_44B value) {
         this.position_LL5 = value;
     }
 
+    public boolean isPosition_LL5Selected() {
+        return this.position_LL5 != null;
+    }
 
     public void selectPosition_LL5(Position_LL_44B value) {
         this.position_LL5 = value;
@@ -197,14 +186,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LL6;
     }
 
-    public boolean isPosition_LL6Selected() {
-        return this.position_LL6 != null;
-    }
-
     private void setPosition_LL6(Position_LL_48B value) {
         this.position_LL6 = value;
     }
 
+    public boolean isPosition_LL6Selected() {
+        return this.position_LL6 != null;
+    }
 
     public void selectPosition_LL6(Position_LL_48B value) {
         this.position_LL6 = value;
@@ -228,14 +216,13 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         return this.position_LatLon;
     }
 
-    public boolean isPosition_LatLonSelected() {
-        return this.position_LatLon != null;
-    }
-
     private void setPosition_LatLon(Position_LLmD_64b value) {
         this.position_LatLon = value;
     }
 
+    public boolean isPosition_LatLonSelected() {
+        return this.position_LatLon != null;
+    }
 
     public void selectPosition_LatLon(Position_LLmD_64b value) {
         this.position_LatLon = value;
@@ -253,17 +240,6 @@ public class PositionOffsetLL implements IASN1PreparedElement {
         setPosition_LL6(null);
 
     }
-
-    @Override
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(PositionOffsetLL.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

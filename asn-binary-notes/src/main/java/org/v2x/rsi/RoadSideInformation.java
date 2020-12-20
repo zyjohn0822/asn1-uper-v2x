@@ -1,15 +1,10 @@
-
 package org.v2x.rsi;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
 import org.bn.annotations.ASN1OctetString;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
 import org.bn.annotations.constraints.ASN1SizeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.MsgCount;
 import org.v2x.position.Position3D;
 import org.v2x.time.MinuteOfTheYear;
@@ -18,9 +13,8 @@ import org.v2x.time.MinuteOfTheYear;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "RoadSideInformation", isSet = false)
-public class RoadSideInformation implements IASN1PreparedElement {
+public class RoadSideInformation {
 
     @ASN1Element(name = "msgCnt", isOptional = false, hasTag = false, hasDefaultValue = false)
     private MsgCount msgCnt = null;
@@ -57,16 +51,13 @@ public class RoadSideInformation implements IASN1PreparedElement {
         return this.moy;
     }
 
-
-    public boolean isMoyPresent() {
-        return this.moy != null;
-    }
-
-
     public void setMoy(MinuteOfTheYear value) {
         this.moy = value;
     }
 
+    public boolean isMoyPresent() {
+        return this.moy != null;
+    }
 
     public byte[] getId() {
         return this.id;
@@ -92,42 +83,25 @@ public class RoadSideInformation implements IASN1PreparedElement {
         return this.rtes;
     }
 
+    public void setRtes(RTEList value) {
+        this.rtes = value;
+    }
 
     public boolean isRtesPresent() {
         return this.rtes != null;
     }
 
-
-    public void setRtes(RTEList value) {
-        this.rtes = value;
-    }
-
-
     public RTSList getRtss() {
         return this.rtss;
     }
-
-
-    public boolean isRtssPresent() {
-        return this.rtss != null;
-    }
-
 
     public void setRtss(RTSList value) {
         this.rtss = value;
     }
 
-
-    public void initWithDefaults() {
-
+    public boolean isRtssPresent() {
+        return this.rtss != null;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(RoadSideInformation.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

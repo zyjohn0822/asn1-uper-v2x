@@ -1,13 +1,12 @@
-
 package org.v2x.rsm;
 
 
-import org.bn.CoderFactory;
-import org.bn.annotations.*;
+import org.bn.annotations.ASN1Element;
+import org.bn.annotations.ASN1Integer;
+import org.bn.annotations.ASN1OctetString;
+import org.bn.annotations.ASN1Sequence;
 import org.bn.annotations.constraints.ASN1SizeConstraint;
 import org.bn.annotations.constraints.ASN1ValueRangeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.acceleration.AccelerationSet4Way;
 import org.v2x.motion.Heading;
 import org.v2x.motion.MotionConfidenceSet;
@@ -24,9 +23,8 @@ import org.v2x.vehicle.VehicleSize;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "ParticipantData", isSet = false)
-public class ParticipantData implements IASN1PreparedElement {
+public class ParticipantData {
 
     @ASN1Element(name = "ptcType", isOptional = false, hasTag = false, hasDefaultValue = false)
     private ParticipantType ptcType = null;
@@ -115,16 +113,13 @@ public class ParticipantData implements IASN1PreparedElement {
         return this.id;
     }
 
-
-    public boolean isIdPresent() {
-        return this.id != null;
-    }
-
-
     public void setId(byte[] value) {
         this.id = value;
     }
 
+    public boolean isIdPresent() {
+        return this.id != null;
+    }
 
     public DSecond getSecMark() {
         return this.secMark;
@@ -160,16 +155,13 @@ public class ParticipantData implements IASN1PreparedElement {
         return this.transmission;
     }
 
-
-    public boolean isTransmissionPresent() {
-        return this.transmission != null;
-    }
-
-
     public void setTransmission(TransmissionState value) {
         this.transmission = value;
     }
 
+    public boolean isTransmissionPresent() {
+        return this.transmission != null;
+    }
 
     public Speed getSpeed() {
         return this.speed;
@@ -195,46 +187,37 @@ public class ParticipantData implements IASN1PreparedElement {
         return this.angle;
     }
 
+    public void setAngle(SteeringWheelAngle value) {
+        this.angle = value;
+    }
 
     public boolean isAnglePresent() {
         return this.angle != null;
     }
 
-
-    public void setAngle(SteeringWheelAngle value) {
-        this.angle = value;
-    }
-
-
     public MotionConfidenceSet getMotionCfd() {
         return this.motionCfd;
     }
-
-
-    public boolean isMotionCfdPresent() {
-        return this.motionCfd != null;
-    }
-
 
     public void setMotionCfd(MotionConfidenceSet value) {
         this.motionCfd = value;
     }
 
+    public boolean isMotionCfdPresent() {
+        return this.motionCfd != null;
+    }
 
     public AccelerationSet4Way getAccelSet() {
         return this.accelSet;
     }
 
-
-    public boolean isAccelSetPresent() {
-        return this.accelSet != null;
-    }
-
-
     public void setAccelSet(AccelerationSet4Way value) {
         this.accelSet = value;
     }
 
+    public boolean isAccelSetPresent() {
+        return this.accelSet != null;
+    }
 
     public VehicleSize getSize() {
         return this.size;
@@ -250,25 +233,12 @@ public class ParticipantData implements IASN1PreparedElement {
         return this.vehicleClass;
     }
 
-
-    public boolean isVehicleClassPresent() {
-        return this.vehicleClass != null;
-    }
-
-
     public void setVehicleClass(VehicleClassification value) {
         this.vehicleClass = value;
     }
 
-
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(ParticipantData.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
+    public boolean isVehicleClassPresent() {
+        return this.vehicleClass != null;
     }
 
 

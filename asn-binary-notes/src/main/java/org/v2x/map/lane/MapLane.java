@@ -1,4 +1,3 @@
-
 package org.v2x.map.lane;
 
 import org.bn.annotations.ASN1Module;

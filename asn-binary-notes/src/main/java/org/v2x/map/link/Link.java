@@ -1,13 +1,8 @@
-
 package org.v2x.map.link;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.map.lane.LaneList;
 import org.v2x.map.lane.LaneWidth;
 import org.v2x.map.node.DescriptiveName;
@@ -19,9 +14,8 @@ import org.v2x.map.speedlimit.SpeedLimitList;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "Link", isSet = false)
-public class Link implements IASN1PreparedElement {
+public class Link {
 
     @ASN1Element(name = "name", isOptional = true, hasTag = false, hasDefaultValue = false)
     private DescriptiveName name = null;
@@ -49,16 +43,13 @@ public class Link implements IASN1PreparedElement {
         return this.name;
     }
 
-
-    public boolean isNamePresent() {
-        return this.name != null;
-    }
-
-
     public void setName(DescriptiveName value) {
         this.name = value;
     }
 
+    public boolean isNamePresent() {
+        return this.name != null;
+    }
 
     public NodeReferenceID getUpstreamNodeId() {
         return this.upstreamNodeId;
@@ -74,61 +65,49 @@ public class Link implements IASN1PreparedElement {
         return this.speedLimits;
     }
 
+    public void setSpeedLimits(SpeedLimitList value) {
+        this.speedLimits = value;
+    }
 
     public boolean isSpeedLimitsPresent() {
         return this.speedLimits != null;
     }
 
-
-    public void setSpeedLimits(SpeedLimitList value) {
-        this.speedLimits = value;
-    }
-
-
     public LaneWidth getLinkWidth() {
         return this.linkWidth;
     }
-
-
-    public boolean isLinkWidthPresent() {
-        return this.linkWidth != null;
-    }
-
 
     public void setLinkWidth(LaneWidth value) {
         this.linkWidth = value;
     }
 
+    public boolean isLinkWidthPresent() {
+        return this.linkWidth != null;
+    }
 
     public PointList getPoints() {
         return this.points;
     }
 
+    public void setPoints(PointList value) {
+        this.points = value;
+    }
 
     public boolean isPointsPresent() {
         return this.points != null;
     }
 
-
-    public void setPoints(PointList value) {
-        this.points = value;
-    }
-
-
     public MovementList getMovements() {
         return this.movements;
     }
-
-
-    public boolean isMovementsPresent() {
-        return this.movements != null;
-    }
-
 
     public void setMovements(MovementList value) {
         this.movements = value;
     }
 
+    public boolean isMovementsPresent() {
+        return this.movements != null;
+    }
 
     public LaneList getLanes() {
         return this.lanes;
@@ -137,17 +116,6 @@ public class Link implements IASN1PreparedElement {
 
     public void setLanes(LaneList value) {
         this.lanes = value;
-    }
-
-
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(Link.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

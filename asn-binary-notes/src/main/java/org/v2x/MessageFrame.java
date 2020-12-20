@@ -1,12 +1,7 @@
-
 package org.v2x;
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Choice;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.bsm.BasicSafetyMessage;
 import org.v2x.map.MapData;
 import org.v2x.rsi.RoadSideInformation;
@@ -17,9 +12,8 @@ import org.v2x.spat.SPAT;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Choice(name = "MessageFrame")
-public class MessageFrame implements IASN1PreparedElement {
+public class MessageFrame {
 
     @ASN1Element(name = "bsmFrame", isOptional = false, hasTag = false, hasDefaultValue = false)
     private BasicSafetyMessage bsmFrame = null;
@@ -41,14 +35,13 @@ public class MessageFrame implements IASN1PreparedElement {
         return this.bsmFrame;
     }
 
-    public boolean isBsmFrameSelected() {
-        return this.bsmFrame != null;
-    }
-
     private void setBsmFrame(BasicSafetyMessage value) {
         this.bsmFrame = value;
     }
 
+    public boolean isBsmFrameSelected() {
+        return this.bsmFrame != null;
+    }
 
     public void selectBsmFrame(BasicSafetyMessage value) {
         this.bsmFrame = value;
@@ -68,14 +61,13 @@ public class MessageFrame implements IASN1PreparedElement {
         return this.mapFrame;
     }
 
-    public boolean isMapFrameSelected() {
-        return this.mapFrame != null;
-    }
-
     private void setMapFrame(MapData value) {
         this.mapFrame = value;
     }
 
+    public boolean isMapFrameSelected() {
+        return this.mapFrame != null;
+    }
 
     public void selectMapFrame(MapData value) {
         this.mapFrame = value;
@@ -95,14 +87,13 @@ public class MessageFrame implements IASN1PreparedElement {
         return this.rsmFrame;
     }
 
-    public boolean isRsmFrameSelected() {
-        return this.rsmFrame != null;
-    }
-
     private void setRsmFrame(RoadsideSafetyMessage value) {
         this.rsmFrame = value;
     }
 
+    public boolean isRsmFrameSelected() {
+        return this.rsmFrame != null;
+    }
 
     public void selectRsmFrame(RoadsideSafetyMessage value) {
         this.rsmFrame = value;
@@ -122,14 +113,13 @@ public class MessageFrame implements IASN1PreparedElement {
         return this.spatFrame;
     }
 
-    public boolean isSpatFrameSelected() {
-        return this.spatFrame != null;
-    }
-
     private void setSpatFrame(SPAT value) {
         this.spatFrame = value;
     }
 
+    public boolean isSpatFrameSelected() {
+        return this.spatFrame != null;
+    }
 
     public void selectSpatFrame(SPAT value) {
         this.spatFrame = value;
@@ -149,14 +139,13 @@ public class MessageFrame implements IASN1PreparedElement {
         return this.rsiFrame;
     }
 
-    public boolean isRsiFrameSelected() {
-        return this.rsiFrame != null;
-    }
-
     private void setRsiFrame(RoadSideInformation value) {
         this.rsiFrame = value;
     }
 
+    public boolean isRsiFrameSelected() {
+        return this.rsiFrame != null;
+    }
 
     public void selectRsiFrame(RoadSideInformation value) {
         this.rsiFrame = value;
@@ -169,16 +158,6 @@ public class MessageFrame implements IASN1PreparedElement {
 
         setSpatFrame(null);
 
-    }
-
-
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(MessageFrame.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

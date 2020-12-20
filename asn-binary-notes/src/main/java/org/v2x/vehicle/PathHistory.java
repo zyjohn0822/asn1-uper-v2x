@@ -1,22 +1,16 @@
-
 package org.v2x.vehicle;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
 import org.bn.annotations.ASN1SequenceOf;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "PathHistory", isSet = false)
-public class PathHistory implements IASN1PreparedElement {
+public class PathHistory {
 
     @ASN1Element(name = "initialPosition", isOptional = true, hasTag = false, hasDefaultValue = false)
     private FullPositionVector initialPosition = null;
@@ -33,31 +27,25 @@ public class PathHistory implements IASN1PreparedElement {
         return this.initialPosition;
     }
 
+    public void setInitialPosition(FullPositionVector value) {
+        this.initialPosition = value;
+    }
 
     public boolean isInitialPositionPresent() {
         return this.initialPosition != null;
     }
 
-
-    public void setInitialPosition(FullPositionVector value) {
-        this.initialPosition = value;
-    }
-
-
     public GNSSstatus getCurrGNSSstatus() {
         return this.currGNSSstatus;
     }
-
-
-    public boolean isCurrGNSSstatusPresent() {
-        return this.currGNSSstatus != null;
-    }
-
 
     public void setCurrGNSSstatus(GNSSstatus value) {
         this.currGNSSstatus = value;
     }
 
+    public boolean isCurrGNSSstatusPresent() {
+        return this.currGNSSstatus != null;
+    }
 
     public java.util.Collection<PathHistoryPoint> getCrumbData() {
         return this.crumbData;
@@ -66,17 +54,6 @@ public class PathHistory implements IASN1PreparedElement {
 
     public void setCrumbData(java.util.Collection<PathHistoryPoint> value) {
         this.crumbData = value;
-    }
-
-
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(PathHistory.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

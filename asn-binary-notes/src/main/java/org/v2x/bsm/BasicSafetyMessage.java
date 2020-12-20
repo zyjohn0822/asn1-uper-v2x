@@ -1,12 +1,8 @@
-
 package org.v2x.bsm;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.*;
 import org.bn.annotations.constraints.ASN1SizeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.MsgCount;
 import org.v2x.acceleration.AccelerationSet4Way;
 import org.v2x.motion.Heading;
@@ -24,9 +20,8 @@ import org.v2x.vehicle.*;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "BasicSafetyMessage", isSet = false)
-public class BasicSafetyMessage implements IASN1PreparedElement {
+public class BasicSafetyMessage {
     @Component(1)
     @ASN1Element(name = "msgCnt", isOptional = false, hasTag = false, hasDefaultValue = false)
     private MsgCount msgCnt = null;
@@ -41,6 +36,7 @@ public class BasicSafetyMessage implements IASN1PreparedElement {
     private DSecond secMark = null;
 
     @Component(4)
+    @ASN1Null
     @ASN1Element(name = "timeConfidence", isOptional = true, hasTag = false, hasDefaultValue = false)
     private TimeConfidence timeConfidence = null;
 
@@ -135,16 +131,13 @@ public class BasicSafetyMessage implements IASN1PreparedElement {
         return this.timeConfidence;
     }
 
-
-    public boolean isTimeConfidencePresent() {
-        return this.timeConfidence != null;
-    }
-
-
     public void setTimeConfidence(TimeConfidence value) {
         this.timeConfidence = value;
     }
 
+    public boolean isTimeConfidencePresent() {
+        return this.timeConfidence != null;
+    }
 
     public Position3D getPos() {
         return this.pos;
@@ -160,31 +153,25 @@ public class BasicSafetyMessage implements IASN1PreparedElement {
         return this.posAccuracy;
     }
 
+    public void setPosAccuracy(PositionalAccuracy value) {
+        this.posAccuracy = value;
+    }
 
     public boolean isPosAccuracyPresent() {
         return this.posAccuracy != null;
     }
 
-
-    public void setPosAccuracy(PositionalAccuracy value) {
-        this.posAccuracy = value;
-    }
-
-
     public PositionConfidenceSet getPosConfidence() {
         return this.posConfidence;
     }
-
-
-    public boolean isPosConfidencePresent() {
-        return this.posConfidence != null;
-    }
-
 
     public void setPosConfidence(PositionConfidenceSet value) {
         this.posConfidence = value;
     }
 
+    public boolean isPosConfidencePresent() {
+        return this.posConfidence != null;
+    }
 
     public TransmissionState getTransmission() {
         return this.transmission;
@@ -220,31 +207,25 @@ public class BasicSafetyMessage implements IASN1PreparedElement {
         return this.angle;
     }
 
+    public void setAngle(SteeringWheelAngle value) {
+        this.angle = value;
+    }
 
     public boolean isAnglePresent() {
         return this.angle != null;
     }
 
-
-    public void setAngle(SteeringWheelAngle value) {
-        this.angle = value;
-    }
-
-
     public MotionConfidenceSet getMotionCfd() {
         return this.motionCfd;
     }
-
-
-    public boolean isMotionCfdPresent() {
-        return this.motionCfd != null;
-    }
-
 
     public void setMotionCfd(MotionConfidenceSet value) {
         this.motionCfd = value;
     }
 
+    public boolean isMotionCfdPresent() {
+        return this.motionCfd != null;
+    }
 
     public AccelerationSet4Way getAccelSet() {
         return this.accelSet;
@@ -290,40 +271,24 @@ public class BasicSafetyMessage implements IASN1PreparedElement {
         return this.safetyExt;
     }
 
+    public void setSafetyExt(VehicleSafetyExtensions value) {
+        this.safetyExt = value;
+    }
 
     public boolean isSafetyExtPresent() {
         return this.safetyExt != null;
     }
 
-
-    public void setSafetyExt(VehicleSafetyExtensions value) {
-        this.safetyExt = value;
-    }
-
-
     public VehicleEmergencyExtensions getEmergencyExt() {
         return this.emergencyExt;
     }
-
-
-    public boolean isEmergencyExtPresent() {
-        return this.emergencyExt != null;
-    }
-
 
     public void setEmergencyExt(VehicleEmergencyExtensions value) {
         this.emergencyExt = value;
     }
 
-    @Override
-    public void initWithDefaults() {
-
-    }
-
-    private static final IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(BasicSafetyMessage.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
+    public boolean isEmergencyExtPresent() {
+        return this.emergencyExt != null;
     }
 
 

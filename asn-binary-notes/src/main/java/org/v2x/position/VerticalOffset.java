@@ -1,18 +1,12 @@
-
 package org.v2x.position;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Choice;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
-@ASN1PreparedElement
 @ASN1Choice(name = "VerticalOffset")
-public class VerticalOffset implements IASN1PreparedElement {
+public class VerticalOffset {
 
     @ASN1Element(name = "offset1", isOptional = false, hasTag = false, hasDefaultValue = false)
     private VertOffset_B07 offset1 = null;
@@ -40,14 +34,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset1;
     }
 
-    public boolean isOffset1Selected() {
-        return this.offset1 != null;
-    }
-
     private void setOffset1(VertOffset_B07 value) {
         this.offset1 = value;
     }
 
+    public boolean isOffset1Selected() {
+        return this.offset1 != null;
+    }
 
     public void selectOffset1(VertOffset_B07 value) {
         this.offset1 = value;
@@ -71,14 +64,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset2;
     }
 
-    public boolean isOffset2Selected() {
-        return this.offset2 != null;
-    }
-
     private void setOffset2(VertOffset_B08 value) {
         this.offset2 = value;
     }
 
+    public boolean isOffset2Selected() {
+        return this.offset2 != null;
+    }
 
     public void selectOffset2(VertOffset_B08 value) {
         this.offset2 = value;
@@ -102,14 +94,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset3;
     }
 
-    public boolean isOffset3Selected() {
-        return this.offset3 != null;
-    }
-
     private void setOffset3(VertOffset_B09 value) {
         this.offset3 = value;
     }
 
+    public boolean isOffset3Selected() {
+        return this.offset3 != null;
+    }
 
     public void selectOffset3(VertOffset_B09 value) {
         this.offset3 = value;
@@ -133,14 +124,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset4;
     }
 
-    public boolean isOffset4Selected() {
-        return this.offset4 != null;
-    }
-
     private void setOffset4(VertOffset_B10 value) {
         this.offset4 = value;
     }
 
+    public boolean isOffset4Selected() {
+        return this.offset4 != null;
+    }
 
     public void selectOffset4(VertOffset_B10 value) {
         this.offset4 = value;
@@ -164,14 +154,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset5;
     }
 
-    public boolean isOffset5Selected() {
-        return this.offset5 != null;
-    }
-
     private void setOffset5(VertOffset_B11 value) {
         this.offset5 = value;
     }
 
+    public boolean isOffset5Selected() {
+        return this.offset5 != null;
+    }
 
     public void selectOffset5(VertOffset_B11 value) {
         this.offset5 = value;
@@ -195,14 +184,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.offset6;
     }
 
-    public boolean isOffset6Selected() {
-        return this.offset6 != null;
-    }
-
     private void setOffset6(VertOffset_B12 value) {
         this.offset6 = value;
     }
 
+    public boolean isOffset6Selected() {
+        return this.offset6 != null;
+    }
 
     public void selectOffset6(VertOffset_B12 value) {
         this.offset6 = value;
@@ -226,14 +214,13 @@ public class VerticalOffset implements IASN1PreparedElement {
         return this.elevation;
     }
 
-    public boolean isElevationSelected() {
-        return this.elevation != null;
-    }
-
     private void setElevation(Elevation value) {
         this.elevation = value;
     }
 
+    public boolean isElevationSelected() {
+        return this.elevation != null;
+    }
 
     public void selectElevation(Elevation value) {
         this.elevation = value;
@@ -250,16 +237,6 @@ public class VerticalOffset implements IASN1PreparedElement {
 
         setOffset6(null);
 
-    }
-
-
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(VerticalOffset.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

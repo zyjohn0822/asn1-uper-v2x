@@ -1,14 +1,10 @@
 package org.v2x.bsm;
 
-import com.k_int.codec.comp.AsnParser;
 import org.bn.CoderFactory;
 import org.bn.utils.BitArrayInputStream;
-import org.bn.utils.Utils;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -16,9 +12,10 @@ import static org.junit.Assert.*;
  */
 public class BasicSafetyMessageTest {
     @Test
-    public void encodeTest(){
+    public void encodeTest() {
 
     }
+
     @Test
     public void decodeTest() throws Exception {
         String hex = "2A463030313433313031B7F3E046689A37C0AE91F0E214D13030303300000617388D07D507D07F7FFF808000B401F4003648000000";

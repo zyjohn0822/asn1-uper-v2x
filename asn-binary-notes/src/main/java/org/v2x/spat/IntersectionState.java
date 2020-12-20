@@ -1,13 +1,8 @@
-
 package org.v2x.spat;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.map.node.NodeReferenceID;
 import org.v2x.time.DSecond;
 import org.v2x.time.MinuteOfTheYear;
@@ -17,9 +12,8 @@ import org.v2x.time.TimeConfidence;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "IntersectionState", isSet = false)
-public class IntersectionState implements IASN1PreparedElement {
+public class IntersectionState {
 
     @ASN1Element(name = "intersectionId", isOptional = false, hasTag = false, hasDefaultValue = false)
     private NodeReferenceID intersectionId = null;
@@ -64,46 +58,37 @@ public class IntersectionState implements IASN1PreparedElement {
         return this.moy;
     }
 
+    public void setMoy(MinuteOfTheYear value) {
+        this.moy = value;
+    }
 
     public boolean isMoyPresent() {
         return this.moy != null;
     }
 
-
-    public void setMoy(MinuteOfTheYear value) {
-        this.moy = value;
-    }
-
-
     public DSecond getTimeStamp() {
         return this.timeStamp;
     }
-
-
-    public boolean isTimeStampPresent() {
-        return this.timeStamp != null;
-    }
-
 
     public void setTimeStamp(DSecond value) {
         this.timeStamp = value;
     }
 
+    public boolean isTimeStampPresent() {
+        return this.timeStamp != null;
+    }
 
     public TimeConfidence getTimeConfidence() {
         return this.timeConfidence;
     }
 
-
-    public boolean isTimeConfidencePresent() {
-        return this.timeConfidence != null;
-    }
-
-
     public void setTimeConfidence(TimeConfidence value) {
         this.timeConfidence = value;
     }
 
+    public boolean isTimeConfidencePresent() {
+        return this.timeConfidence != null;
+    }
 
     public PhaseList getPhases() {
         return this.phases;
@@ -112,17 +97,6 @@ public class IntersectionState implements IASN1PreparedElement {
 
     public void setPhases(PhaseList value) {
         this.phases = value;
-    }
-
-
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(IntersectionState.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

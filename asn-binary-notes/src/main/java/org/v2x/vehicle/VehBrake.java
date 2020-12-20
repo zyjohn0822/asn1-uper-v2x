@@ -1,4 +1,3 @@
-
 package org.v2x.vehicle;
 
 

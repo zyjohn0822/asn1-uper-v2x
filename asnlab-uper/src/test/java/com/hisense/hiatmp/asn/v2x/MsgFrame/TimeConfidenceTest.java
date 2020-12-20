@@ -15,7 +15,8 @@ public class TimeConfidenceTest {
 
     @Test
     public void per_decode() throws IOException {
-        byte[] decodeBytes = new byte[]{-100};
+        //-112  -100
+        byte[] decodeBytes = new byte[]{-112};
         final TimeConfidence timeConfidence = TimeConfidence
                 .per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(timeConfidence);

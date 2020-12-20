@@ -1,22 +1,15 @@
-
 package org.v2x.time;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1BoxedType;
 import org.bn.annotations.ASN1Integer;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.constraints.ASN1ValueRangeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 /**
- *
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1BoxedType(name = "DSecond")
-public class DSecond implements IASN1PreparedElement {
+public class DSecond {
 
     @ASN1Integer(name = "DSecond")
     @ASN1ValueRangeConstraint(
@@ -32,23 +25,13 @@ public class DSecond implements IASN1PreparedElement {
         this.value = value;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
     public Integer getValue() {
         return this.value;
     }
 
-    public void initWithDefaults() {
+    public void setValue(Integer value) {
+        this.value = value;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(DSecond.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

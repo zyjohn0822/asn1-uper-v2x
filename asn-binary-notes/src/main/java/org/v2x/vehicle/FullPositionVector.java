@@ -1,13 +1,8 @@
-
 package org.v2x.vehicle;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.motion.Heading;
 import org.v2x.motion.MotionConfidenceSet;
 import org.v2x.motion.Speed;
@@ -21,9 +16,8 @@ import org.v2x.time.TimeConfidence;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "FullPositionVector", isSet = false)
-public class FullPositionVector implements IASN1PreparedElement {
+public class FullPositionVector {
 
     @ASN1Element(name = "utcTime", isOptional = true, hasTag = false, hasDefaultValue = false)
     private DDateTime utcTime = null;
@@ -57,16 +51,13 @@ public class FullPositionVector implements IASN1PreparedElement {
         return this.utcTime;
     }
 
-
-    public boolean isUtcTimePresent() {
-        return this.utcTime != null;
-    }
-
-
     public void setUtcTime(DDateTime value) {
         this.utcTime = value;
     }
 
+    public boolean isUtcTimePresent() {
+        return this.utcTime != null;
+    }
 
     public Position3D getPos() {
         return this.pos;
@@ -82,115 +73,84 @@ public class FullPositionVector implements IASN1PreparedElement {
         return this.heading;
     }
 
+    public void setHeading(Heading value) {
+        this.heading = value;
+    }
 
     public boolean isHeadingPresent() {
         return this.heading != null;
     }
 
-
-    public void setHeading(Heading value) {
-        this.heading = value;
-    }
-
-
     public TransmissionState getTransmission() {
         return this.transmission;
     }
-
-
-    public boolean isTransmissionPresent() {
-        return this.transmission != null;
-    }
-
 
     public void setTransmission(TransmissionState value) {
         this.transmission = value;
     }
 
+    public boolean isTransmissionPresent() {
+        return this.transmission != null;
+    }
 
     public Speed getSpeed() {
         return this.speed;
     }
 
+    public void setSpeed(Speed value) {
+        this.speed = value;
+    }
 
     public boolean isSpeedPresent() {
         return this.speed != null;
     }
 
-
-    public void setSpeed(Speed value) {
-        this.speed = value;
-    }
-
-
     public PositionalAccuracy getPosAccuracy() {
         return this.posAccuracy;
     }
-
-
-    public boolean isPosAccuracyPresent() {
-        return this.posAccuracy != null;
-    }
-
 
     public void setPosAccuracy(PositionalAccuracy value) {
         this.posAccuracy = value;
     }
 
+    public boolean isPosAccuracyPresent() {
+        return this.posAccuracy != null;
+    }
 
     public PositionConfidenceSet getPosConficence() {
         return this.posConficence;
     }
 
+    public void setPosConficence(PositionConfidenceSet value) {
+        this.posConficence = value;
+    }
 
     public boolean isPosConficencePresent() {
         return this.posConficence != null;
     }
 
-
-    public void setPosConficence(PositionConfidenceSet value) {
-        this.posConficence = value;
-    }
-
-
     public TimeConfidence getTimeConfidence() {
         return this.timeConfidence;
     }
-
-
-    public boolean isTimeConfidencePresent() {
-        return this.timeConfidence != null;
-    }
-
 
     public void setTimeConfidence(TimeConfidence value) {
         this.timeConfidence = value;
     }
 
+    public boolean isTimeConfidencePresent() {
+        return this.timeConfidence != null;
+    }
 
     public MotionConfidenceSet getMotionCfd() {
         return this.motionCfd;
     }
 
-
-    public boolean isMotionCfdPresent() {
-        return this.motionCfd != null;
-    }
-
-
     public void setMotionCfd(MotionConfidenceSet value) {
         this.motionCfd = value;
     }
 
-    @Override
-    public void initWithDefaults() {
-
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(FullPositionVector.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
+    public boolean isMotionCfdPresent() {
+        return this.motionCfd != null;
     }
 
 

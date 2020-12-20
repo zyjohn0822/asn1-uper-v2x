@@ -1,12 +1,7 @@
-
 package org.v2x.map.node;
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.map.link.LinkList;
 import org.v2x.position.Position3D;
 
@@ -14,9 +9,8 @@ import org.v2x.position.Position3D;
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "Node", isSet = false)
-public class Node implements IASN1PreparedElement {
+public class Node {
 
     @ASN1Element(name = "name", isOptional = true, hasTag = false, hasDefaultValue = false)
     private DescriptiveName name = null;
@@ -35,16 +29,13 @@ public class Node implements IASN1PreparedElement {
         return this.name;
     }
 
-
-    public boolean isNamePresent() {
-        return this.name != null;
-    }
-
-
     public void setName(DescriptiveName value) {
         this.name = value;
     }
 
+    public boolean isNamePresent() {
+        return this.name != null;
+    }
 
     public NodeReferenceID getId() {
         return this.id;
@@ -70,27 +61,12 @@ public class Node implements IASN1PreparedElement {
         return this.inLinks;
     }
 
-
-    public boolean isInLinksPresent() {
-        return this.inLinks != null;
-    }
-
-
     public void setInLinks(LinkList value) {
         this.inLinks = value;
     }
 
-
-    public void initWithDefaults() {
-
+    public boolean isInLinksPresent() {
+        return this.inLinks != null;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(Node.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
-
 }
             

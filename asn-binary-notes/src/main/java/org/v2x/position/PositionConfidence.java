@@ -1,23 +1,32 @@
-
 package org.v2x.position;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Enum;
 import org.bn.annotations.ASN1EnumItem;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Enum(
         name = "PositionConfidence"
 )
-public class PositionConfidence implements IASN1PreparedElement {
+public class PositionConfidence {
+    private EnumType value;
+    private Integer integerForm;
+
+    public EnumType getValue() {
+        return this.value;
+    }
+
+    public void setValue(EnumType value) {
+        this.value = value;
+    }
+
+    public Integer getIntegerForm() {
+        return integerForm;
+    }
+
     public enum EnumType {
         /**
          *
@@ -99,34 +108,6 @@ public class PositionConfidence implements IASN1PreparedElement {
          */
         @ASN1EnumItem(name = "a1cm", hasTag = true, tag = 15)
         a1cm,
-    }
-
-    private EnumType value;
-    private Integer integerForm;
-
-    public EnumType getValue() {
-        return this.value;
-    }
-
-    public void setValue(EnumType value) {
-        this.value = value;
-    }
-
-    public Integer getIntegerForm() {
-        return integerForm;
-    }
-
-    public void setIntegerForm(Integer value) {
-        integerForm = value;
-    }
-    @Override
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(PositionConfidence.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 

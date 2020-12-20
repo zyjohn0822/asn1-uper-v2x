@@ -1,21 +1,15 @@
-
 package org.v2x.spat;
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.time.TimeMark;
 import org.v2x.vehicle.Confidence;
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "TimeCountingDown", isSet = false)
-public class TimeCountingDown implements IASN1PreparedElement {
+public class TimeCountingDown {
 
     @ASN1Element(name = "startTime", isOptional = false, hasTag = false, hasDefaultValue = false)
     private TimeMark startTime = null;
@@ -53,31 +47,25 @@ public class TimeCountingDown implements IASN1PreparedElement {
         return this.minEndTime;
     }
 
+    public void setMinEndTime(TimeMark value) {
+        this.minEndTime = value;
+    }
 
     public boolean isMinEndTimePresent() {
         return this.minEndTime != null;
     }
 
-
-    public void setMinEndTime(TimeMark value) {
-        this.minEndTime = value;
-    }
-
-
     public TimeMark getMaxEndTime() {
         return this.maxEndTime;
     }
-
-
-    public boolean isMaxEndTimePresent() {
-        return this.maxEndTime != null;
-    }
-
 
     public void setMaxEndTime(TimeMark value) {
         this.maxEndTime = value;
     }
 
+    public boolean isMaxEndTimePresent() {
+        return this.maxEndTime != null;
+    }
 
     public TimeMark getLikelyEndTime() {
         return this.likelyEndTime;
@@ -93,57 +81,37 @@ public class TimeCountingDown implements IASN1PreparedElement {
         return this.timeConfidence;
     }
 
+    public void setTimeConfidence(Confidence value) {
+        this.timeConfidence = value;
+    }
 
     public boolean isTimeConfidencePresent() {
         return this.timeConfidence != null;
     }
 
-
-    public void setTimeConfidence(Confidence value) {
-        this.timeConfidence = value;
-    }
-
-
     public TimeMark getNextStartTime() {
         return this.nextStartTime;
     }
-
-
-    public boolean isNextStartTimePresent() {
-        return this.nextStartTime != null;
-    }
-
 
     public void setNextStartTime(TimeMark value) {
         this.nextStartTime = value;
     }
 
+    public boolean isNextStartTimePresent() {
+        return this.nextStartTime != null;
+    }
 
     public TimeMark getNextDuration() {
         return this.nextDuration;
     }
 
-
-    public boolean isNextDurationPresent() {
-        return this.nextDuration != null;
-    }
-
-
     public void setNextDuration(TimeMark value) {
         this.nextDuration = value;
     }
 
-
-    public void initWithDefaults() {
-
+    public boolean isNextDurationPresent() {
+        return this.nextDuration != null;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(TimeCountingDown.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

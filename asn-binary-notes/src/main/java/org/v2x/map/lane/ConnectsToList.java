@@ -1,13 +1,9 @@
-
 package org.v2x.map.lane;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1BoxedType;
 import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1SequenceOf;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
 /**
@@ -15,7 +11,7 @@ import org.bn.coders.IASN1PreparedElementData;
  */
 @ASN1PreparedElement
 @ASN1BoxedType(name = "ConnectsToList")
-public class ConnectsToList implements IASN1PreparedElement {
+public class ConnectsToList {
 
     @ASN1SequenceOf(name = "ConnectsToList", isSetOf = false)
     private java.util.Collection<Connection> value = null;
@@ -27,12 +23,12 @@ public class ConnectsToList implements IASN1PreparedElement {
         setValue(value);
     }
 
-    public void setValue(java.util.Collection<Connection> value) {
-        this.value = value;
-    }
-
     public java.util.Collection<Connection> getValue() {
         return this.value;
+    }
+
+    public void setValue(java.util.Collection<Connection> value) {
+        this.value = value;
     }
 
     public void initValue() {
@@ -42,16 +38,6 @@ public class ConnectsToList implements IASN1PreparedElement {
     public void add(Connection item) {
         value.add(item);
     }
-    @Override
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(ConnectsToList.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

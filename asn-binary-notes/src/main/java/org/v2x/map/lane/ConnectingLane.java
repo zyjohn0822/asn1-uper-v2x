@@ -1,21 +1,15 @@
-
 package org.v2x.map.lane;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "ConnectingLane", isSet = false)
-public class ConnectingLane implements IASN1PreparedElement {
+public class ConnectingLane {
 
     @ASN1Element(name = "lane", isOptional = false, hasTag = false, hasDefaultValue = false)
     private LaneID lane = null;
@@ -38,27 +32,13 @@ public class ConnectingLane implements IASN1PreparedElement {
         return this.maneuver;
     }
 
-
-    public boolean isManeuverPresent() {
-        return this.maneuver != null;
-    }
-
-
     public void setManeuver(AllowedManeuvers value) {
         this.maneuver = value;
     }
 
-    @Override
-    public void initWithDefaults() {
-
+    public boolean isManeuverPresent() {
+        return this.maneuver != null;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(ConnectingLane.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

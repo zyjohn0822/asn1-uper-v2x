@@ -1,23 +1,17 @@
-
 package org.v2x.rsi;
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Element;
 import org.bn.annotations.ASN1Integer;
-import org.bn.annotations.ASN1PreparedElement;
 import org.bn.annotations.ASN1Sequence;
 import org.bn.annotations.constraints.ASN1ValueRangeConstraint;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 import org.v2x.position.PositionOffsetLLV;
 import org.v2x.vehicle.Confidence;
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Sequence(name = "RTEData", isSet = false)
-public class RTEData implements IASN1PreparedElement {
+public class RTEData {
     @ASN1Integer(name = "")
     @ASN1ValueRangeConstraint(
             min = 0L,
@@ -91,132 +85,97 @@ public class RTEData implements IASN1PreparedElement {
         return this.eventPos;
     }
 
+    public void setEventPos(PositionOffsetLLV value) {
+        this.eventPos = value;
+    }
 
     public boolean isEventPosPresent() {
         return this.eventPos != null;
     }
 
-
-    public void setEventPos(PositionOffsetLLV value) {
-        this.eventPos = value;
-    }
-
-
     public Radius getEventRadius() {
         return this.eventRadius;
     }
-
-
-    public boolean isEventRadiusPresent() {
-        return this.eventRadius != null;
-    }
-
 
     public void setEventRadius(Radius value) {
         this.eventRadius = value;
     }
 
+    public boolean isEventRadiusPresent() {
+        return this.eventRadius != null;
+    }
 
     public Description getDescription() {
         return this.description;
     }
 
+    public void setDescription(Description value) {
+        this.description = value;
+    }
 
     public boolean isDescriptionPresent() {
         return this.description != null;
     }
 
-
-    public void setDescription(Description value) {
-        this.description = value;
-    }
-
-
     public RSITimeDetails getTimeDetails() {
         return this.timeDetails;
     }
-
-
-    public boolean isTimeDetailsPresent() {
-        return this.timeDetails != null;
-    }
-
 
     public void setTimeDetails(RSITimeDetails value) {
         this.timeDetails = value;
     }
 
+    public boolean isTimeDetailsPresent() {
+        return this.timeDetails != null;
+    }
 
     public RSIPriority getPriority() {
         return this.priority;
     }
 
+    public void setPriority(RSIPriority value) {
+        this.priority = value;
+    }
 
     public boolean isPriorityPresent() {
         return this.priority != null;
     }
 
-
-    public void setPriority(RSIPriority value) {
-        this.priority = value;
-    }
-
-
     public ReferencePathList getReferencePaths() {
         return this.referencePaths;
     }
-
-
-    public boolean isReferencePathsPresent() {
-        return this.referencePaths != null;
-    }
-
 
     public void setReferencePaths(ReferencePathList value) {
         this.referencePaths = value;
     }
 
+    public boolean isReferencePathsPresent() {
+        return this.referencePaths != null;
+    }
 
     public ReferenceLinkList getReferenceLinks() {
         return this.referenceLinks;
     }
 
+    public void setReferenceLinks(ReferenceLinkList value) {
+        this.referenceLinks = value;
+    }
 
     public boolean isReferenceLinksPresent() {
         return this.referenceLinks != null;
     }
 
-
-    public void setReferenceLinks(ReferenceLinkList value) {
-        this.referenceLinks = value;
-    }
-
-
     public Confidence getEventConfidence() {
         return this.eventConfidence;
     }
-
-
-    public boolean isEventConfidencePresent() {
-        return this.eventConfidence != null;
-    }
-
 
     public void setEventConfidence(Confidence value) {
         this.eventConfidence = value;
     }
 
-
-    public void initWithDefaults() {
-
+    public boolean isEventConfidencePresent() {
+        return this.eventConfidence != null;
     }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(RTEData.class);
-
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
-    }
-
 
 }
             

@@ -1,23 +1,36 @@
-
 package org.v2x.time;
 
 
-import org.bn.CoderFactory;
 import org.bn.annotations.ASN1Enum;
 import org.bn.annotations.ASN1EnumItem;
-import org.bn.annotations.ASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElement;
-import org.bn.coders.IASN1PreparedElementData;
 
 
 /**
  * @author zhangyong
  */
-@ASN1PreparedElement
 @ASN1Enum(
         name = "TimeConfidence"
 )
-public class TimeConfidence implements IASN1PreparedElement {
+public class TimeConfidence {
+    private EnumType value;
+    private Integer integerForm;
+
+    public EnumType getValue() {
+        return this.value;
+    }
+
+    public void setValue(EnumType value) {
+        this.value = value;
+    }
+
+    public Integer getIntegerForm() {
+        return integerForm;
+    }
+
+    public void setIntegerForm(Integer value) {
+        integerForm = value;
+    }
+
     public enum EnumType {
         /**
          *
@@ -219,34 +232,6 @@ public class TimeConfidence implements IASN1PreparedElement {
          */
         @ASN1EnumItem(name = "time-000-000-000-000-01", hasTag = true, tag = 39)
         time_000_000_000_000_01
-    }
-
-    private EnumType value;
-    private Integer integerForm;
-
-    public EnumType getValue() {
-        return this.value;
-    }
-
-    public void setValue(EnumType value) {
-        this.value = value;
-    }
-
-    public Integer getIntegerForm() {
-        return integerForm;
-    }
-
-    public void setIntegerForm(Integer value) {
-        integerForm = value;
-    }
-    @Override
-    public void initWithDefaults() {
-    }
-
-    private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(TimeConfidence.class);
-    @Override
-    public IASN1PreparedElementData getPreparedData() {
-        return preparedData;
     }
 
 
