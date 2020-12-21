@@ -25,7 +25,7 @@ public class TimeConfidenceTest {
     }
     @Test
     public void decode() throws Exception{
-        byte[] decode = new byte[]{-112};
+        byte[] decode = new byte[]{};
         final TimeConfidence timeConfidence = CoderFactory
                 .getInstance()
                 .newDecoder("PER/Unaligned")

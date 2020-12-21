@@ -78,7 +78,7 @@ public class BasicSafetyMessage {
 
     @Component(14)
     @ASN1Element(name = "brakes", isOptional = false, hasTag = false, hasDefaultValue = false)
-    private BrakeSystemStatus brakes = null;
+    private BrakeSystemStatus  brakes = null;
 
     @Component(15)
     @ASN1Element(name = "size", isOptional = false, hasTag = false, hasDefaultValue = false)
