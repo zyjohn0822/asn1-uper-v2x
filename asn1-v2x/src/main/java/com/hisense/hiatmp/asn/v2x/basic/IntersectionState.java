@@ -204,6 +204,19 @@ public class IntersectionState {
             return getOrFalse(13);
         }
 
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder("\"");
+            for(boolean s : bakingList){
+                if(s){
+                    sb.append("1");
+                }else {
+                    sb.append("0");
+                }
+            }
+            sb.append("\"");
+            return sb.toString();
+        }
     }
 
     /**

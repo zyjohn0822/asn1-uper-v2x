@@ -209,16 +209,4 @@ public class BasicSafetyMessage {
         sb.append('}');
         return sb.toString();
     }
-
-    @SizeRange(minValue = 8, maxValue = 8)
-    public static class ID extends Asn1SequenceOf<Byte> {
-        // Two constructors -- choose any, or add more.
-        public ID(Byte... coll) {
-            this(Arrays.asList(coll));
-        }
-
-        public ID(Collection<Byte> coll) {
-            super(coll);
-        }
-    }
 }

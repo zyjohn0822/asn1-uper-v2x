@@ -114,6 +114,25 @@ public class UTCTiming {
         return this.nextEndUTCTime != null;
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"startUTCTime\":")
+                .append(startUTCTime);
+        sb.append(",\"minEndUTCTime\":")
+                .append(minEndUTCTime);
+        sb.append(",\"maxEndUTCTime\":")
+                .append(maxEndUTCTime);
+        sb.append(",\"likelyEndUTCTime\":")
+                .append(likelyEndUTCTime);
+        sb.append(",\"timeConfidence\":")
+                .append(timeConfidence);
+        sb.append(",\"nextStartUTCTime\":")
+                .append(nextStartUTCTime);
+        sb.append(",\"nextEndUTCTime\":")
+                .append(nextEndUTCTime);
+        sb.append('}');
+        return sb.toString();
+    }
 }
             

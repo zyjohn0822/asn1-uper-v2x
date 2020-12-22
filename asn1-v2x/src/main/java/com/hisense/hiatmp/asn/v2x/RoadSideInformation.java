@@ -8,4 +8,5 @@ import net.gcdc.asn1.datatypes.Sequence;
  */
 @Sequence
 public class RoadSideInformation {
+
 }

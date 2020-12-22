@@ -6,6 +6,7 @@ import org.v2x.time.TimeMark;
 import org.v2x.vehicle.Confidence;
 
 /**
+ * tested
  * @author zhangyong
  */
 @ASN1Sequence(name = "TimeCountingDown", isSet = false)

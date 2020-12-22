@@ -28,6 +28,25 @@ public class NodeReferenceID {
     @Component(1)
     NodeID id;
 
+    public NodeReferenceID() {
+    }
+
+    public NodeReferenceID(RoadRegulatorID region, NodeID id) {
+        this.region = region;
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"region\":")
+                .append(region);
+        sb.append(",\"id\":")
+                .append(id);
+        sb.append('}');
+        return sb.toString();
+    }
+
     /**
      * RoadRegulatorID ::= INTEGER (0..65535)<br/>
      * -- The value zero shall be used for testing only

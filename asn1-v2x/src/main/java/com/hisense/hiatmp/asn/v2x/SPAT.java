@@ -85,8 +85,8 @@ public class SPAT {
                 .append(moy);
         sb.append(",\"timestamp\":")
                 .append(timestamp);
-        sb.append(",\"name\":")
-                .append(name);
+        sb.append(",\"name\":\"")
+                .append(name).append('\"');
         sb.append(",\"intersections\":")
                 .append(intersections);
         sb.append('}');

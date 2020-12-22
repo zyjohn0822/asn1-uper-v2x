@@ -33,7 +33,7 @@ import java.util.*;
  */
 public abstract class Asn1SequenceOf<T> extends AbstractList<T> {
 
-    private final List<T> bakingList;
+    protected final List<T> bakingList;
 
     @Override public T get(int index) { return bakingList.get(index); }
     @Override public int size() { return bakingList.size(); }
@@ -60,10 +60,8 @@ public abstract class Asn1SequenceOf<T> extends AbstractList<T> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"bakingList\":")
-                .append(bakingList);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder();
+        sb.append(bakingList);
         return sb.toString();
     }
 

@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.hisense.hiatmp.asn.v2x.BasicSafetyMessage.ID;
 import static com.hisense.hiatmp.asn.v2x.basic.DDateTime.DSecond;
 import static com.hisense.hiatmp.asn.v2x.basic.Position3D.*;
 import static com.hisense.hiatmp.asn.v2x.basic.PositionalAccuracy.*;

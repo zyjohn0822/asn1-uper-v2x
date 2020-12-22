@@ -62,6 +62,22 @@ public class TimeCountingDown {
         this.likelyEndTime = likelyEndTime;
     }
 
+    public TimeCountingDown(TimeMark startTime,
+                            TimeMark minEndTime,
+                            TimeMark maxEndTime,
+                            TimeMark likelyEndTime,
+                            Confidence timeConfidence,
+                            TimeMark nextStartTime,
+                            TimeMark nextDuration) {
+        this.startTime = startTime;
+        this.minEndTime = minEndTime;
+        this.maxEndTime = maxEndTime;
+        this.likelyEndTime = likelyEndTime;
+        this.timeConfidence = timeConfidence;
+        this.nextStartTime = nextStartTime;
+        this.nextDuration = nextDuration;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");

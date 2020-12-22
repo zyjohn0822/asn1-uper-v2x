@@ -47,8 +47,9 @@ public class PathPrediction {
     }
 
     /**
-     * Confidence ::= INTEGER (0..200)
-     * 	-- Units of 0.5 percent
+     * RadiusOfCurvature ::= INTEGER (-32767..32767)
+     * 	-- Units of 10cm
+     * 	-- A straight path to use value of 32767
      */
     @IntRange(minValue = -32767, maxValue = 32767)
     public static class RadiusOfCurvature extends Asn1Integer {
@@ -62,9 +63,8 @@ public class PathPrediction {
     }
 
     /**
-     * RadiusOfCurvature ::= INTEGER (-32767..32767)
-     * 	-- Units of 10cm
-     * 	-- A straight path to use value of 32767
+     * Confidence ::= INTEGER (0..200)
+     * 	-- Units of 0.5 percent
      */
     @IntRange(minValue = 0, maxValue = 200)
     public static class Confidence extends Asn1Integer {

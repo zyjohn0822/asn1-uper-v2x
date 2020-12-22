@@ -121,12 +121,9 @@ public class PhaseState {
 
         @Override
         public String toString() {
-            final StringBuilder sb = new StringBuilder("{");
-            sb.append("\"value\":")
-                    .append(value);
-            sb.append('}');
-            return sb.toString();
+            return String.valueOf(value);
         }
+
     }
 
     /**
@@ -139,11 +136,15 @@ public class PhaseState {
     @Getter
     @Setter
     @Choice
+    @HasExtensionMarker
     public static class TimeChangeDetails {
         TimeCountingDown counting;
         UTCTiming utcTiming;
 
-        private TimeChangeDetails(TimeCountingDown counting, UTCTiming utcTiming) {
+        public TimeChangeDetails() {
+        }
+
+        public TimeChangeDetails(TimeCountingDown counting, UTCTiming utcTiming) {
             this.counting = counting;
             this.utcTiming = utcTiming;
         }
