@@ -5,6 +5,31 @@ import net.gcdc.asn1.datatypes.Choice;
 import net.gcdc.asn1.datatypes.HasExtensionMarker;
 
 /**
+ * MsgFrame DEFINITIONS AUTOMATIC TAGS ::= BEGIN<br/>
+ * <p><br/>
+ * -- imports and exports<br/>
+ * <p><br/>
+ * EXPORTS MsgCount;<br/>
+ * IMPORTS BasicSafetyMessage FROM BSM<br/>
+ * MapData FROM Map<br/>
+ * RoadsideSafetyMessage FROM RSM<br/>
+ * SPAT FROM SignalPhaseAndTiming<br/>
+ * RoadSideInformation FROM RSI;<br/>
+ * </p>
+ * -- Main message frame<br/>
+ * MessageFrame ::= CHOICE {<br/>
+ * bsmFrame BasicSafetyMessage,<br/>
+ * mapFrame MapData,<br/>
+ * rsmFrame RoadsideSafetyMessage,<br/>
+ * spatFrame SPAT,<br/>
+ * rsiFrame RoadSideInformation,<br/>
+ * ...<br/>
+ * }<br/>
+ * <p>
+ * MsgCount ::= INTEGER (0..127)<br/>
+ * <p>
+ * END<br/>
+ *
  * @author zhangyong
  * @date 2020/11/10  15:53
  */

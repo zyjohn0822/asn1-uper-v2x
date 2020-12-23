@@ -1,0 +1,89 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Mon Jan 09 15:13:12 CST 2017
+ */
+VehSafetyExt DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS VehicleSafetyExtensions, Confidence, FullPositionVector, GNSSstatus;
+IMPORTS VehicleEventFlags, ExteriorLights, TransmissionState FROM VehStatus
+		PositionOffsetLLV FROM DefPositionOffset
+		Speed, Heading, MotionConfidenceSet, CoarseHeading FROM DefMotion
+		Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition
+		DDateTime, TimeOffset, TimeConfidence FROM DefTime;
+	
+	VehicleSafetyExtensions ::= SEQUENCE {
+		events VehicleEventFlags OPTIONAL,
+		pathHistory PathHistory OPTIONAL,
+		pathPrediction PathPrediction OPTIONAL,
+		lights ExteriorLights OPTIONAL,
+		...
+		}
+	
+	PathHistory ::= SEQUENCE {
+		initialPosition FullPositionVector OPTIONAL,
+		currGNSSstatus GNSSstatus OPTIONAL,
+		crumbData PathHistoryPointList,
+		...
+		}
+	
+	FullPositionVector ::= SEQUENCE {
+		utcTime DDateTime OPTIONAL, -- time with mSec precision
+		pos Position3D,
+		heading Heading OPTIONAL,
+		transmission TransmissionState OPTIONAL,
+		speed Speed OPTIONAL,
+		posAccuracy PositionalAccuracy OPTIONAL,
+		posConficence PositionConfidenceSet OPTIONAL,
+		timeConfidence TimeConfidence OPTIONAL,
+		motionCfd MotionConfidenceSet OPTIONAL,
+		...
+		}
+	
+	GNSSstatus ::= BIT STRING {
+		unavailable (0), -- Not Equipped or unavailable
+		isHealthy (1),
+		isMonitored (2),
+		baseStationType (3), -- Set to zero if a moving base station,
+		-- or if a rover device (an OBU),
+		-- set to one if it is a fixed base station
+		aPDOPofUnder5 (4), -- A dilution of precision greater than 5
+		inViewOfUnder5 (5), -- Less than 5 satellites in view
+		localCorrectionsPresent (6), -- pseudo range corrections used
+		networkCorrectionsPresent (7) -- RTK type corrections used
+		} (SIZE(8))
+		
+	PathHistoryPointList ::= SEQUENCE (SIZE(1..23)) OF PathHistoryPoint
+	
+	PathHistoryPoint ::= SEQUENCE {
+		llvOffset PositionOffsetLLV,
+		timeOffset TimeOffset,
+		-- Offset backwards in time
+		speed Speed OPTIONAL,
+		-- Speed over the reported period
+		posAccuracy PositionConfidenceSet OPTIONAL,
+		-- The accuracy of this value
+		heading CoarseHeading OPTIONAL,
+		-- overall heading
+		...
+		}
+		
+	PathPrediction ::= SEQUENCE {
+		radiusOfCurve RadiusOfCurvature,
+		-- Units of 10cm
+		-- straight path to use value of 32767
+		confidence Confidence,
+		-- Units of 0.5 percent
+		...
+		}
+	
+	Confidence ::= INTEGER (0..200) 
+	-- Units of 0.5 percent
+	
+	RadiusOfCurvature ::= INTEGER (-32767..32767) 
+	-- Units of 10cm 
+	-- A straight path to use value of 32767
+	
+END

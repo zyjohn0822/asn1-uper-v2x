@@ -1,0 +1,314 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Fri Sep 16 11:47:10 CST 2016
+ */
+MapLane DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS LaneList, LaneWidth;
+IMPORTS PointList FROM MapPoint
+		NodeReferenceID FROM MapNode
+		SpeedLimitList FROM MapSpeedLimit
+		PhaseID FROM SPATIntersectionState;
+	
+	LaneList ::= SEQUENCE (SIZE(1..32)) OF Lane
+	
+	Lane ::= SEQUENCE {
+		laneID LaneID,
+		-- The unique ID number assigned
+		-- to this lane object
+		laneWidth LaneWidth OPTIONAL,
+		laneAttributes LaneAttributes OPTIONAL,
+		-- Define basic attribute of lane
+		maneuvers AllowedManeuvers OPTIONAL,
+		-- the permitted maneuvers for this lane
+		connectsTo ConnectsToList OPTIONAL,	
+		-- connection to downsteam lanes
+		speedLimits SpeedLimitList OPTIONAL,
+		-- List all the speed limits
+		points PointList OPTIONAL,
+		-- Define road points and segments
+		...
+	}
+	
+	LaneID ::= INTEGER (0..255) 
+	-- the value 0 shall be used when the lane ID is 
+	-- not available or not known 
+	-- the value 255 is reserved for future use
+	
+	LaneWidth ::= INTEGER (0..32767) 
+	-- units of 1 cm
+	
+	ConnectsToList ::= SEQUENCE (SIZE(1..16)) OF Connection
+	
+	Connection::= SEQUENCE {
+		remoteIntersection NodeReferenceID,
+		-- This entry indicates the downstream intersection of the link this lane connects to. 
+		-- This provides a means to create meshes of lanes
+		connectingLane ConnectingLane OPTIONAL,
+		-- The index of the connecting lane and also
+		-- the maneuver from the current lane to it
+		-- When we want to list the allowed lanes of the next link
+		-- this lane can lead to, we use this entry
+		phaseId PhaseID OPTIONAL
+		-- The matching signal group send by
+		-- the SPAT message for this lane/maneuver.
+		-- Shall be present unless the connectingLane
+		-- has no signal group (is un-signalized)
+	}
+	
+	ConnectingLane ::= SEQUENCE {
+		lane LaneID, 
+		-- Index of the connecting lane
+		maneuver AllowedManeuvers OPTIONAL
+		-- The Maneuver between
+		-- the enclosing lane and this lane
+		-- at the stop line to connect them
+		}
+	
+	AllowedManeuvers ::= BIT STRING {
+		-- With bits as defined:
+		-- Allowed maneuvers at path end (stop line)
+		-- All maneuvers with bits not set are therefore prohibited
+		-- A value of zero shall be used for unknown, indicating no Maneuver
+		maneuverStraightAllowed (0),
+		-- a Straight movement is allowed in this lane
+		maneuverLeftAllowed (1),
+		-- a Left Turn movement is allowed in this lane
+		maneuverRightAllowed (2),
+		-- a Right Turn movement is allowed in this lane
+		maneuverUTurnAllowed (3),
+		-- a U turn movement is allowed in this lane
+		maneuverLeftTurnOnRedAllowed (4),
+		-- a Stop, and then proceed when safe movement
+		-- is allowed in this lane
+		maneuverRightTurnOnRedAllowed (5),
+		-- a Stop, and then proceed when safe movement
+		-- is allowed in this lane
+		maneuverLaneChangeAllowed (6),
+		-- a movement which changes to an outer lane
+		-- on the egress side is allowed in this lane
+		-- (example: left into either outbound lane)
+		maneuverNoStoppingAllowed (7),
+		-- the vehicle should not stop at the stop line
+		-- (example: a flashing green arrow)
+		yieldAllwaysRequired (8),
+		-- the allowed movements above are not protected
+		-- (example: an permanent yellow condition)
+		goWithHalt (9),
+		-- after making a full stop, may proceed
+		caution (10),
+		-- proceed past stop line with caution
+		reserved1 (11)
+		-- used to align to 12 Bit Field
+		} (SIZE(12))
+	
+	LaneAttributes ::= SEQUENCE {
+		shareWith LaneSharing OPTIONAL,
+		laneType LaneTypeAttributes
+	}
+	
+	LaneSharing ::= BIT STRING {
+		-- With bits as defined:
+		overlappingLaneDescriptionProvided (0),
+		-- Assert when another lane object is present to describe the
+		-- path of the overlapping shared lane
+		-- this construct is not used for lane objects which simply cross
+		multipleLanesTreatedAsOneLane (1),
+		-- Assert if the lane object path and width details represents
+		-- multiple lanes within it that are not further described
+		-- Various modes and type of traffic that may share this lane:
+		otherNonMotorizedTrafficTypes (2), -- horse drawn etc.
+		individualMotorizedVehicleTraffic (3),
+		busVehicleTraffic (4),
+		taxiVehicleTraffic (5),
+		pedestriansTraffic (6),
+		cyclistVehicleTraffic (7),
+		trackedVehicleTraffic (8),
+		pedestrianTraffic (9)
+		} (SIZE (10))
+		-- All zeros would indicate 'not shared' and 'not overlapping'
+		
+	LaneTypeAttributes ::= CHOICE {
+		vehicle LaneAttributes-Vehicle, -- motor vehicle lanes
+		crosswalk LaneAttributes-Crosswalk, -- pedestrian crosswalks
+		bikeLane LaneAttributes-Bike, -- bike lanes
+		sidewalk LaneAttributes-Sidewalk, -- pedestrian sidewalk paths
+		median LaneAttributes-Barrier, -- medians & channelization
+		striping LaneAttributes-Striping, -- roadway markings
+		trackedVehicle LaneAttributes-TrackedVehicle, -- trains and trolleys
+		parking LaneAttributes-Parking, -- parking and stopping lanes
+		...
+		}
+		
+	LaneAttributes-Vehicle ::= BIT STRING { 
+		-- With bits as defined:
+		isVehicleRevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		isVehicleFlyOverLane (1),
+		-- path of lane is not at grade
+		hovLaneUseOnly (2),
+		restrictedToBusUse (3),
+		restrictedToTaxiUse (4),
+		restrictedFromPublicUse (5),
+		hasIRbeaconCoverage (6),
+		permissionOnRequest (7) -- e.g. to inform about a lane for e-cars
+		} (SIZE (8,...))
+		
+	LaneAttributes-Crosswalk ::= BIT STRING { 
+		-- With bits as defined: 
+		-- MUTCD provides no suitable "types" to use here
+		crosswalkRevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		bicyleUseAllowed (1),
+		-- The path allows bicycle traffic,
+		-- if not set, this mode is prohibited
+		isXwalkFlyOverLane (2),
+		-- path of lane is not at grade
+		fixedCycleTime (3),
+		-- ped walk phases use preset times
+		-- i.e. there is not a 'push to cross' button
+		biDirectionalCycleTimes (4),
+		-- ped walk phases use different SignalGroupID
+		-- for each direction. The first SignalGroupID
+		-- in the first Connection represents 'inbound'
+		-- flow (the direction of travel towards the first
+		-- node point) while second SignalGroupID in the
+		-- next Connection entry represents the 'outbound'
+		-- flow. And use of RestrictionClassID entries
+		-- in the Connect follow this same pattern in pairs.
+		hasPushToWalkButton (5),
+		-- Has a demand input
+		audioSupport (6),
+		-- audio crossing cues present
+		rfSignalRequestPresent (7),
+		-- Supports RF push to walk technologies
+		unsignalizedSegmentsPresent (8)
+		-- The lane path consists of one of more segments
+		-- which are not part of a signal group ID
+		-- Bits 9~15 reserved and set to zero
+	} (SIZE (16))
+	
+	LaneAttributes-Bike ::= BIT STRING { 
+		-- With bits as defined:
+		bikeRevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		pedestrianUseAllowed (1),
+		-- The path allows pedestrian traffic,
+		-- if not set, this mode is prohibited
+		isBikeFlyOverLane (2),
+		-- path of lane is not at grade
+		fixedCycleTime (3),
+		-- the phases use preset times
+		-- i.e. there is not a 'push to cross' button
+		biDirectionalCycleTimes (4),
+		-- ped walk phases use different SignalGroupID
+		-- for each direction. The first SignalGroupID
+		-- in the first Connection represents 'inbound'
+		-- flow (the direction of travel towards the first
+		-- node point) while second SignalGroupID in the
+		-- next Connection entry represents the 'outbound'
+		-- flow. And use of RestrictionClassID entries
+		-- in the Connect follow this same pattern in pairs.
+		isolatedByBarrier (5),
+		unsignalizedSegmentsPresent (6)
+		-- The lane path consists of one of more segments
+		-- which are not part of a signal group ID
+		-- Bits 7~15 reserved and set to zero
+		} (SIZE (16))
+		
+	LaneAttributes-Sidewalk ::= BIT STRING { 
+		-- With bits as defined:
+		sidewalk-RevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		bicyleUseAllowed (1),
+		-- The path allows bicycle traffic,
+		-- if not set, this mode is prohibited
+		isSidewalkFlyOverLane (2),
+		-- path of lane is not at grade
+		walkBikes (3)
+		-- bike traffic must dismount and walk 
+		-- Bits 4~15 reserved and set to zero
+		} (SIZE (16))
+		
+	LaneAttributes-Barrier ::= BIT STRING { 
+		-- With bits as defined:
+		median-RevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		median (1),
+		whiteLineHashing (2),
+		stripedLines (3),
+		doubleStripedLines (4),
+		trafficCones (5),
+		constructionBarrier (6),
+		trafficChannels (7),
+		lowCurbs (8),
+		highCurbs (9) -- Bits 10~15 reserved and set to zero
+		} (SIZE (16))
+		
+	LaneAttributes-Striping ::= BIT STRING { 
+		-- With bits as defined:
+		stripeToConnectingLanesRevocableLane (0),
+		-- this lane may be activated or not activated based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		stripeDrawOnLeft (1),
+		stripeDrawOnRight (2),
+		-- which side of lane to mark
+		stripeToConnectingLanesLeft (3),
+		stripeToConnectingLanesRight (4),
+		stripeToConnectingLanesAhead (5)
+		-- the stripe type should be
+		-- presented to the user visually
+		-- to reflect stripes in the
+		-- intersection for the type of
+		-- movement indicated 
+		-- Bits 6~15 reserved and set to zero
+		} (SIZE (16))
+		
+	LaneAttributes-TrackedVehicle ::= BIT STRING { 
+		-- With bits as defined:
+		spec-RevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		spec-commuterRailRoadTrack (1),
+		spec-lightRailRoadTrack (2),
+		spec-heavyRailRoadTrack (3),
+		spec-otherRailType (4) -- Bits 5~15 reserved and set to zero
+		} (SIZE (16))
+		
+	LaneAttributes-Parking ::= BIT STRING {
+		-- With bits as defined:
+		-- Parking use details, note that detailed restrictions such as
+		-- allowed hours are sent by way of ITIS codes in the TIM message
+		parkingRevocableLane (0),
+		-- this lane may be activated or not based
+		-- on the current SPAT message contents
+		-- if not asserted, the lane is ALWAYS present
+		parallelParkingInUse (1),
+		headInParkingInUse (2),
+		doNotParkZone (3),
+		-- used to denote fire hydrants as well as
+		-- short disruptions in a parking zone
+		parkingForBusUse (4),
+		parkingForTaxiUse (5),
+		noPublicParkingUse (6)
+		-- private parking, as in front of
+		-- private property 
+		-- Bits 7~15 reserved and set to zero
+		} (SIZE (16))
+	
+END

@@ -1,0 +1,28 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Sat Jul 23 16:14:58 CST 2016
+ */
+VehSize DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS VehicleSize;
+IMPORTS ;
+	
+	VehicleSize ::= SEQUENCE {
+		width VehicleWidth,
+		length VehicleLength,
+		height VehicleHeight OPTIONAL
+	}
+	
+	VehicleWidth ::= INTEGER (0..1023) 
+	-- Units are 1 cm with a range of >10 meters
+	
+	VehicleLength ::= INTEGER (0.. 4095)
+	-- Units of 1 cm with a range of >40 meters
+	
+	VehicleHeight ::= INTEGER (0..127)
+	-- Units of 5 cm, range to 6.35 meters
+	
+END

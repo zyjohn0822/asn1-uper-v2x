@@ -1,0 +1,225 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Wed Nov 23 13:57:10 CST 2016
+ */
+SPATIntersectionState DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS PhaseID, IntersectionStateList;
+IMPORTS MinuteOfTheYear, DSecond, TimeMark FROM DefTime
+	NodeReferenceID FROM MapNode
+	Confidence FROM VehSafetyExt
+	TimeConfidence FROM DefTime;
+	
+	IntersectionStateList ::= SEQUENCE (SIZE(1..32)) OF IntersectionState	
+	
+	IntersectionState ::= SEQUENCE {
+		intersectionId NodeReferenceID,
+		-- A globally unique value set, consisting of a
+		-- regionID and intersection ID assignment
+		-- provides a unique mapping to the MAP Node
+		status IntersectionStatusObject,
+		-- general status of the controller(s)
+		moy MinuteOfTheYear OPTIONAL,
+		-- Minute of current UTC year
+		-- used only with messages to be archived
+		timeStamp DSecond OPTIONAL,
+		-- the mSec point in the current UTC minute that
+		-- this message was constructed
+		timeConfidence TimeConfidence OPTIONAL,
+		-- indicate the time confidence of the above UTC time
+		phases PhaseList,
+		-- Each Movement is given in turn
+		-- and contains its signal phase state,
+		-- mapping to the lanes it applies to, and
+		-- point in time it will end, and it
+		-- may contain both active and future states
+		...
+	}
+	
+	IntersectionStatusObject ::= BIT STRING {
+		manualControlIsEnabled (0),
+		-- Timing reported is per programmed values, etc. but person
+		-- at cabinet can manually request that certain intervals are
+		-- terminated early (e.g. green).
+		stopTimeIsActivated (1),
+		-- And all counting/timing has stopped.
+		failureFlash (2),
+		-- Above to be used for any detected hardware failures,
+		-- e.g. conflict monitor as well as for police flash
+		preemptIsActive (3),
+		signalPriorityIsActive (4),
+		-- Additional states
+		fixedTimeOperation (5),
+		-- Schedule of signals is based on time only
+		-- (i.e. the state can be calculated)
+		trafficDependentOperation (6),
+		-- Operation is based on different levels of traffic parameters
+		-- (requests, duration of gaps or more complex parameters)
+		standbyOperation (7),
+		-- Controller: partially switched off or partially amber flashing
+		failureMode (8),
+		-- Controller has a problem or failure in operation
+		off (9),
+		-- Controller is switched off
+		-- Related to MAP and SPAT bindings
+		recentMAPmessageUpdate (10),
+		-- Map revision with content changes
+		recentChangeInMAPassignedLanesIDsUsed (11),
+		-- Change in MAP's assigned lanes used (lane changes)
+		-- Changes in the active lane list description
+		noValidMAPisAvailableAtThisTime (12),
+		-- MAP (and various lanes indexes) not available
+		noValidSPATisAvailableAtThisTime (13)
+		-- SPAT system is not working at this time
+		-- Bits 14,15 reserved at this time and shall be zero
+	} (SIZE(16))
+		
+	PhaseList ::= SEQUENCE (SIZE(1..16)) OF Phase
+	-- List of phases in one traffic signal
+	
+	Phase ::= SEQUENCE{
+		id PhaseID,
+		-- the group id is used to map to lists
+		-- of lanes (and their descriptions)
+		-- which this MovementState data applies to
+		-- see comments in the Remarks for usage details
+		phaseStates PhaseStateList
+		-- Consisting of sets of movement data with:
+		-- a) SignalPhaseState
+		-- b) TimeChangeDetails, and
+		-- c) AdvisorySpeeds (optional )
+		-- Note one or more of the movement events may be for
+		-- a future time and that this allows conveying multiple
+		-- predictive phase and movement timing for various uses
+		-- for the current signal group
+	}
+	
+	PhaseStateList ::= SEQUENCE (SIZE(1..16)) OF PhaseState
+	
+	PhaseState ::= SEQUENCE {
+		light LightState,
+		-- Consisting of:
+		-- Phase state (the basic 11 states)
+		-- Directional, protected, or permissive state
+		timing TimeChangeDetails OPTIONAL,
+		-- Timing Data in UTC time stamps for event
+		-- includes start and min/max end times of phase
+		-- confidence and estimated next occurrence
+		...
+		}
+	
+	LightState ::= ENUMERATED {
+		unavailable (0),
+		-- This state is used for unknown or error
+		dark (1),
+		-- The signal is dark (unlit)
+		
+		-- Reds
+		flashing-red (2),
+		-- Reserved for special scenarios
+		red (3),
+		-- Driver Action:
+		-- Stop vehicle at stop line.
+		-- Do not proceed.
+		
+		-- Greens
+		flashing-green (4),
+		-- Reserved for special scenarios		
+		permissive-green (5),
+		-- Driver Action:
+		-- Proceed with caution,
+		-- must yield to all conflicting traffic
+		-- Conflicting traffic may be present
+		-- in the intersection conflict area
+		protected-green (6),
+		-- Driver Action:
+		-- Proceed, tossing caution to the wind,
+		-- in indicated (allowed) direction.
+		
+		-- Yellows / Ambers 
+		-- The vehicle is not allowed to cross the stop bar if it is possible 
+		-- to stop without danger.
+		yellow (7),
+		-- Driver Action:
+		-- Prepare to stop.
+		-- Proceed if unable to stop,
+		-- in indicated direction (to connected lane)
+		-- Clear Intersection.
+		
+		flashing-yellow (8),
+		-- Driver Action:
+		-- Proceed with caution,
+		-- Conflicting traffic may be present
+		-- in the intersection conflict area
+		
+		...
+	}
+	
+	TimeChangeDetails ::= CHOICE { 
+		counting TimeCountingDown,
+		utcTiming UTCTiming,
+		...
+	}
+	
+	UTCTiming ::= SEQUENCE {
+		startUTCTime TimeMark,
+		-- If already started, the value represents 
+		-- the time stamp when this phase state started.
+		-- If not, the value represents
+		-- the time stamp when this phase state starts.
+		minEndUTCTime TimeMark OPTIONAL,
+		-- The time stamp when this state 1st ends in shortest time
+		maxEndUTCTime TimeMark OPTIONAL,
+		-- The time stamp when this state 1st ends in longest time
+		likelyEndUTCTime TimeMark,
+		-- The time stamp when this state 1st ends in best predicted time
+		timeConfidence Confidence OPTIONAL,
+		-- Confidence of likelyEndUTCTime
+		nextStartUTCTime TimeMark OPTIONAL,
+		-- A rough estimate of UTC time stamp when this phase state may next occur again
+		-- used to support various ECO driving power management needs.
+		-- If already started, this value is recommended to be delivered.
+		nextEndUTCTime TimeMark OPTIONAL
+		-- A rough estimate of UTC time stamp when this phase state ends again
+		-- used to support various ECO driving power management needs.
+		-- If already started, this value is recommended to be delivered.
+	}
+	
+	TimeCountingDown ::= SEQUENCE {
+		startTime TimeMark,
+		-- When this phase state started,
+		-- if already started, the value is 0
+		minEndTime TimeMark OPTIONAL,
+		-- Expected shortest end time
+		-- the value is the min left time from now
+		maxEndTime TimeMark OPTIONAL,
+		-- Expected longest end time
+		-- the value is the max left time from now
+		likelyEndTime TimeMark,
+		-- Best predicted value based on other data
+		-- the value is the likely left time from now
+		timeConfidence Confidence OPTIONAL,
+		-- Confidence of likelyTime
+		nextStartTime TimeMark OPTIONAL,
+		-- A rough estimate of time from now when this phase state may next occur again
+		-- used to support various ECO driving power management needs.
+		-- If already started, this value is recommended to be delivered.
+		nextDuration TimeMark OPTIONAL
+		-- A rough estimate of the time length of this phase state
+		-- when it may next occur again.
+		-- used to support various ECO driving power management needs.
+		-- If already started, this value is recommended to be delivered.
+	}
+	
+	PhaseID ::= INTEGER (0..255)
+	-- The value 0 shall be used when the ID is
+	-- not available or not known
+	-- the value 255 is reserved to indicate a
+	-- permanent green movement state
+	-- therefore a simple 8 phase signal controller
+	-- device might use 1..9 as its groupIDs
+	
+END

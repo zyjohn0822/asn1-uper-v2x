@@ -1,0 +1,109 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Mon Jul 25 10:42:54 CST 2016
+ */
+DefTime DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS DSecond, MinuteOfTheYear, TimeMark, TimeOffset, TimeConfidence, DDateTime;
+IMPORTS ;
+		
+	DSecond ::= INTEGER (0..65535)
+	-- units of milliseconds
+	
+	DYear ::= INTEGER (0..4095) 
+	-- units of years
+	
+	DMonth ::= INTEGER (0..12) 
+	-- units of months
+	
+	DDay ::= INTEGER (0..31) 
+	-- units of days
+	
+	DHour ::= INTEGER (0..24) 
+	-- units of hours
+	
+	DMinute ::= INTEGER (0..60) 
+	-- units of minutes
+	
+	DTimeOffset ::= INTEGER (-720..721) 
+	-- units of minutes from UTC time
+	
+	DDateTime ::= SEQUENCE {
+		year DYear OPTIONAL,
+		month DMonth OPTIONAL,
+		day DDay OPTIONAL,
+		hour DHour OPTIONAL,
+		minute DMinute OPTIONAL,
+		second DSecond OPTIONAL,
+		offset DTimeOffset OPTIONAL -- time zone
+		}
+	
+	MinuteOfTheYear ::= INTEGER (0..527040) 
+	-- the value 527040 shall be used for invalid
+	
+	TimeMark ::= INTEGER (0..36001) 
+	-- Tenths of a second in the current or next hour 
+	-- In units of 1/10th second from UTC time 
+	-- A range of 0~36000 covers one hour 
+	-- The values 35991..35999 are used when a leap second occurs 
+	-- The value 36000 is used to indicate time >3600 seconds 
+	-- 36001 is to be used when value undefined or unknown 
+	-- Note that this is NOT expressed in GNSS time 
+	-- or in local time
+	
+	TimeOffset ::= INTEGER (1..65535) 
+	-- Units of of 10 mSec, 
+	-- with a range of 0.01 seconds to 10 minutes and 55.34 seconds 
+	-- a value of 65534 to be used for 655.34 seconds or greater 
+	-- a value of 65535 to be unavailable
+	
+	TimeConfidence ::= ENUMERATED {
+		unavailable (0), -- Not Equipped or unavailable
+		time-100-000 (1), -- Better than 100 Seconds
+		time-050-000 (2), -- Better than 50 Seconds
+		time-020-000 (3), -- Better than 20 Seconds
+		time-010-000 (4), -- Better than 10 Seconds
+		time-002-000 (5), -- Better than 2 Seconds
+		time-001-000 (6), -- Better than 1 Second
+		time-000-500 (7), -- Better than 0.5 Seconds
+		time-000-200 (8), -- Better than 0.2 Seconds
+		time-000-100 (9), -- Better than 0.1 Seconds
+		time-000-050 (10), -- Better than 0.05 Seconds
+		time-000-020 (11), -- Better than 0.02 Seconds
+		time-000-010 (12), -- Better than 0.01 Seconds
+		time-000-005 (13), -- Better than 0.005 Seconds
+		time-000-002 (14), -- Better than 0.002 Seconds
+		time-000-001 (15), -- Better than 0.001 Seconds
+		-- Better than one millisecond
+		time-000-000-5 (16), -- Better than 0.000,5 Seconds
+		time-000-000-2 (17), -- Better than 0.000,2 Seconds
+		time-000-000-1 (18), -- Better than 0.000,1 Seconds
+		time-000-000-05 (19), -- Better than 0.000,05 Seconds
+		time-000-000-02 (20), -- Better than 0.000,02 Seconds
+		time-000-000-01 (21), -- Better than 0.000,01 Seconds
+		time-000-000-005 (22), -- Better than 0.000,005 Seconds
+		time-000-000-002 (23), -- Better than 0.000,002 Seconds
+		time-000-000-001 (24), -- Better than 0.000,001 Seconds
+		-- Better than one micro second
+		time-000-000-000-5 (25), -- Better than 0.000,000,5 Seconds
+		time-000-000-000-2 (26), -- Better than 0.000,000,2 Seconds
+		time-000-000-000-1 (27), -- Better than 0.000,000,1 Seconds
+		time-000-000-000-05 (28), -- Better than 0.000,000,05 Seconds
+		time-000-000-000-02 (29), -- Better than 0.000,000,02 Seconds
+		time-000-000-000-01 (30), -- Better than 0.000,000,01 Seconds
+		time-000-000-000-005 (31), -- Better than 0.000,000,005 Seconds
+		time-000-000-000-002 (32), -- Better than 0.000,000,002 Seconds
+		time-000-000-000-001 (33), -- Better than 0.000,000,001 Seconds
+		-- Better than one nano second
+		time-000-000-000-000-5 (34), -- Better than 0.000,000,000,5 Seconds
+		time-000-000-000-000-2 (35), -- Better than 0.000,000,000,2 Seconds
+		time-000-000-000-000-1 (36), -- Better than 0.000,000,000,1 Seconds
+		time-000-000-000-000-05 (37), -- Better than 0.000,000,000,05 Seconds
+		time-000-000-000-000-02 (38), -- Better than 0.000,000,000,02 Seconds
+		time-000-000-000-000-01 (39) -- Better than 0.000,000,000,01 Seconds
+		}
+
+END

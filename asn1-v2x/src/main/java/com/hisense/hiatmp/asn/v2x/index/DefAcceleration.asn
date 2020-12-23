@@ -1,0 +1,38 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Mon Jul 25 10:45:36 CST 2016
+ */
+DefAcceleration DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS AccelerationSet4Way;
+IMPORTS ;
+	
+	AccelerationSet4Way ::= SEQUENCE {
+		long Acceleration, 
+		-- Along the Vehicle Longitudinal axis
+		lat Acceleration, 
+		-- Along the Vehicle Lateral axis
+		vert VerticalAcceleration, 
+		-- Along the Vehicle Vertical axis
+		yaw YawRate
+	}
+	
+	Acceleration ::= INTEGER (-2000..2001)
+	-- Units are 0.01 m/s^2 
+	-- the value 2000 shall be used for values greater than 2000 
+	-- the value -2000 shall be used for values less than -2000 
+	-- a value of 2001 shall be used for Unavailable
+	
+	VerticalAcceleration ::= INTEGER (-127..127)
+	-- Units of 0.02 G steps over -2.52 to +2.54 G
+	-- The value +127 shall be used for ranges >= 2.54 G
+	-- The value -126 shall be used for ranges <= 2.52 G
+	-- The value -127 shall be used for unavailable
+	
+	YawRate ::= INTEGER (-32767..32767)
+	-- Units of 0.01 degrees per second (signed)
+	
+END

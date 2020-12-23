@@ -1,0 +1,188 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Tue Apr 23 18:30:27 CST 2019
+ */
+RSI DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS RoadSideInformation;
+IMPORTS Position3D FROM DefPosition
+		MsgCount FROM MsgFrame
+		MinuteOfTheYear, DSecond, TimeConfidence FROM DefTime
+		PositionOffsetLLV FROM DefPositionOffset
+		NodeReferenceID FROM MapNode
+		Confidence FROM VehSafetyExt;
+	
+	RoadSideInformation ::= SEQUENCE {
+		msgCnt MsgCount,
+		moy MinuteOfTheYear OPTIONAL,
+		id OCTET STRING (SIZE(8)),
+		-- RSU ID
+		refPos Position3D,
+		-- Reference position of this RSI message
+		rtes RTEList OPTIONAL,
+		-- All the rte data packed in this message
+		rtss RTSList OPTIONAL,
+		-- All the rts data packed in this message
+		...
+	}
+	
+	-- Define Road Traffic Event ----------------------------------
+	
+	RTEList ::= SEQUENCE (SIZE(1..8)) OF RTEData
+	-- Road Traffic Event List
+	
+	RTEData ::= SEQUENCE {
+		rteId INTEGER (0..255),
+		-- local ID of this rte information set by RSU
+		eventType EventType,
+		-- Type of event, according to China GB/T 29100-2012
+		eventSource EventSource,
+		eventPos PositionOffsetLLV OPTIONAL,
+		-- Position of this event, if exists
+		eventRadius Radius OPTIONAL,
+		-- Radius of this event, if exists
+		description Description OPTIONAL,
+		-- Additional description to this event
+		timeDetails RSITimeDetails OPTIONAL,
+		-- Start time or end time when this event is active
+		priority RSIPriority OPTIONAL,
+		-- the urgency of this RSI data, a relative
+		-- degree of merit compared with other RSI data
+		referencePaths ReferencePathList OPTIONAL,
+		-- Related paths of this traffic event
+		referenceLinks ReferenceLinkList OPTIONAL,
+		-- Related links of this traffic event
+		eventConfidence Confidence OPTIONAL,
+		-- indicate the event confidence set by event source
+		-- the probability/confidence of the detected event
+		-- being truly extent at a certain place, 
+		-- to help vehicle determine whether to trust the received information.
+		...
+	}
+	
+	EventSource ::= ENUMERATED {
+		unknown(0),	-- 0 Unknown
+		police(1),	-- 1 traffic police
+		government(2),	-- 2 govenment
+		meteorological(3), -- 3 meteorological department
+		internet(4),	-- 4 internet services
+		detection(5),	-- 5 local detection
+		...
+	}
+	
+	EventType ::= INTEGER (0..65535)
+	-- Traffic event type according to China GB/T 29100-2012
+	
+	RSITimeDetails ::= SEQUENCE {
+		startTime MinuteOfTheYear OPTIONAL,
+		endTime MinuteOfTheYear OPTIONAL,
+		-- Exact or estimated end time
+		endTimeConfidence TimeConfidence OPTIONAL
+	}
+	
+	ReferencePathList ::= SEQUENCE (SIZE(1..8)) OF ReferencePath
+	
+	ReferencePath ::= SEQUENCE {
+		activePath PathPointList,
+		-- RSI is active for vehicles within this path
+		-- Points are listed from upstream to downstream
+		-- along the vehicle drive direction.
+		-- One path includes at least 1 points.
+		-- A path with only 1 point means a round alert area
+		pathRadius Radius
+		-- The biggest distance away from the alert path
+		-- within which the warning is active.
+	}
+	
+	-- Define Road Traffic Sign ----------------------------------
+	
+	RTSList ::= SEQUENCE (SIZE(1..16)) OF RTSData
+	
+	RTSData ::= SEQUENCE {
+		rtsId INTEGER (0..255),
+		-- local ID of this rts information set by RSU
+		signType SignType,
+		-- Type of sign, according to China GB 5768.2
+		signPos PositionOffsetLLV OPTIONAL,
+		-- Position of the traffic sign, if exists
+		description Description OPTIONAL,
+		-- Additional description to the sign
+		timeDetails RSITimeDetails OPTIONAL,
+		-- start time or end time when this sign is active, if existed
+		priority RSIPriority OPTIONAL,
+		-- the urgency of this RSI data, a relative
+		-- degree of merit compared with other RSI data
+		referencePaths ReferencePathList OPTIONAL,
+		-- Related paths of this traffic sign
+		referenceLinks ReferenceLinkList OPTIONAL,
+		-- Related links of this traffic sign
+		...
+	}
+	
+	Description ::= CHOICE{
+		textString IA5String (SIZE(1..512)),
+		-- ASCII text
+		textGB2312 OCTET STRING (SIZE(2..512))
+		-- text using Chinese-character encoding GB2312-80
+	}
+	
+	ReferenceLinkList ::= SEQUENCE (SIZE(1..16)) OF ReferenceLink
+	
+	ReferenceLink ::= SEQUENCE {
+		-- this Link is from Node of upstreamNodeId to Node of downstreamNodeId
+		upstreamNodeId NodeReferenceID,
+		downstreamNodeId NodeReferenceID,
+		referenceLanes ReferenceLanes OPTIONAL
+		-- Provide reference lanes if is necessary
+		-- Refer to all lanes if this data is not given
+	}
+	
+	ReferenceLanes ::= BIT STRING {
+		-- With bits as defined:
+		reserved(0),
+		lane1(1),
+		lane2(2),
+		lane3(3),
+		lane4(4),
+		lane5(5),
+		lane6(6),
+		lane7(7),
+		lane8(8),
+		lane9(9),
+		lane10(10),
+		lane11(11),
+		lane12(12),
+		lane13(13),
+		lane14(14),
+		lane15(15)
+	} (SIZE (16))
+	-- Set bit to 1 if the related lane is effective
+	-- Support maximum 15 lanes
+	
+	SignType ::= INTEGER (0..65535)
+	-- Traffic sign type according to China GB 5768.2
+	-- Text message warning = 0
+	-- Danger = 37
+	-- Rockfall = 15
+	-- SharpTurn = 2
+	-- UnderConstruction = 38
+	-- Slippy = 17
+	-- Tunnel = 21
+	
+	PathPointList ::= SEQUENCE (SIZE(1..32)) OF PositionOffsetLLV
+	-- Path point list for RTS message
+	
+	Radius ::= INTEGER (0..65535)
+	-- Define radius
+	-- Unit is 0.1m
+	
+	RSIPriority ::= OCTET STRING (SIZE(1))
+	-- The lower five bits are reserved and shall be set to zero
+	-- Value from B00000000 to B11100000 represents the lowest to the highest level
+	
+	-- value assignments
+	
+END

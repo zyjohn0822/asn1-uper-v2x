@@ -1,0 +1,82 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Tue Sep 06 15:44:22 CST 2016
+ */
+RSM DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS RoadsideSafetyMessage;
+IMPORTS AccelerationSet4Way FROM DefAcceleration
+		VehicleSize FROM VehSize
+		Position3D, PositionConfidenceSet FROM DefPosition
+		DSecond FROM DefTime
+		Speed, Heading, SteeringWheelAngle, MotionConfidenceSet FROM DefMotion
+		TransmissionState FROM VehStatus
+		MsgCount FROM MsgFrame
+		VehicleClassification FROM VehClass
+		PositionOffsetLLV FROM DefPositionOffset;
+	
+	RoadsideSafetyMessage ::= SEQUENCE {
+		msgCnt MsgCount,
+		id OCTET STRING (SIZE(8)),
+		-- RSU ID
+		refPos Position3D,
+		-- Reference position of this RSM message
+		participants ParticipantList,
+		-- All or part of the participants 
+		-- detected by RSU
+		...
+	}
+	
+	ParticipantList ::= SEQUENCE (SIZE(1..16)) OF ParticipantData
+	
+	ParticipantData ::= SEQUENCE {
+		ptcType ParticipantType,
+		ptcId INTEGER (0..65535),
+		-- temporary ID set by RSU
+		-- 0 is RSU itself
+		-- 1..255 represent participants detected by RSU
+		-- ptcId of different participant needs to be unique in RSU
+		source SourceType,
+		id OCTET STRING (SIZE(8)) OPTIONAL,
+		-- temperary vehicle ID from BSM
+		secMark DSecond,
+		pos PositionOffsetLLV,
+		posConfidence PositionConfidenceSet,
+		transmission TransmissionState OPTIONAL,
+		speed Speed,
+		heading Heading,
+		angle SteeringWheelAngle OPTIONAL,
+		motionCfd MotionConfidenceSet OPTIONAL,
+		accelSet AccelerationSet4Way OPTIONAL,
+		size VehicleSize,
+		-- Size of participant including motor/non-motor/pedestrian/rsu
+		-- is represented by DE_VehilceSize
+		vehicleClass VehicleClassification OPTIONAL,
+		...
+	}
+	
+	ParticipantType ::= ENUMERATED {
+		unknown (0), -- Unknown
+		motor (1), -- motor
+		non-motor (2), -- non-motor
+		pedestrian (3), -- pedestrian
+		rsu (4), -- rsu
+		...
+		}
+	
+	SourceType ::= ENUMERATED {
+		unknown(0),
+		selfinfo(1),
+		v2x(2),
+		video(3),
+		microwaveRadar(4),
+		loop(5),
+		lidar(6),
+		integrated(7),
+		...
+		}
+	
+END

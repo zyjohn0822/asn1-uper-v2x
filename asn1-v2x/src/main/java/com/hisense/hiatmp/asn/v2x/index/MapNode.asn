@@ -1,0 +1,52 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Fri Sep 16 11:50:25 CST 2016
+ */
+MapNode DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS NodeList, DescriptiveName, NodeReferenceID;
+IMPORTS Position3D FROM DefPosition
+		LinkList FROM MapLink;
+	
+	NodeList ::= SEQUENCE (SIZE(1..63)) OF Node
+	
+	Node ::= SEQUENCE {
+		-- intersection or road endpoint
+		name DescriptiveName OPTIONAL,
+		-- Node name
+		id NodeReferenceID,
+		-- A globally unique value set,
+		-- consisting of a regionID and
+		-- node ID assignment
+		refPos Position3D, 
+		-- 3D position of the center of this Node.
+		-- This position is also the reference position for the elements inside
+		inLinks LinkList OPTIONAL,
+		-- all the links enter this Node
+		...
+	}
+	
+	DescriptiveName ::= IA5String (SIZE(1..63))
+	
+	NodeReferenceID ::= SEQUENCE {
+		region RoadRegulatorID OPTIONAL,
+		-- a globally unique regional assignment value
+		-- typical assigned to a regional DOT authority
+		-- the value zero shall be used for testing needs
+		id NodeID
+		-- a unique mapping to the node
+		-- in question within the above region of use		
+		}
+	
+	RoadRegulatorID ::= INTEGER (0..65535)
+	-- The value zero shall be used for testing only
+	
+	NodeID ::= INTEGER (0..65535)
+	-- The values zero through 255 are allocated for testing purposes 
+	-- Note that the value assigned to a node will be 
+	-- unique within a given regional ID only
+	
+END

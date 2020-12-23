@@ -1,0 +1,39 @@
+/**
+ * Creator: ASNDT (http://www.asnlab.org)
+ * Author: WANGYizhi
+ * Created: Tue Dec 27 14:41:33 CST 2016
+ */
+MapPoint DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS PointList;
+IMPORTS PositionOffsetLLV FROM DefPositionOffset;
+	
+	PointList ::= SEQUENCE (SIZE(2..31)) OF RoadPoint
+	-- At least 2 points of 1 lane
+	-- entry line and exit line
+	-- points need to be listed sequentially
+	-- from upstream to downstream
+	
+	RoadPoint ::= SEQUENCE {
+		posOffset PositionOffsetLLV,
+		-- Position offset to the reference position
+		--pointAttribute PointAttributeSet OPTIONAL,
+		-- Definition of special attribute of road-point
+		--segmentAttribute SegmentAttributeSet OPTIONAL,
+		-- Definition of special attribute of road segment from this road-point to the next
+		-- if this node is the last node of this nodelist, then this segment means null
+		...
+	}
+	
+	--PointAttributeSet ::= SEQUENCE {
+		-- TODO: add point attributes here
+	--}
+	
+	--SegmentAttributeSet ::= SEQUENCE {
+		-- TODO: add segment attributes here
+	--}	
+	
+	
+END

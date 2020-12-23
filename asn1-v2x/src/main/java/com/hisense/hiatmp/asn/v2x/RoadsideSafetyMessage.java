@@ -12,17 +12,17 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * RoadsideSafetyMessage ::= SEQUENCE {
- * msgCnt MsgCount,
- * id OCTET STRING (SIZE(8)),
- * -- RSU ID
- * refPos Position3D,
- * -- Reference position of this RSM message
- * participants ParticipantList,
- * -- All or part of the participants
- * -- detected by RSU
- * ...
- * }
+ * RoadsideSafetyMessage ::= SEQUENCE {<br/>
+ * msgCnt MsgCount,<br/>
+ * id OCTET STRING (SIZE(8)),<br/>
+ * -- RSU ID<br/>
+ * refPos Position3D,<br/>
+ * -- Reference position of this RSM message<br/>
+ * participants ParticipantList,<br/>
+ * -- All or part of the participants<br/>
+ * -- detected by RSU<br/>
+ * ...<br/>
+ * }<br/>
  *
  * @author zhangyong
  */
