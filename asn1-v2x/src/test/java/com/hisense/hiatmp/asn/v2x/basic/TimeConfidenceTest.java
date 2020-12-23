@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/17  14:49
  */
 public class TimeConfidenceTest {
     TimeConfidence timeConfidence;
+
     @Before
     public void setUp() throws Exception {
         timeConfidence = TimeConfidence.time_000_000_000_000_01;
@@ -23,12 +22,14 @@ public class TimeConfidenceTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(timeConfidence);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

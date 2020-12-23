@@ -7,14 +7,13 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/16  16:27
  */
 public class PositionOffsetLLTest {
     PositionOffsetLL positionOffsetLL;
+
     @Before
     public void setUp() throws Exception {
     }
@@ -22,10 +21,12 @@ public class PositionOffsetLLTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode(){
+    public void encode() {
 
     }
+
     @Test
     public void decode() throws IOException {
         byte[] encode = new byte[]{16, 45, 2, -96};

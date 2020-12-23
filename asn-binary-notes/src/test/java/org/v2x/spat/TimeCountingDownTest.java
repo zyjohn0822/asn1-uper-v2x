@@ -4,11 +4,8 @@ import org.bn.CoderFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.v2x.bsm.BasicSafetyMessage;
 
 import java.io.ByteArrayInputStream;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -23,11 +20,13 @@ public class TimeCountingDownTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         byte[] decodeBytes = new byte[]{-8, 112, -128, 103, -128, 38, 112, 106, -7, 32, 112, -128, 103, 32};
         final TimeCountingDown decode = CoderFactory
                 .getInstance()

@@ -11,12 +11,13 @@ import java.util.Arrays;
  */
 public class MsgContTest {
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         MsgCount msgCount = new MsgCount(35);
         final byte[] encode = UperEncoder.encode(msgCount);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

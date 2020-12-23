@@ -1,16 +1,11 @@
 package net.gcdc.asn1.datatypes;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * Indicates that the field is OPTIONAL in ASN.1. Implemented as null. Equivalent to {@code @Nullable}.
- *
+ * <p>
  * Using {@code Optional<T>} would require Manifests to capture generics (like in Gson).
- *
  */
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)

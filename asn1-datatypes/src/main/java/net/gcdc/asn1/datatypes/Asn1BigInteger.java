@@ -10,10 +10,13 @@ public abstract class Asn1BigInteger {
         this.value = value;
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "" + value;
     }
 
-    public BigInteger value() { return value; }
+    public BigInteger value() {
+        return value;
+    }
 
 }

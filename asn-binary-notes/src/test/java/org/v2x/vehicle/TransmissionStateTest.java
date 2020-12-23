@@ -7,8 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/12  18:20

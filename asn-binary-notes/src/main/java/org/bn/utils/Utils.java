@@ -6,6 +6,7 @@ package org.bn.utils;
  */
 public class Utils {
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    public static int DIVISION_TWO = 2;
 
     /**
      * π¶ƒ‹√Ë ˆ: <br>
@@ -57,8 +58,6 @@ public class Utils {
         }
         return new String(hexChars);
     }
-
-    public static int DIVISION_TWO = 2;
 
     public static String hexLowerSort(String hexHeight) throws Exception {
         if (hexHeight.length() % DIVISION_TWO != 0) {

@@ -8,21 +8,22 @@ import java.util.List;
 
 /**
  * VehBrake DEFINITIONS AUTOMATIC TAGS ::= BEGIN<br/>
- *
+ * <p>
  * -- imports and exports<br/>
- *
+ * <p>
  * EXPORTS BrakeSystemStatus;<br/>
  * IMPORTS ;<br/>
+ * <p>
+ * BrakeSystemStatus ::= SEQUENCE {<br/>
+ * brakePadel BrakePedalStatus OPTIONAL,<br/>
+ * wheelBrakes BrakeAppliedStatus OPTIONAL,<br/>
+ * traction TractionControlStatus OPTIONAL,<br/>
+ * abs AntiLockBrakeStatus OPTIONAL,<br/>
+ * scs StabilityControlStatus OPTIONAL,<br/>
+ * brakeBoost BrakeBoostApplied OPTIONAL,<br/>
+ * auxBrakes AuxiliaryBrakeStatus OPTIONAL<br/>
+ * }<br/>
  *
- * 	BrakeSystemStatus ::= SEQUENCE {<br/>
- * 		brakePadel BrakePedalStatus OPTIONAL,<br/>
- * 		wheelBrakes BrakeAppliedStatus OPTIONAL,<br/>
- * 		traction TractionControlStatus OPTIONAL,<br/>
- * 		abs AntiLockBrakeStatus OPTIONAL,<br/>
- * 		scs StabilityControlStatus OPTIONAL,<br/>
- * 		brakeBoost BrakeBoostApplied OPTIONAL,<br/>
- * 		auxBrakes AuxiliaryBrakeStatus OPTIONAL<br/>
- *        }<br/>
  * @author zhangyong
  * @date 2020/11/4  19:12
  */
@@ -96,10 +97,10 @@ public class BrakeSystemStatus {
 
     /**
      * BrakePedalStatus ::= ENUMERATED {
-     * 		unavailable (0), -- Vehicle brake pedal detector is unavailable
-     * 		off (1), -- Vehicle's brake pedal is not pressed
-     * 		on (2) -- Vehicle's brake pedal is pressed
-     *        }
+     * unavailable (0), -- Vehicle brake pedal detector is unavailable
+     * off (1), -- Vehicle's brake pedal is not pressed
+     * on (2) -- Vehicle's brake pedal is pressed
+     * }
      */
     public enum BrakePedalStatus {
         /**
@@ -123,16 +124,21 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
 
     /**
-     *TractionControlStatus ::= ENUMERATED {
-     * 		unavailable (0), -- Not Equipped with traction control
-     * 		-- or traction control status is unavailable
-     * 		off (1), -- traction control is Off
-     * 		on (2), -- traction control is On (but not Engaged)
-     * 		engaged (3) -- traction control is Engaged
-     *        }
+     * TractionControlStatus ::= ENUMERATED {
+     * unavailable (0), -- Not Equipped with traction control
+     * -- or traction control status is unavailable
+     * off (1), -- traction control is Off
+     * on (2), -- traction control is On (but not Engaged)
+     * engaged (3) -- traction control is Engaged
+     * }
      */
     public enum TractionControlStatus {
         /**
@@ -162,15 +168,21 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
+
     /**
-     *AntiLockBrakeStatus ::= ENUMERATED {
-     * 		unavailable (0), -- Vehicle Not Equipped with ABS Brakes
-     * 		-- or ABS Brakes status is unavailable
-     * 		off (1), -- Vehicle's ABS are Off
-     * 		on (2), -- Vehicle's ABS are On ( but not Engaged )
-     * 		engaged (3) -- Vehicle's ABS control is Engaged on any wheel
-     *        }
+     * AntiLockBrakeStatus ::= ENUMERATED {
+     * unavailable (0), -- Vehicle Not Equipped with ABS Brakes
+     * -- or ABS Brakes status is unavailable
+     * off (1), -- Vehicle's ABS are Off
+     * on (2), -- Vehicle's ABS are On ( but not Engaged )
+     * engaged (3) -- Vehicle's ABS control is Engaged on any wheel
+     * }
      */
     public enum AntiLockBrakeStatus {
         /**
@@ -200,15 +212,21 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
+
     /**
-     *StabilityControlStatus ::= ENUMERATED {
-     * 		unavailable (0), -- Not Equipped with SC
-     * 		-- or SC status is unavailable
-     * 		off (1), -- Off
-     * 		on (2), -- On or active (but not engaged)
-     * 		engaged (3) -- stability control is Engaged
-     *        }
+     * StabilityControlStatus ::= ENUMERATED {
+     * unavailable (0), -- Not Equipped with SC
+     * -- or SC status is unavailable
+     * off (1), -- Off
+     * on (2), -- On or active (but not engaged)
+     * engaged (3) -- stability control is Engaged
+     * }
      */
     public enum StabilityControlStatus {
         /**
@@ -239,14 +257,20 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
+
     /**
-     *BrakeBoostApplied ::= ENUMERATED {
-     * 		unavailable (0), -- Vehicle not equipped with brake boost
-     * 		-- or brake boost data is unavailable
-     * 		off (1), -- Vehicle's brake boost is off
-     * 		on (2) -- Vehicle's brake boost is on (applied)
-     *        }
+     * BrakeBoostApplied ::= ENUMERATED {
+     * unavailable (0), -- Vehicle not equipped with brake boost
+     * -- or brake boost data is unavailable
+     * off (1), -- Vehicle's brake boost is off
+     * on (2) -- Vehicle's brake boost is on (applied)
+     * }
      */
     public enum BrakeBoostApplied {
         /**
@@ -273,16 +297,21 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
 
     /**
-     *AuxiliaryBrakeStatus ::= ENUMERATED {
-     * 		unavailable (0), -- Vehicle Not Equipped with Aux Brakes
-     * 		-- or Aux Brakes status is unavailable
-     * 		off (1), -- Vehicle's Aux Brakes are Off
-     * 		on (2), -- Vehicle's Aux Brakes are On ( Engaged )
-     * 		reserved (3)
-     *        }
+     * AuxiliaryBrakeStatus ::= ENUMERATED {
+     * unavailable (0), -- Vehicle Not Equipped with Aux Brakes
+     * -- or Aux Brakes status is unavailable
+     * off (1), -- Vehicle's Aux Brakes are Off
+     * on (2), -- Vehicle's Aux Brakes are On ( Engaged )
+     * reserved (3)
+     * }
      */
 
     public enum AuxiliaryBrakeStatus {
@@ -313,16 +342,21 @@ public class BrakeSystemStatus {
         public int getValue() {
             return value;
         }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
     }
 
     /**
      * BrakeAppliedStatus ::= BIT STRING {
-     * 		unavailable (0), -- When set, the brake applied status is unavailable
-     * 		leftFront (1), -- Left Front Active
-     * 		leftRear (2), -- Left Rear Active
-     * 		rightFront (3), -- Right Front Active
-     * 		rightRear (4) -- Right Rear Active
-     *        } (SIZE (5))
+     * unavailable (0), -- When set, the brake applied status is unavailable
+     * leftFront (1), -- Left Front Active
+     * leftRear (2), -- Left Rear Active
+     * rightFront (3), -- Right Front Active
+     * rightRear (4) -- Right Rear Active
+     * } (SIZE (5))
      */
     @SizeRange(minValue = 5, maxValue = 5)
     public static class BrakeAppliedStatus extends Asn1SequenceOf<Boolean> {
@@ -356,6 +390,20 @@ public class BrakeSystemStatus {
 
         public boolean rightRear() {
             return getOrFalse(4);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder("\"");
+            for (boolean s : bakingList) {
+                if (s) {
+                    sb.append("1");
+                } else {
+                    sb.append("0");
+                }
+            }
+            sb.append("\"");
+            return sb.toString();
         }
 
     }

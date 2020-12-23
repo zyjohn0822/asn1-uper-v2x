@@ -23,5 +23,6 @@ package org.bn.coders;
  */
 public interface IASN1PreparedElement {
     IASN1PreparedElementData getPreparedData();
+
     void initWithDefaults();
 }

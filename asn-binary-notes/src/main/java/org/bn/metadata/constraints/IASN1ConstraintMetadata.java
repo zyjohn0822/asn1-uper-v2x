@@ -27,6 +27,7 @@ public interface IASN1ConstraintMetadata {
      * 修改描述: <br>
      * <p>修改人:</p>
      * <p>修改原因:</p>
+     *
      * @param value value
      * @return: boolean
      * @since: 1.0.0

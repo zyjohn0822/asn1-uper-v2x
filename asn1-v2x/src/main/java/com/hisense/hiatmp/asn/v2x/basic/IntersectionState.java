@@ -207,10 +207,10 @@ public class IntersectionState {
         @Override
         public String toString() {
             StringBuilder sb = new StringBuilder("\"");
-            for(boolean s : bakingList){
-                if(s){
+            for (boolean s : bakingList) {
+                if (s) {
                     sb.append("1");
-                }else {
+                } else {
                     sb.append("0");
                 }
             }

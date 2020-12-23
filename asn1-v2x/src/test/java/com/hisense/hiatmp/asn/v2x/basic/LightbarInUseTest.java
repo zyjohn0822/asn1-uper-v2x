@@ -16,6 +16,7 @@ import java.util.Arrays;
  */
 public class LightbarInUseTest {
     LightbarInUse lightbarInUse = LightbarInUse.arrowSignsActive;
+
     @Before
     public void before() throws Exception {
     }

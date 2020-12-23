@@ -5,10 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.PreparedStatement;
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -16,6 +13,7 @@ import static org.junit.Assert.*;
  */
 public class PositionOffsetLLTest {
     PositionOffsetLL positionOffsetLL;
+
     @Before
     public void setUp() throws Exception {
         PositionOffsetLL.OffsetLLB12 offsetLLB12 = new PositionOffsetLL.OffsetLLB12(22);
@@ -27,8 +25,9 @@ public class PositionOffsetLLTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode(){
+    public void encode() {
         final byte[] encode = UperEncoder.encode(positionOffsetLL);
         System.out.println(Arrays.toString(encode));
     }

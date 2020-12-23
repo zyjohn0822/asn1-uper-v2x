@@ -9,17 +9,18 @@ import net.gcdc.asn1.datatypes.Sequence;
 
 /**
  * PathHistoryPoint ::= SEQUENCE {<br/>
- * 		llvOffset PositionOffsetLLV,<br/>
- * 		timeOffset TimeOffset,<br/>
- * 		-- Offset backwards in time<br/>
- * 		speed Speed OPTIONAL,<br/>
- * 		-- Speed over the reported period<br/>
- * 		posAccuracy PositionConfidenceSet OPTIONAL,<br/>
- * 		-- The accuracy of this value<br/>
- * 		heading CoarseHeading OPTIONAL,<br/>
- * 		-- overall heading<br/>
- * 		...<br/>
- *                }
+ * llvOffset PositionOffsetLLV,<br/>
+ * timeOffset TimeOffset,<br/>
+ * -- Offset backwards in time<br/>
+ * speed Speed OPTIONAL,<br/>
+ * -- Speed over the reported period<br/>
+ * posAccuracy PositionConfidenceSet OPTIONAL,<br/>
+ * -- The accuracy of this value<br/>
+ * heading CoarseHeading OPTIONAL,<br/>
+ * -- overall heading<br/>
+ * ...<br/>
+ * }
+ *
  * @author zhangyong
  * @date 2020/11/5  14:44
  */

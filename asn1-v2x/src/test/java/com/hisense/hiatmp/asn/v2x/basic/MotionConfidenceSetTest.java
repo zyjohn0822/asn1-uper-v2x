@@ -8,7 +8,6 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static com.hisense.hiatmp.asn.v2x.basic.MotionConfidenceSet.*;
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -16,6 +15,7 @@ import static org.junit.Assert.*;
  */
 public class MotionConfidenceSetTest {
     MotionConfidenceSet motionConfidenceSet;
+
     @Before
     public void setUp() throws Exception {
         motionConfidenceSet = new MotionConfidenceSet(
@@ -28,12 +28,14 @@ public class MotionConfidenceSetTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(motionConfidenceSet);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

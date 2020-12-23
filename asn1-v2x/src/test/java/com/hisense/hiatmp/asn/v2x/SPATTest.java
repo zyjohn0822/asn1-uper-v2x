@@ -10,14 +10,13 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:55
  */
 public class SPATTest {
     SPAT spat;
+
     @Before
     public void setUp() throws Exception {
         MsgCount msgCount = new MsgCount(91);
@@ -28,7 +27,7 @@ public class SPATTest {
         NodeReferenceID intersectionId = new NodeReferenceID(
                 new NodeReferenceID.RoadRegulatorID(1),
                 new NodeReferenceID.NodeID(33));
-        List<Boolean> its = Arrays.asList(false,false,false,false,false,true,false,true,false,false,false,false,false,false,false,false);
+        List<Boolean> its = Arrays.asList(false, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false);
         IntersectionState.IntersectionStatusObject intersectionStatusObject = new IntersectionState.IntersectionStatusObject(its);
         DDateTime.MinuteOfTheYear moy = null;
         DDateTime.DSecond timestamp = null;
@@ -40,7 +39,7 @@ public class SPATTest {
         PhaseState.LightState light1 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime1 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime1 = new DDateTime.TimeMark(870);
-        TimeCountingDown timeCountingDown1 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown1 = new TimeCountingDown(
                 startTime1,
                 null,
                 null,
@@ -56,7 +55,7 @@ public class SPATTest {
         PhaseState.LightState light2 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime2 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime2 = new DDateTime.TimeMark(870);
-        TimeCountingDown timeCountingDown2 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown2 = new TimeCountingDown(
                 startTime2,
                 null,
                 null,
@@ -71,7 +70,7 @@ public class SPATTest {
         PhaseState.LightState light3 = PhaseState.LightState.permissive_green;
         DDateTime.TimeMark startTime3 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime3 = new DDateTime.TimeMark(0);
-        TimeCountingDown timeCountingDown3 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown3 = new TimeCountingDown(
                 startTime3,
                 null,
                 null,
@@ -86,7 +85,7 @@ public class SPATTest {
         PhaseState.LightState light4 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime4 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime4 = new DDateTime.TimeMark(530);
-        TimeCountingDown timeCountingDown4 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown4 = new TimeCountingDown(
                 startTime4,
                 null,
                 null,
@@ -101,7 +100,7 @@ public class SPATTest {
         PhaseState.LightState light5 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime5 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime5 = new DDateTime.TimeMark(530);
-        TimeCountingDown timeCountingDown5 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown5 = new TimeCountingDown(
                 startTime5,
                 null,
                 null,
@@ -116,7 +115,7 @@ public class SPATTest {
         PhaseState.LightState light6 = PhaseState.LightState.permissive_green;
         DDateTime.TimeMark startTime6 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime6 = new DDateTime.TimeMark(0);
-        TimeCountingDown timeCountingDown6 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown6 = new TimeCountingDown(
                 startTime6,
                 null,
                 null,
@@ -132,7 +131,7 @@ public class SPATTest {
         PhaseState.LightState light7 = PhaseState.LightState.permissive_green;
         DDateTime.TimeMark startTime7 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime7 = new DDateTime.TimeMark(140);
-        TimeCountingDown timeCountingDown7 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown7 = new TimeCountingDown(
                 startTime7,
                 null,
                 null,
@@ -148,7 +147,7 @@ public class SPATTest {
         PhaseState.LightState light8 = PhaseState.LightState.permissive_green;
         DDateTime.TimeMark startTime8 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime8 = new DDateTime.TimeMark(140);
-        TimeCountingDown timeCountingDown8 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown8 = new TimeCountingDown(
                 startTime8,
                 null,
                 null,
@@ -163,7 +162,7 @@ public class SPATTest {
         PhaseState.LightState light9 = PhaseState.LightState.permissive_green;
         DDateTime.TimeMark startTime9 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime9 = new DDateTime.TimeMark(0);
-        TimeCountingDown timeCountingDown9 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown9 = new TimeCountingDown(
                 startTime9,
                 null,
                 null,
@@ -178,7 +177,7 @@ public class SPATTest {
         PhaseState.LightState light10 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime10 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime10 = new DDateTime.TimeMark(170);
-        TimeCountingDown timeCountingDown10 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown10 = new TimeCountingDown(
                 startTime10,
                 null,
                 null,
@@ -194,7 +193,7 @@ public class SPATTest {
         PhaseState.LightState light11 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime11 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime11 = new DDateTime.TimeMark(170);
-        TimeCountingDown timeCountingDown11 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown11 = new TimeCountingDown(
                 startTime11,
                 null,
                 null,
@@ -209,7 +208,7 @@ public class SPATTest {
         PhaseState.LightState light12 = PhaseState.LightState.red;
         DDateTime.TimeMark startTime12 = new DDateTime.TimeMark(0);
         DDateTime.TimeMark likelyEndTime12 = new DDateTime.TimeMark(0);
-        TimeCountingDown timeCountingDown12 =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown12 = new TimeCountingDown(
                 startTime12,
                 null,
                 null,
@@ -219,8 +218,6 @@ public class SPATTest {
                 null);
         final PhaseState.TimeChangeDetails counting12 = PhaseState.TimeChangeDetails.counting(timeCountingDown12);
         PhaseState phaseState12 = new PhaseState(light12, counting12);
-
-
 
 
         Phase.PhaseStateList phaseStates1 = new Phase.PhaseStateList(phaseState1);
@@ -260,13 +257,7 @@ public class SPATTest {
         Phase phase12 = new Phase(id12, phaseStates12);
 
 
-
-
-
-
-
-
-        IntersectionState.PhaseList phaseList = new IntersectionState.PhaseList(phase1,phase2,phase3,phase4,phase5,phase6,phase7,phase8,phase9,phase10,phase11,phase12);
+        IntersectionState.PhaseList phaseList = new IntersectionState.PhaseList(phase1, phase2, phase3, phase4, phase5, phase6, phase7, phase8, phase9, phase10, phase11, phase12);
 
         IntersectionState intersectionState = new IntersectionState(intersectionId,
                 intersectionStatusObject,
@@ -287,14 +278,16 @@ public class SPATTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(spat);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
-       String hex = "";
+    public void decode() throws Exception {
+        String hex = "";
         final byte[] bytes = Utils.bytesFromHexString(hex);
         byte[] decodeBytes = new byte[]{107, 111, -87, -37, -114, 108, 0, -128, 0, -128, 16, -126, -128, 88, 8, 35, 0, 0, 0, 6, -52, 4, 8, -64, 0, 0, 1, -77, 1, -126, 80, 0, 0, 0, 0, 0, -96, -116, 0, 0, 0, 16, -112, 48, 35, 0, 0, 0, 4, 36, 14, 9, 64, 0, 0, 0, 0, 4, -126, 80, 0, 0, 0, 17, -127, 64, -108, 0, 0, 0, 4, 96, 88, 37, 0, 0, 0, 0, 0, 26, 8, -64, 0, 0, 0, 85, 7, 2, 48, 0, 0, 0, 21, 65, -32, -108, 0, 0, 0, 0, 0};
         final SPAT decode = UperEncoder.decode(decodeBytes, SPAT.class);

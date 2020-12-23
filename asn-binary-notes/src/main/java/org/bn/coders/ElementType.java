@@ -17,6 +17,6 @@
 package org.bn.coders;
 
 public interface ElementType {
-    public final int Primitive          = 0x00;
-    public final int Constructed        = 0x20;
+    public final int Primitive = 0x00;
+    public final int Constructed = 0x20;
 }

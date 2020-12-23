@@ -1,5 +1,10 @@
 package net.gcdc.asn1.uper;
 
+import net.gcdc.asn1.datatypes.Asn1Integer;
+import net.gcdc.asn1.datatypes.IntRange;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -7,16 +12,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.gcdc.asn1.datatypes.Asn1Integer;
-import net.gcdc.asn1.datatypes.IntRange;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 class IntCoder implements Encoder, Decoder {
 
     private static final Map<Class<?>, IntRange> DEFAULT_RANGE;
     private static final Logger LOGGER = LoggerFactory.getLogger(IntCoder.class.getName());
+
     static {
         DEFAULT_RANGE = new HashMap<>();
         DEFAULT_RANGE.put(short.class, UperEncoder.newRange(Short.MIN_VALUE, Short.MAX_VALUE, false));
@@ -32,7 +32,8 @@ class IntCoder implements Encoder, Decoder {
         DEFAULT_RANGE.put(Asn1Integer.class, UperEncoder.newRange(Long.MIN_VALUE, Long.MAX_VALUE, false));
     }
 
-    @Override public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
         return Asn1Integer.class.isAssignableFrom(classOfT) |
                 Long.class.isAssignableFrom(classOfT) |
                 long.class.isAssignableFrom(classOfT) |
@@ -42,9 +43,10 @@ class IntCoder implements Encoder, Decoder {
                 short.class.isAssignableFrom(classOfT);
     }
 
-    @Override public <T> T decode(BitBuffer bitbuffer,
-            Class<T> classOfT,
-            Annotation[] extraAnnotations) {
+    @Override
+    public <T> T decode(BitBuffer bitbuffer,
+                        Class<T> classOfT,
+                        Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         UperEncoder.logger.debug("INTEGER");
@@ -55,7 +57,7 @@ class IntCoder implements Encoder, Decoder {
         UperEncoder.logger.debug("Integer, range {}..{}", intRange.minValue(), intRange.maxValue());
         long value = UperEncoder.decodeConstrainedInt(bitbuffer, intRange);
         UperEncoder.logger.debug("decoded as {}", value);
-        Class<?>[] numericTypes = new Class<?>[] { long.class, int.class, short.class };
+        Class<?>[] numericTypes = new Class<?>[]{long.class, int.class, short.class};
         Constructor<T> constructor = null;
         for (Class<?> t : numericTypes) {
             try {
@@ -68,9 +70,11 @@ class IntCoder implements Encoder, Decoder {
                         + classOfT.getName() + ": " + e);
             }
         }
-        if (constructor == null) { throw new IllegalArgumentException(
-                "can't find any numeric constructor for " + classOfT.getName()
-                        + ", all constructors: " + Arrays.asList(classOfT.getConstructors())); }
+        if (constructor == null) {
+            throw new IllegalArgumentException(
+                    "can't find any numeric constructor for " + classOfT.getName()
+                            + ", all constructors: " + Arrays.asList(classOfT.getConstructors()));
+        }
         try {
             Class<?> typeOfConstructorArgument = constructor.getParameterTypes()[0];
             if (typeOfConstructorArgument.isAssignableFrom(long.class)) {
@@ -90,14 +94,16 @@ class IntCoder implements Encoder, Decoder {
         }
     }
 
-    @Override public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
         return obj instanceof Asn1Integer ||
                 obj instanceof Long ||
                 obj instanceof Integer ||
                 obj instanceof Short;
     }
 
-    @Override public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
+    @Override
+    public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);

@@ -20,15 +20,17 @@ import java.io.OutputStream;
 
 /**
  * The ASN.1 encoder interface
+ *
  * @author zhangyong
  */
 public interface IEncoder<T> {
     /**
      * Encode object
+     *
      * @param object User object
      * @param stream Stream to encoding
-     * @see CoderFactory
      * @throws Exception
+     * @see CoderFactory
      */
     public void encode(T object, OutputStream stream) throws Exception;
 }

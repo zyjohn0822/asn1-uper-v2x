@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:46
  */
 public class PositionOffsetLLVTest {
     PositionOffsetLLV positionOffsetLLV;
+
     @Before
     public void setUp() throws Exception {
         //positionOffsetLL
@@ -34,12 +33,14 @@ public class PositionOffsetLLVTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(positionOffsetLLV);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:52
@@ -21,6 +19,7 @@ public class VehicleSafetyExtensionsTest {
     PathHistory pathHistory;
     PathPrediction pathPrediction;
     ExteriorLights exteriorLights;
+
     @Before
     public void setUp() throws Exception {
         final List<Boolean> eventFlags = Arrays.asList(false, false, false, true, true, true, false, false, false, true, true, true, true);
@@ -29,7 +28,7 @@ public class VehicleSafetyExtensionsTest {
         Position3D position3D = new Position3D(
                 new Position3D.Latitude(283433333),
                 new Position3D.Longitude(1202323232)
-                );
+        );
         FullPositionVector fullPositionVector = new FullPositionVector(position3D);
         //---------------------------------------------------------------------
         List<Boolean> gs = Arrays.asList(true, true, true, true, false, false, false, false);
@@ -72,12 +71,14 @@ public class VehicleSafetyExtensionsTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(vehicleSafetyExtensions);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

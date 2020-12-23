@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static com.hisense.hiatmp.asn.v2x.basic.AccelerationSet4Way.*;
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -14,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class AccelerationSet4WayTest {
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         Acceleration lon = new Acceleration(5);
         Acceleration lat = new Acceleration(0);
         VerticalAcceleration vert = new VerticalAcceleration(0);
@@ -28,7 +27,8 @@ public class AccelerationSet4WayTest {
         final byte[] encode = UperEncoder.encode(accelerationSet4Way);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

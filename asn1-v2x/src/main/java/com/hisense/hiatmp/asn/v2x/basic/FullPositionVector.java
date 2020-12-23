@@ -9,17 +9,18 @@ import net.gcdc.asn1.datatypes.Sequence;
 
 /**
  * FullPositionVector ::= SEQUENCE {<br/>
- * 		utcTime DDateTime OPTIONAL, -- time with mSec precision<br/>
- * 		pos Position3D,<br/>
- * 		heading Heading OPTIONAL,<br/>
- * 		transmission TransmissionState OPTIONAL,<br/>
- * 		speed Speed OPTIONAL,<br/>
- * 		posAccuracy PositionalAccuracy OPTIONAL,<br/>
- * 		posConficence PositionConfidenceSet OPTIONAL,<br/>
- * 		timeConfidence TimeConfidence OPTIONAL,<br/>
- * 		motionCfd MotionConfidenceSet OPTIONAL,<br/>
- * 		...<br/>
- *                }<br/>
+ * utcTime DDateTime OPTIONAL, -- time with mSec precision<br/>
+ * pos Position3D,<br/>
+ * heading Heading OPTIONAL,<br/>
+ * transmission TransmissionState OPTIONAL,<br/>
+ * speed Speed OPTIONAL,<br/>
+ * posAccuracy PositionalAccuracy OPTIONAL,<br/>
+ * posConficence PositionConfidenceSet OPTIONAL,<br/>
+ * timeConfidence TimeConfidence OPTIONAL,<br/>
+ * motionCfd MotionConfidenceSet OPTIONAL,<br/>
+ * ...<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:28
  */

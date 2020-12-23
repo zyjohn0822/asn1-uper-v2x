@@ -16,7 +16,9 @@
  */
 
 package org.bn.annotations;
-import java.lang.annotation.*;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * @author zhangyong

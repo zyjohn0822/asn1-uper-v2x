@@ -9,14 +9,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  17:15
  */
 public class PhaseStateTest {
     PhaseState phaseState;
+
     @Before
     public void setUp() throws Exception {
         phaseState = new PhaseState();
@@ -29,7 +28,7 @@ public class PhaseStateTest {
         countingDown.timeConfidence = 36;
         countingDown.nextStartTime = 3600;
         countingDown.nextDuration = 3300;
-        phaseState.timing =TimeChangeDetails.counting(countingDown);
+        phaseState.timing = TimeChangeDetails.counting(countingDown);
     }
 
     @After

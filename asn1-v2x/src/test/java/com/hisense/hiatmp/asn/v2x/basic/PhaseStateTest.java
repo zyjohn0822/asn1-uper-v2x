@@ -10,14 +10,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  15:55
  */
 public class PhaseStateTest {
     PhaseState phaseState;
+
     @Before
     public void setUp() throws Exception {
         LightState light = LightState.flashing_green;
@@ -29,7 +28,7 @@ public class PhaseStateTest {
         Confidence timeConfidence = new Confidence(36);
         TimeMark nextStartTime = new TimeMark(3600);
         TimeMark nextDuration = new TimeMark(3300);
-        TimeCountingDown timeCountingDown =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown = new TimeCountingDown(
                 startTime,
                 minEndTime,
                 maxEndTime,
@@ -44,13 +43,15 @@ public class PhaseStateTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(phaseState);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         //72, 124, 56, 64, 51, -64, 19, 56, 53, 124, -112, 56, 64, 51, -112
         //72, -8, 112, -128, 103, -128, 38, 112, 106, -7, 32, 112, -128, 103, 32
         byte[] decodeBytes = new byte[]{72, 124, 56, 64, 51, -64, 19, 56, 53, 124, -112, 56, 64, 51, -112};

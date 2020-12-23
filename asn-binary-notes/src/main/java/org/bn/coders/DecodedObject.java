@@ -21,34 +21,34 @@ package org.bn.coders;
  * @author zhangyong
  */
 public final class DecodedObject<T> {
-        T value;
-        int size;
+    T value;
+    int size;
 
-        public DecodedObject() {
-        }
-        
-        public DecodedObject(T result) {
-            setValue(result);
-        }
-        
-        public DecodedObject(T result, int size) {
-            setValue(result);
-            setSize(size);
-        }
+    public DecodedObject() {
+    }
 
-        public T getValue() {
-            return value;
-        }
+    public DecodedObject(T result) {
+        setValue(result);
+    }
 
-        public void setValue(T result) {
-            this.value = result;
-        }
+    public DecodedObject(T result, int size) {
+        setValue(result);
+        setSize(size);
+    }
 
-        public int getSize() {
-            return size;
-        }
+    public T getValue() {
+        return value;
+    }
 
-        public void setSize(int size) {
-            this.size = size;
-        }
+    public void setValue(T result) {
+        this.value = result;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

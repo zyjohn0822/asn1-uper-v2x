@@ -6,22 +6,21 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:32
  */
 public class ExteriorLightsTest {
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final List<Boolean> booleans = Arrays.asList(false, false, false, true, true, true, false, false, false);
         ExteriorLights exteriorLights = new ExteriorLights(booleans);
         final byte[] encode = UperEncoder.encode(exteriorLights);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
 
     }
 }

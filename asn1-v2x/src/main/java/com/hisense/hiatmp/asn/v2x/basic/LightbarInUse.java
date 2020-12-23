@@ -2,16 +2,17 @@ package com.hisense.hiatmp.asn.v2x.basic;
 
 /**
  * LightbarInUse<br/>
- *LightbarInUse ::= ENUMERATED {<br/>
- * 		unavailable (0), -- Not Equipped or unavailable<br/>
- * 		notInUse (1), -- none active<br/>
- * 		inUse (2),<br/>
- * 		yellowCautionLights (3),<br/>
- * 		schooldBusLights (4),<br/>
- * 		arrowSignsActive (5),<br/>
- * 		slowMovingVehicle (6),<br/>
- * 		freqStops (7)<br/>
- *        }<br/>
+ * LightbarInUse ::= ENUMERATED {<br/>
+ * unavailable (0), -- Not Equipped or unavailable<br/>
+ * notInUse (1), -- none active<br/>
+ * inUse (2),<br/>
+ * yellowCautionLights (3),<br/>
+ * schooldBusLights (4),<br/>
+ * arrowSignsActive (5),<br/>
+ * slowMovingVehicle (6),<br/>
+ * freqStops (7)<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/12/9  22:33
  */

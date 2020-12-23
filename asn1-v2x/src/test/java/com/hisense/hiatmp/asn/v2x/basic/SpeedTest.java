@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:47
  */
 public class SpeedTest {
     Speed speed;
+
     @Before
     public void setUp() throws Exception {
         speed = new Speed(8191);
@@ -23,12 +22,14 @@ public class SpeedTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(speed);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

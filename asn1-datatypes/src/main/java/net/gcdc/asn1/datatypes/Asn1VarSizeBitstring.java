@@ -13,14 +13,6 @@ public class Asn1VarSizeBitstring extends AbstractList<Boolean> {
 
     private final BitSet backing;
 
-    @Override public Boolean get(int index) {
-        return backing.get(index);
-    }
-
-    @Override public int size() {
-        return backing.length();
-    }
-
     public Asn1VarSizeBitstring(Collection<Boolean> coll) {
         backing = new BitSet();
         int bitIndex = 0;
@@ -32,6 +24,16 @@ public class Asn1VarSizeBitstring extends AbstractList<Boolean> {
 
     public Asn1VarSizeBitstring(BitSet bitset) {
         backing = (BitSet) bitset.clone();
+    }
+
+    @Override
+    public Boolean get(int index) {
+        return backing.get(index);
+    }
+
+    @Override
+    public int size() {
+        return backing.length();
     }
 
     protected void setBit(int bitIndex, boolean value) {

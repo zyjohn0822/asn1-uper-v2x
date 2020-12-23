@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.hisense.hiatmp.asn.v2x.basic.BrakeSystemStatus.*;
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -15,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class BrakeSystemStatusTest {
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         BrakePedalStatus brakePedalStatus = BrakePedalStatus.off;
         //
         List<Boolean> bs = Arrays.asList(true, true, true, false, false);
@@ -40,7 +39,8 @@ public class BrakeSystemStatusTest {
         final byte[] encode = UperEncoder.encode(brakeSystemStatus);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

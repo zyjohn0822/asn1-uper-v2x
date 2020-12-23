@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:46
  */
 public class ResponseTypeTest {
     ResponseType responseType = ResponseType.nonEmergency;
+
     @Before
     public void setUp() throws Exception {
     }
@@ -22,13 +21,15 @@ public class ResponseTypeTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(responseType);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         final ResponseType decode = UperEncoder.decode(new byte[]{32}, ResponseType.class);
         System.out.println(decode);
     }

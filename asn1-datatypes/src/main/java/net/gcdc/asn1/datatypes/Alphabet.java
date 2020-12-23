@@ -2,7 +2,7 @@ package net.gcdc.asn1.datatypes;
 
 /**
  * Alphabet class for Restricted Strings.
- *
+ * <p>
  * Use {@link AlphabetBuilder} for convenient construction of restriction alphabets.
  */
 public abstract class Alphabet {

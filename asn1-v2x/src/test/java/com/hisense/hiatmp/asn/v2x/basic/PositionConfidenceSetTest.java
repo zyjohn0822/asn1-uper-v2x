@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.hisense.hiatmp.asn.v2x.basic.PositionConfidenceSet.*;
-import static org.junit.Assert.*;
+import static com.hisense.hiatmp.asn.v2x.basic.PositionConfidenceSet.ElevationConfidence;
+import static com.hisense.hiatmp.asn.v2x.basic.PositionConfidenceSet.PositionConfidence;
 
 /**
  * @author zhangyong
@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
  */
 public class PositionConfidenceSetTest {
     PositionConfidenceSet positionConfidenceSet;
+
     @Before
     public void setUp() throws Exception {
         PositionConfidence positionConfidence = PositionConfidence.a1cm;
@@ -26,13 +27,15 @@ public class PositionConfidenceSetTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(positionConfidenceSet);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
 
     }
 }

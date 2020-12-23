@@ -17,28 +17,46 @@
 package org.bn.coders;
 
 import java.io.OutputStream;
-
 import java.lang.reflect.Field;
 
 public interface IASN1TypesEncoder {
     int encodeClassType(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     int encodeSequence(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
-    int encodeChoice(Object object, OutputStream stream, ElementInfo elementInfo)  throws Exception;
+
+    int encodeChoice(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     int encodeEnum(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
-    int encodeEnumItem(Object enumConstant, Class enumClass, OutputStream stream, ElementInfo elementInfo) throws Exception ;
+
+    int encodeEnumItem(Object enumConstant, Class enumClass, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     int encodeBoolean(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
-    int encodeAny(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception ;
-    int encodeNull(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception ;
-    int encodeInteger(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeReal(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeOctetString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeBitString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeObjectIdentifier(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;
-    int encodeSequenceOf(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception ;   
+
+    int encodeAny(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
+    int encodeNull(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
+    int encodeInteger(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeReal(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeOctetString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeBitString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeObjectIdentifier(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeString(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
+    int encodeSequenceOf(Object object, OutputStream steam, ElementInfo elementInfo) throws Exception;
+
     int encodeElement(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     int encodeBoxedType(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     int encodePreparedElement(Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     Object invokeGetterMethodForField(Field field, Object object, ElementInfo elementInfo) throws Exception;
+
     boolean invokeSelectedMethodForField(Field field, Object object, ElementInfo elementInfo) throws Exception;
 }

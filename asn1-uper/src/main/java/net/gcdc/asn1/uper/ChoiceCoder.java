@@ -1,21 +1,23 @@
 package net.gcdc.asn1.uper;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-
 import net.gcdc.asn1.datatypes.Choice;
 import net.gcdc.asn1.uper.UperEncoder.Asn1ContainerFieldSorter;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+
 class ChoiceCoder implements Decoder, Encoder {
 
-    @Override public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Choice.class) != null;
     }
 
-    @Override public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
+    @Override
+    public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
@@ -60,8 +62,10 @@ class ChoiceCoder implements Decoder, Encoder {
                     }
                     currentIndex++;
                 }
-                if (nonNullField == null) { throw new IllegalArgumentException(
-                        "All fields of Choice are null"); }
+                if (nonNullField == null) {
+                    throw new IllegalArgumentException(
+                            "All fields of Choice are null");
+                }
                 boolean extensionBit = true;
                 UperEncoder.logger.debug("with extension marker, set to <{}>", extensionBit);
                 bitbuffer.put(extensionBit);
@@ -78,15 +82,17 @@ class ChoiceCoder implements Decoder, Encoder {
         }
     }
 
-    @Override public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Choice.class) != null;
     }
 
-    @Override public <T> T decode(BitBuffer bitbuffer,
-            Class<T> classOfT,
-            Annotation[] extraAnnotations) {
+    @Override
+    public <T> T decode(BitBuffer bitbuffer,
+                        Class<T> classOfT,
+                        Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         UperEncoder.logger.debug("CHOICE");

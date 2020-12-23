@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:52
  */
 public class VehicleEmergencyExtensionsTest {
     VehicleEmergencyExtensions vehicleEmergencyExtensions;
+
     @Before
     public void setUp() throws Exception {
         vehicleEmergencyExtensions = new VehicleEmergencyExtensions(
@@ -27,12 +26,14 @@ public class VehicleEmergencyExtensionsTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(vehicleEmergencyExtensions);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

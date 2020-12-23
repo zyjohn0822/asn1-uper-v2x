@@ -20,10 +20,8 @@ package org.bn.metadata;
 /**
  * @author zhangyong
  */
-public abstract class ASN1TypeMetadata extends ASN1Metadata
-{
-    public ASN1TypeMetadata(String name)
-    {
+public abstract class ASN1TypeMetadata extends ASN1Metadata {
+    public ASN1TypeMetadata(String name) {
         super(name);
     }
 }

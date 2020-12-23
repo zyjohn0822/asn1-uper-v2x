@@ -7,11 +7,12 @@ import net.gcdc.asn1.datatypes.Component;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
- *MotionConfidenceSet ::= SEQUENCE {<br/>
- * 		speedCfd SpeedConfidence OPTIONAL,<br/>
- * 		headingCfd HeadingConfidence OPTIONAL,<br/>
- * 		steerCfd SteeringWheelAngleConfidence OPTIONAL<br/>
- *        }<br/>
+ * MotionConfidenceSet ::= SEQUENCE {<br/>
+ * speedCfd SpeedConfidence OPTIONAL,<br/>
+ * headingCfd HeadingConfidence OPTIONAL,<br/>
+ * steerCfd SteeringWheelAngleConfidence OPTIONAL<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/4  19:15
  */
@@ -53,15 +54,15 @@ public class MotionConfidenceSet {
 
     /**
      * SpeedConfidence ::= ENUMERATED {<br/>
-     * 		unavailable (0), -- Not Equipped or unavailable<br/>
-     * 		prec100ms (1), -- 100 meters / sec<br/>
-     * 		prec10ms (2), -- 10 meters / sec<br/>
-     * 		prec5ms (3), -- 5 meters / sec<br/>
-     * 		prec1ms (4), -- 1 meters / sec<br/>
-     * 		prec0-1ms (5), -- 0.1 meters / sec<br/>
-     * 		prec0-05ms (6), -- 0.05 meters / sec<br/>
-     * 		prec0-01ms (7) -- 0.01 meters / sec<br/>
-     *                }<br/>
+     * unavailable (0), -- Not Equipped or unavailable<br/>
+     * prec100ms (1), -- 100 meters / sec<br/>
+     * prec10ms (2), -- 10 meters / sec<br/>
+     * prec5ms (3), -- 5 meters / sec<br/>
+     * prec1ms (4), -- 1 meters / sec<br/>
+     * prec0-1ms (5), -- 0.1 meters / sec<br/>
+     * prec0-05ms (6), -- 0.05 meters / sec<br/>
+     * prec0-01ms (7) -- 0.01 meters / sec<br/>
+     * }<br/>
      */
     public enum SpeedConfidence {
         /**
@@ -116,17 +117,18 @@ public class MotionConfidenceSet {
             return sb.toString();
         }
     }
+
     /**
-     *HeadingConfidence ::= ENUMERATED {<br/>
-     * 		unavailable (0), -- Not Equipped or unavailable<br/>
-     * 		prec10deg (1), -- 10 degrees<br/>
-     * 		prec05deg (2), -- 5 degrees<br/>
-     * 		prec01deg (3), -- 1 degrees<br/>
-     * 		prec0-1deg (4), -- 0.1 degrees<br/>
-     * 		prec0-05deg (5), -- 0.05 degrees<br/>
-     * 		prec0-01deg (6), -- 0.01 degrees<br/>
-     * 		prec0-0125deg (7) -- 0.0125 degrees, aligned with heading LSB<br/>
-     *                }<br/>
+     * HeadingConfidence ::= ENUMERATED {<br/>
+     * unavailable (0), -- Not Equipped or unavailable<br/>
+     * prec10deg (1), -- 10 degrees<br/>
+     * prec05deg (2), -- 5 degrees<br/>
+     * prec01deg (3), -- 1 degrees<br/>
+     * prec0-1deg (4), -- 0.1 degrees<br/>
+     * prec0-05deg (5), -- 0.05 degrees<br/>
+     * prec0-01deg (6), -- 0.01 degrees<br/>
+     * prec0-0125deg (7) -- 0.0125 degrees, aligned with heading LSB<br/>
+     * }<br/>
      */
     public enum HeadingConfidence {
         /**
@@ -181,14 +183,15 @@ public class MotionConfidenceSet {
             return sb.toString();
         }
     }
+
     /**
-     *SteeringWheelAngleConfidence ::= ENUMERATED {<br/>
-     * 		unavailable (0), -- Not Equipped with Wheel angle<br/>
-     * 		-- or Wheel angle status is unavailable<br/>
-     * 		prec2deg (1), -- 2 degrees<br/>
-     * 		prec1deg (2), -- 1 degree<br/>
-     * 		prec0-02deg (3) -- 0.02 degrees<br/>
-     *                }<br/>
+     * SteeringWheelAngleConfidence ::= ENUMERATED {<br/>
+     * unavailable (0), -- Not Equipped with Wheel angle<br/>
+     * -- or Wheel angle status is unavailable<br/>
+     * prec2deg (1), -- 2 degrees<br/>
+     * prec1deg (2), -- 1 degree<br/>
+     * prec0-02deg (3) -- 0.02 degrees<br/>
+     * }<br/>
      */
     public enum SteeringWheelAngleConfidence {
         /**

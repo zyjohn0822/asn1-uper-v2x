@@ -9,24 +9,25 @@ import net.gcdc.asn1.datatypes.Sequence;
 
 /**
  * VehSafetyExt DEFINITIONS AUTOMATIC TAGS ::= BEGIN<br/>
- *
+ * <p>
  * -- imports and exports<br/>
- *
+ * <p>
  * EXPORTS VehicleSafetyExtensions, Confidence, FullPositionVector, GNSSstatus;<br/>
  * IMPORTS VehicleEventFlags, ExteriorLights, TransmissionState FROM VehStatus<br/>
- * 		PositionOffsetLLV FROM DefPositionOffset<br/>
- * 		Speed, Heading, MotionConfidenceSet, CoarseHeading FROM DefMotion<br/>
- * 		Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition<br/>
- * 		DDateTime, TimeOffset, TimeConfidence FROM DefTime;<br/>
- *
- * 	VehicleSafetyExtensions ::= SEQUENCE {<br/>
- * 		events VehicleEventFlags OPTIONAL,<br/>
- * 		pathHistory PathHistory OPTIONAL,<br/>
- * 		pathPrediction PathPrediction OPTIONAL,<br/>
- * 		lights ExteriorLights OPTIONAL,<br/>
- * 		...<br/>
- *                }<br/>
+ * PositionOffsetLLV FROM DefPositionOffset<br/>
+ * Speed, Heading, MotionConfidenceSet, CoarseHeading FROM DefMotion<br/>
+ * Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition<br/>
+ * DDateTime, TimeOffset, TimeConfidence FROM DefTime;<br/>
+ * <p>
+ * VehicleSafetyExtensions ::= SEQUENCE {<br/>
+ * events VehicleEventFlags OPTIONAL,<br/>
+ * pathHistory PathHistory OPTIONAL,<br/>
+ * pathPrediction PathPrediction OPTIONAL,<br/>
+ * lights ExteriorLights OPTIONAL,<br/>
+ * ...<br/>
+ * }<br/>
  * END<br/>
+ *
  * @author zhangyong
  * @date 2020/11/4  19:15
  */

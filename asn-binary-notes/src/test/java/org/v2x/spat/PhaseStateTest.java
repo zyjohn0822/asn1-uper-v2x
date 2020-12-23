@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  17:09
@@ -22,11 +20,13 @@ public class PhaseStateTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         byte[] decodeBytes = new byte[]{72, -8, 112, -128, 103, -128, 38, 112, 106, -7, 32, 112, -128, 103, 32};
         final PhaseState decode = CoderFactory
                 .getInstance()

@@ -21,7 +21,7 @@ class AnnotationStore {
     public <T extends Annotation> T getAnnotation(Class<T> classOfT) {
         @SuppressWarnings("unchecked")
         // Annotations were added with value T for key classOfT.
-        T result = (T) annotations.get(classOfT);
+                T result = (T) annotations.get(classOfT);
         return result;
     }
 

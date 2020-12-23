@@ -27,7 +27,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- *
  * @author zhangyong
  */
 public class ASN1NullMetadata

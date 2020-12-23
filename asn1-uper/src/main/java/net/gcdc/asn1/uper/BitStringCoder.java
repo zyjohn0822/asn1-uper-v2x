@@ -1,42 +1,54 @@
 package net.gcdc.asn1.uper;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import net.gcdc.asn1.datatypes.Asn1VarSizeBitstring;
 import net.gcdc.asn1.datatypes.Bitstring;
 import net.gcdc.asn1.datatypes.FixedSize;
 import net.gcdc.asn1.datatypes.SizeRange;
 import net.gcdc.asn1.uper.UperEncoder.Asn1ContainerFieldSorter;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 class BitStringCoder implements Decoder, Encoder {
 
-    @Override public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
+    /**
+     * This function only throws an exception, to be used in ternary (a?b:c) expression.
+     */
+    static <T> long badSize(Class<T> classOfT) {
+        throw new IllegalArgumentException("both size range and fixed size are null for "
+                + classOfT.getName());
+    }
+
+    @Override
+    public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Bitstring.class) != null;
     }
 
-    @Override public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
+    @Override
+    public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
         if (!(obj instanceof Asn1VarSizeBitstring)) {
             if (UperEncoder.hasExtensionMarker(annotations)) {
                 throw new UnsupportedOperationException(
-                    "Bitstring with extensions is not implemented yet");
+                        "Bitstring with extensions is not implemented yet");
             }
             FixedSize size = type.getAnnotation(FixedSize.class);
             int position = bitbuffer.position();
             if (size != null) {
                 Asn1ContainerFieldSorter sorter = new Asn1ContainerFieldSorter(type);
-                if (sorter.ordinaryFields.size() != size.value()) { throw new AssertionError(
-                        "Declared size (" + size.value() +
-                                ") and number of fields (" + sorter.ordinaryFields.size() +
-                                ") do not match!"); }
+                if (sorter.ordinaryFields.size() != size.value()) {
+                    throw new AssertionError(
+                            "Declared size (" + size.value() +
+                                    ") and number of fields (" + sorter.ordinaryFields.size() +
+                                    ") do not match!");
+                }
                 for (Field f : sorter.ordinaryFields) {
                     try {
                         bitbuffer.put(f.getBoolean(obj));
@@ -53,8 +65,10 @@ class BitStringCoder implements Decoder, Encoder {
             }
         } else if (obj instanceof Asn1VarSizeBitstring) {
             int position = bitbuffer.position();
-            if (UperEncoder.hasExtensionMarker(annotations)) { throw new UnsupportedOperationException(
-                    "Bitstring with extensions is not implemented yet"); }
+            if (UperEncoder.hasExtensionMarker(annotations)) {
+                throw new UnsupportedOperationException(
+                        "Bitstring with extensions is not implemented yet");
+            }
             Asn1VarSizeBitstring bitstring = (Asn1VarSizeBitstring) obj;
             FixedSize fixedSize = annotations.getAnnotation(FixedSize.class);
             SizeRange sizeRange = annotations.getAnnotation(SizeRange.class);
@@ -83,32 +97,39 @@ class BitStringCoder implements Decoder, Encoder {
         }
     }
 
-    @Override public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Bitstring.class) != null;
     }
 
-    @Override public <T> T decode(BitBuffer bitbuffer,
-            Class<T> classOfT,
-            Annotation[] extraAnnotations) {
+    @Override
+    public <T> T decode(BitBuffer bitbuffer,
+                        Class<T> classOfT,
+                        Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         if (!Asn1VarSizeBitstring.class.isAssignableFrom(classOfT)) {
             UperEncoder.logger.debug("Bitlist(fixed-size, all-named)");
             FixedSize fixedSize = annotations.getAnnotation(FixedSize.class);
-            if (fixedSize == null) { throw new UnsupportedOperationException(
-                    "bitstrings of non-fixed size that do not extend Asn1VarSizeBitstring are not supported yet");
+            if (fixedSize == null) {
+                throw new UnsupportedOperationException(
+                        "bitstrings of non-fixed size that do not extend Asn1VarSizeBitstring are not supported yet");
             }
             Asn1ContainerFieldSorter sorter = new Asn1ContainerFieldSorter(classOfT);
-            if (fixedSize.value() != sorter.ordinaryFields.size()) { throw new IllegalArgumentException(
-                    "Fixed size annotation " + fixedSize.value()
-                            + " does not match the number of fields "
-                            + sorter.ordinaryFields.size() + " in " + classOfT.getName()); }
+            if (fixedSize.value() != sorter.ordinaryFields.size()) {
+                throw new IllegalArgumentException(
+                        "Fixed size annotation " + fixedSize.value()
+                                + " does not match the number of fields "
+                                + sorter.ordinaryFields.size() + " in " + classOfT.getName());
+            }
             if (UperEncoder.hasExtensionMarker(annotations)) {
                 boolean extensionPresent = bitbuffer.get();
-                if (extensionPresent) { throw new UnsupportedOperationException(
-                        "extensions in fixed-size bitlist are not supported yet"); }
+                if (extensionPresent) {
+                    throw new UnsupportedOperationException(
+                            "extensions in fixed-size bitlist are not supported yet");
+                }
             }
             T result = UperEncoder.instantiate(classOfT);
             for (Field f : sorter.ordinaryFields) {
@@ -150,11 +171,5 @@ class BitStringCoder implements Decoder, Encoder {
             }
             return result;
         }
-    }
-
-    /** This function only throws an exception, to be used in ternary (a?b:c) expression. */
-    static <T> long badSize(Class<T> classOfT) {
-        throw new IllegalArgumentException("both size range and fixed size are null for "
-                + classOfT.getName());
     }
 }

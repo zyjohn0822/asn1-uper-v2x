@@ -1,7 +1,6 @@
 package com.hisense.hiatmp.asn.v2x.MsgFrame;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,6 +23,7 @@ public class VehicleEventFlagsTest {
     @Test
     public void encode() throws Exception {
     }
+
     @Test
     public void decode() throws Exception {
         //0, 0

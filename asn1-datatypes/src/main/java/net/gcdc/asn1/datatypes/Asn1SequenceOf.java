@@ -1,6 +1,5 @@
 package net.gcdc.asn1.datatypes;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
@@ -13,13 +12,13 @@ import java.util.*;
  * <code>
  * {@literal @}Sequence
  * public class Person {
- *     {@literal @}IntRange(minValue=0, maxValue=100, hasExtensionMarker=true)
- *     int age;
- *     Children children;
+ * {@literal @}IntRange(minValue=0, maxValue=100, hasExtensionMarker=true)
+ * int age;
+ * Children children;
  * }
  * public class Children extends Asn1SequenceOf&lt;ChildInformation&gt; {
- *     public Children() { super(); }
- *     public Children(Collection&lt;ChildInformation&gt; coll) { super(coll); }
+ * public Children() { super(); }
+ * public Children(Collection&lt;ChildInformation&gt; coll) { super(coll); }
  * }
  * </code>
  * </PRE>
@@ -27,20 +26,29 @@ import java.util.*;
  * <p>
  * Actually, UPER decoder and encoder consider anything that extends {@code List<T>} as a SEQUENCE OF.
  *
- *
- * @author zhangyong
  * @param <T> type of elements contained.
+ * @author zhangyong
  */
 public abstract class Asn1SequenceOf<T> extends AbstractList<T> {
 
     protected final List<T> bakingList;
 
-    @Override public T get(int index) { return bakingList.get(index); }
-    @Override public int size() { return bakingList.size(); }
+    public Asn1SequenceOf() {
+        this(new ArrayList<T>());
+    }
 
-    public Asn1SequenceOf() { this(new ArrayList<T>()); }
     public Asn1SequenceOf(Collection<T> coll) {
         bakingList = new ArrayList<>(coll);
+    }
+
+    @Override
+    public T get(int index) {
+        return bakingList.get(index);
+    }
+
+    @Override
+    public int size() {
+        return bakingList.size();
     }
 
     @Override

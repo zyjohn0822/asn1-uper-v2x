@@ -5,7 +5,8 @@ public class AlphabetBuilder {
 
     private final StringBuilder sb = new StringBuilder();
 
-    public AlphabetBuilder() {}
+    public AlphabetBuilder() {
+    }
 
     public String chars() {
         return sb.toString();

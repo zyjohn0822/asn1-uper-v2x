@@ -16,12 +16,13 @@
  */
 package org.bn.coders.per;
 
-import java.lang.reflect.*;
-
-import java.util.*;
 import org.bn.coders.CoderUtils;
 import org.bn.coders.ElementInfo;
 import org.bn.coders.UniversalTag;
+
+import java.lang.reflect.Field;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author zhangyong
@@ -29,47 +30,45 @@ import org.bn.coders.UniversalTag;
 public class PERCoderUtils {
     public static int getMaxBitLength(long value) {
         int bitCnt = 0;
-        while( value !=0 ) {
+        while (value != 0) {
             value >>>= 1;
             bitCnt++;
         }
         return bitCnt;
-    }    
-    
+    }
+
     public static int getRealFieldsCount(Class objectClass, ElementInfo info) {
-        int result = 0;            
-        if(info.hasPreparedInfo()) {
+        int result = 0;
+        if (info.hasPreparedInfo()) {
             result = info.getPreparedInfo().getFields().length;
-        }
-        else {
-            for(Field item: objectClass.getDeclaredFields()) {
-                if(!item.isSynthetic()) {
+        } else {
+            for (Field item : objectClass.getDeclaredFields()) {
+                if (!item.isSynthetic()) {
                     result++;
                 }
             }
         }
         return result;
     }
-    
-    public static List<Field> getRealFields(Class objectClass) {        
-        List<Field> result = new LinkedList<Field>();        
-        for(Field item: objectClass.getDeclaredFields()) {
-            if(!item.isSynthetic()) {
+
+    public static List<Field> getRealFields(Class objectClass) {
+        List<Field> result = new LinkedList<Field>();
+        for (Field item : objectClass.getDeclaredFields()) {
+            if (!item.isSynthetic()) {
                 result.add(item);
             }
         }
         return result;
     }
-    
+
     public static boolean is7BitEncodedString(ElementInfo elementInfo) {
         int stringType = CoderUtils.getStringTagForElement(elementInfo);
-        boolean is7Bit = 
-            ( 
-                stringType == UniversalTag.PrintableString ||
-                stringType == UniversalTag.VisibleString
-            )
-            ;
+        boolean is7Bit =
+                (
+                        stringType == UniversalTag.PrintableString ||
+                                stringType == UniversalTag.VisibleString
+                );
         return is7Bit;
     }
-    
+
 }

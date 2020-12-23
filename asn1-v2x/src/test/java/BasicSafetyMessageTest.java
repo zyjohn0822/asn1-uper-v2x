@@ -68,6 +68,33 @@ public class BasicSafetyMessageTest {
 //                .build();
     }
 
+    /**
+     * 功能描述: <br>
+     * <p>将16进制字符串转换成byte[]数组</p>
+     * 修改描述: <br>
+     * <p>修改人:</p>
+     * <p>修改原因:</p>
+     *
+     * @param s 16进制字符串
+     * @return: byte[] byte[]数组
+     * @since: 1.0.0
+     * @Author: zhangyong
+     * @Date: 2020/10/30 14:02
+     */
+    public static byte[] bytesFromHexString(String s) {
+        if ((s.length() % 2) != 0) {
+            throw new IllegalArgumentException(
+                    "Converting to bytes requires even number of characters, got " + s.length());
+        }
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i + 1), 16));
+        }
+        return data;
+    }
+
     @Test
     public void encodeBasicSafetyMessageTest() {
         final byte[] encode = UperEncoder.encode(basicSafetyMessage);
@@ -97,7 +124,6 @@ public class BasicSafetyMessageTest {
         final byte[] encode = UperEncoder.encode(position3D);
         System.out.println(Arrays.toString(encode));
     }
-
 
     @Test
     public void encodeTimeConfidenceTest() {
@@ -277,7 +303,6 @@ public class BasicSafetyMessageTest {
 
     }
 
-
     @Test
     public void decodeBsmFrame() {
         String hex = "07A4660606268666260636FE6063344D1BD748F8710A68800000004018018B9C46BEABE83FBFFFE07E2D07D03648000000";
@@ -297,32 +322,5 @@ public class BasicSafetyMessageTest {
         BasicSafetyMessage basicSafetyMessage = UperEncoder.decode(bytes1, BasicSafetyMessage.class);
         System.out.println(Arrays.toString(bytes1));
         System.out.println(basicSafetyMessage);
-    }
-
-    /**
-     * 功能描述: <br>
-     * <p>将16进制字符串转换成byte[]数组</p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
-     *
-     * @param s 16进制字符串
-     * @return: byte[] byte[]数组
-     * @since: 1.0.0
-     * @Author: zhangyong
-     * @Date: 2020/10/30 14:02
-     */
-    public static byte[] bytesFromHexString(String s) {
-        if ((s.length() % 2) != 0) {
-            throw new IllegalArgumentException(
-                    "Converting to bytes requires even number of characters, got " + s.length());
-        }
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i + 1), 16));
-        }
-        return data;
     }
 }

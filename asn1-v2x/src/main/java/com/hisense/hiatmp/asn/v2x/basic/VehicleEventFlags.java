@@ -9,20 +9,21 @@ import java.util.Collection;
 
 /**
  * VehicleEventFlags ::= BIT STRING {<br/>
- * 		eventHazardLights (0),<br/>
- * 		eventStopLineViolation (1), -- Intersection Violation<br/>
- * 		eventABSactivated (2),<br/>
- * 		eventTractionControlLoss (3),<br/>
- * 		eventStabilityControlactivated (4),<br/>
- * 		eventHazardousMaterials (5),<br/>
- * 		eventReserved1 (6),<br/>
- * 		eventHardBraking (7),<br/>
- * 		eventLightsChanged (8),<br/>
- * 		eventWipersChanged (9),<br/>
- * 		eventFlatTire (10),<br/>
- * 		eventDisabledVehicle (11), -- The DisabledVehicle DF may also be sent<br/>
- * 		eventAirBagDeployment (12)<br/>
- *                } (SIZE (13, ...))<br/>
+ * eventHazardLights (0),<br/>
+ * eventStopLineViolation (1), -- Intersection Violation<br/>
+ * eventABSactivated (2),<br/>
+ * eventTractionControlLoss (3),<br/>
+ * eventStabilityControlactivated (4),<br/>
+ * eventHazardousMaterials (5),<br/>
+ * eventReserved1 (6),<br/>
+ * eventHardBraking (7),<br/>
+ * eventLightsChanged (8),<br/>
+ * eventWipersChanged (9),<br/>
+ * eventFlatTire (10),<br/>
+ * eventDisabledVehicle (11), -- The DisabledVehicle DF may also be sent<br/>
+ * eventAirBagDeployment (12)<br/>
+ * } (SIZE (13, ...))<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:16
  */
@@ -90,5 +91,19 @@ public class VehicleEventFlags extends Asn1SequenceOf<Boolean> {
 
     public boolean eventAirBagDeployment() {
         return getOrFalse(12);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("\"");
+        for (boolean s : bakingList) {
+            if (s) {
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+        }
+        sb.append("\"");
+        return sb.toString();
     }
 }

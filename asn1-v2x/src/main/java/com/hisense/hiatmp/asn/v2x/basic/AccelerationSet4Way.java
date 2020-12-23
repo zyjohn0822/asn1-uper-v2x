@@ -9,21 +9,22 @@ import net.gcdc.asn1.datatypes.Sequence;
 
 /**
  * DefAcceleration DEFINITIONS AUTOMATIC TAGS ::= BEGIN<br/>
- *
+ * <p>
  * -- imports and exports<br/>
- *
+ * <p>
  * EXPORTS AccelerationSet4Way;<br/>
  * IMPORTS ;<br/>
+ * <p>
+ * AccelerationSet4Way ::= SEQUENCE {<br/>
+ * long Acceleration,<br/>
+ * -- Along the Vehicle Longitudinal axis<br/>
+ * lat Acceleration,<br/>
+ * -- Along the Vehicle Lateral axis<br/>
+ * vert VerticalAcceleration,<br/>
+ * -- Along the Vehicle Vertical axis<br/>
+ * yaw YawRate<br/>
+ * }<br/>
  *
- * 	AccelerationSet4Way ::= SEQUENCE {<br/>
- * 		long Acceleration,<br/>
- * 		-- Along the Vehicle Longitudinal axis<br/>
- * 		lat Acceleration,<br/>
- * 		-- Along the Vehicle Lateral axis<br/>
- * 		vert VerticalAcceleration,<br/>
- * 		-- Along the Vehicle Vertical axis<br/>
- * 		yaw YawRate<br/>
- *        }<br/>
  * @author zhangyong
  * @date 2020/11/4  19:12
  */
@@ -66,11 +67,11 @@ public class AccelerationSet4Way {
     }
 
     /**
-     *Acceleration ::= INTEGER (-2000..2001)<br/>
-     * 	-- Units are 0.01 m/s^2<br/>
-     * 	-- the value 2000 shall be used for values greater than 2000<br/>
-     * 	-- the value -2000 shall be used for values less than -2000<br/>
-     * 	-- a value of 2001 shall be used for Unavailable<br/>
+     * Acceleration ::= INTEGER (-2000..2001)<br/>
+     * -- Units are 0.01 m/s^2<br/>
+     * -- the value 2000 shall be used for values greater than 2000<br/>
+     * -- the value -2000 shall be used for values less than -2000<br/>
+     * -- a value of 2001 shall be used for Unavailable<br/>
      */
     @IntRange(minValue = -2000, maxValue = 2001)
     public static class Acceleration extends Asn1Integer {
@@ -83,12 +84,13 @@ public class AccelerationSet4Way {
             super(value);
         }
     }
+
     /**
-     *VerticalAcceleration ::= INTEGER (-127..127)<br/>
-     * 	-- Units of 0.02 G steps over -2.52 to +2.54 G<br/>
-     * 	-- The value +127 shall be used for ranges >= 2.54 G<br/>
-     * 	-- The value -126 shall be used for ranges <= 2.52 G<br/>
-     * 	-- The value -127 shall be used for unavailable<br/>
+     * VerticalAcceleration ::= INTEGER (-127..127)<br/>
+     * -- Units of 0.02 G steps over -2.52 to +2.54 G<br/>
+     * -- The value +127 shall be used for ranges >= 2.54 G<br/>
+     * -- The value -126 shall be used for ranges <= 2.52 G<br/>
+     * -- The value -127 shall be used for unavailable<br/>
      */
     @IntRange(minValue = -127, maxValue = 127)
     public static class VerticalAcceleration extends Asn1Integer {
@@ -101,9 +103,10 @@ public class AccelerationSet4Way {
         }
 
     }
+
     /**
-     *YawRate ::= INTEGER (-32767..32767)<br/>
-     * 	-- Units of 0.01 degrees per second (signed)<br/>
+     * YawRate ::= INTEGER (-32767..32767)<br/>
+     * -- Units of 0.01 degrees per second (signed)<br/>
      */
     @IntRange(minValue = -32767, maxValue = 32767)
     public static class YawRate extends Asn1Integer {

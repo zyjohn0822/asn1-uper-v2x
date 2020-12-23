@@ -12,31 +12,7 @@ import static org.junit.Assert.*;
 public final class UperDecoderExceptionTest {
     private final static Logger logger = LoggerFactory.getLogger(UperDecoderExceptionTest.class);
 
-    @IntRange(minValue = 0, maxValue = 300)
-    public static class IntVal extends Asn1Integer {
-        public IntVal() { this(0); }
-        public IntVal(int a) { super(a); }
-    }
-
-    @Sequence
-    public static class PduWithIntegers {
-
-        IntVal val1;
-        IntVal val2;
-
-        public PduWithIntegers(int a, int b) {
-            val1 = new IntVal(a);
-            val2 = new IntVal(b);
-        }
-        public PduWithIntegers() {
-            val1 = null;
-            val2 = null;
-        }
-
-
-    }
-
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testException() {
         PduWithIntegers pdu = new PduWithIntegers(10, 20);
 
@@ -52,7 +28,37 @@ public final class UperDecoderExceptionTest {
 
         String msgFaulty = "0505";
         PduWithIntegers decodedFail = UperEncoder.decode(UperEncoder.bytesFromHexString(msgFaulty), PduWithIntegers.class);
-        fail ("there should be exception");
+        fail("there should be exception");
+    }
+
+    @IntRange(minValue = 0, maxValue = 300)
+    public static class IntVal extends Asn1Integer {
+        public IntVal() {
+            this(0);
+        }
+
+        public IntVal(int a) {
+            super(a);
+        }
+    }
+
+    @Sequence
+    public static class PduWithIntegers {
+
+        IntVal val1;
+        IntVal val2;
+
+        public PduWithIntegers(int a, int b) {
+            val1 = new IntVal(a);
+            val2 = new IntVal(b);
+        }
+
+        public PduWithIntegers() {
+            val1 = null;
+            val2 = null;
+        }
+
+
     }
 
 }

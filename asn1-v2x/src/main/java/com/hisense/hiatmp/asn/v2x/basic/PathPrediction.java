@@ -6,13 +6,14 @@ import net.gcdc.asn1.datatypes.*;
 
 /**
  * PathPrediction ::= SEQUENCE {<br/>
- * 		radiusOfCurve RadiusOfCurvature,<br/>
- * 		-- Units of 10cm<br/>
- * 		-- straight path to use value of 32767<br/>
- * 		confidence Confidence,<br/>
- * 		-- Units of 0.5 percent<br/>
- * 		...<br/>
- *                }<br/>
+ * radiusOfCurve RadiusOfCurvature,<br/>
+ * -- Units of 10cm<br/>
+ * -- straight path to use value of 32767<br/>
+ * confidence Confidence,<br/>
+ * -- Units of 0.5 percent<br/>
+ * ...<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:16
  */
@@ -48,8 +49,8 @@ public class PathPrediction {
 
     /**
      * RadiusOfCurvature ::= INTEGER (-32767..32767)
-     * 	-- Units of 10cm
-     * 	-- A straight path to use value of 32767
+     * -- Units of 10cm
+     * -- A straight path to use value of 32767
      */
     @IntRange(minValue = -32767, maxValue = 32767)
     public static class RadiusOfCurvature extends Asn1Integer {
@@ -64,7 +65,7 @@ public class PathPrediction {
 
     /**
      * Confidence ::= INTEGER (0..200)
-     * 	-- Units of 0.5 percent
+     * -- Units of 0.5 percent
      */
     @IntRange(minValue = 0, maxValue = 200)
     public static class Confidence extends Asn1Integer {

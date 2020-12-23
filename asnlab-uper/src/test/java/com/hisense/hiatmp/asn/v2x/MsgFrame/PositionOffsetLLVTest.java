@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/16  16:52
@@ -21,11 +19,13 @@ public class PositionOffsetLLVTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         byte[] decodeBytes = new byte[]{-120, 22, -127, 81, 60};
         final PositionOffsetLLV positionOffsetLLV = PositionOffsetLLV.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(positionOffsetLLV);

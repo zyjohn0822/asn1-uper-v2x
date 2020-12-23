@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  15:55
  */
 public class PhaseTest {
     Phase phase;
+
     @Before
     public void setUp() throws Exception {
         Phase.PhaseID id = new Phase.PhaseID(112);
@@ -26,7 +25,7 @@ public class PhaseTest {
         PathPrediction.Confidence timeConfidence = new PathPrediction.Confidence(36);
         DDateTime.TimeMark nextStartTime = new DDateTime.TimeMark(3600);
         DDateTime.TimeMark nextDuration = new DDateTime.TimeMark(3300);
-        TimeCountingDown timeCountingDown =  new TimeCountingDown(
+        TimeCountingDown timeCountingDown = new TimeCountingDown(
                 startTime,
                 minEndTime,
                 maxEndTime,
@@ -44,12 +43,14 @@ public class PhaseTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(phase);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

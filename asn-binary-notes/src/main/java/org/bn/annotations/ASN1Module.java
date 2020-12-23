@@ -16,7 +16,10 @@
  */
 package org.bn.annotations;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author zhangyong
@@ -25,5 +28,6 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 public @interface ASN1Module {
     String name();
+
     boolean isImplicitTags() default true;
 }

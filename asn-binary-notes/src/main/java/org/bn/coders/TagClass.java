@@ -17,8 +17,8 @@
 package org.bn.coders;
 
 public interface TagClass {
-    public final int Universal          = 0x00;
-    public final int Application        = 0x40;
-    public final int ContextSpecific    = 0x80;
-    public final int Private            = 0xC0;
+    public final int Universal = 0x00;
+    public final int Application = 0x40;
+    public final int ContextSpecific = 0x80;
+    public final int Private = 0xC0;
 }

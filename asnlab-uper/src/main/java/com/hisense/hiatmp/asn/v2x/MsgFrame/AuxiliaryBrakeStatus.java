@@ -61,6 +61,7 @@ public enum AuxiliaryBrakeStatus {
     public void per_encode(boolean align, OutputStream out) throws IOException {
         TYPE.encode(this, align ? EncodingRules.ALIGNED_PACKED_ENCODING_RULES : EncodingRules.UNALIGNED_PACKED_ENCODING_RULES, CONV, out);
     }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");

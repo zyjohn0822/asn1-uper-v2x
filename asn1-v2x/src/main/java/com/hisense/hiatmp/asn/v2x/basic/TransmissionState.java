@@ -2,16 +2,17 @@ package com.hisense.hiatmp.asn.v2x.basic;
 
 /**
  * TransmissionState ::= ENUMERATED {<br/>
- * 		neutral (0), -- Neutral<br/>
- * 		park (1), -- Park<br/>
- * 		forwardGears (2), -- Forward gears<br/>
- * 		reverseGears (3), -- Reverse gears<br/>
- * 		reserved1 (4),<br/>
- * 		reserved2 (5),<br/>
- * 		reserved3 (6),<br/>
- * 		unavailable (7)-- not-equipped or unavailable value,<br/>
- * 		-- Any related speed is relative to the vehicle reference frame used<br/>
- *        }<br/>
+ * neutral (0), -- Neutral<br/>
+ * park (1), -- Park<br/>
+ * forwardGears (2), -- Forward gears<br/>
+ * reverseGears (3), -- Reverse gears<br/>
+ * reserved1 (4),<br/>
+ * reserved2 (5),<br/>
+ * reserved3 (6),<br/>
+ * unavailable (7)-- not-equipped or unavailable value,<br/>
+ * -- Any related speed is relative to the vehicle reference frame used<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/12/19  12:16
  */
@@ -61,10 +62,6 @@ public enum TransmissionState {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"value\":")
-                .append(value);
-        sb.append('}');
-        return sb.toString();
+        return String.valueOf(value);
     }
 }

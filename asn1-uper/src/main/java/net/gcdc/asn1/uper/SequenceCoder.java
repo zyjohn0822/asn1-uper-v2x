@@ -1,23 +1,25 @@
 package net.gcdc.asn1.uper;
 
+import net.gcdc.asn1.datatypes.Sequence;
+import net.gcdc.asn1.uper.UperEncoder.Asn1ContainerFieldSorter;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import net.gcdc.asn1.datatypes.Sequence;
-import net.gcdc.asn1.uper.UperEncoder.Asn1ContainerFieldSorter;
-
 class SequenceCoder implements Decoder, Encoder {
 
-    @Override public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canEncode(T obj, Annotation[] extraAnnotations) {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Sequence.class) != null;
     }
 
-    @Override public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
+    @Override
+    public <T> void encode(BitBuffer bitbuffer, T obj, Annotation[] extraAnnotations) throws Asn1EncodingException {
         Class<?> type = obj.getClass();
         AnnotationStore annotations = new AnnotationStore(type.getAnnotations(),
                 extraAnnotations);
@@ -85,15 +87,17 @@ class SequenceCoder implements Decoder, Encoder {
         sorter.revertAccess();
     }
 
-    @Override public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
+    @Override
+    public <T> boolean canDecode(Class<T> classOfT, Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         return annotations.getAnnotation(Sequence.class) != null;
     }
 
-    @Override public <T> T decode(BitBuffer bitbuffer,
-            Class<T> classOfT,
-            Annotation[] extraAnnotations) {
+    @Override
+    public <T> T decode(BitBuffer bitbuffer,
+                        Class<T> classOfT,
+                        Annotation[] extraAnnotations) {
         AnnotationStore annotations = new AnnotationStore(classOfT.getAnnotations(),
                 extraAnnotations);
         UperEncoder.logger.debug("SEQUENCE");
@@ -160,5 +164,6 @@ class SequenceCoder implements Decoder, Encoder {
             }
         }
         sorter.revertAccess();
-        return result;        }
+        return result;
+    }
 }

@@ -19,6 +19,7 @@ package org.bn.types;
 
 /**
  * BitString represents ASN.1 BIT STRING data types
+ *
  * @author zhangyong
  * @todo Need more functional operations for write/read bits
  */
@@ -28,7 +29,7 @@ public class BitString {
      * count of buffer bit's trail
      */
     private int trailBitsCnt = 0;
-    
+
     public BitString() {
     }
 
@@ -36,37 +37,37 @@ public class BitString {
         setValue(bitStrValue);
     }
 
-    public BitString(byte[] bitStrValue,int trailBitsCnt) {
+    public BitString(byte[] bitStrValue, int trailBitsCnt) {
         setValue(bitStrValue, trailBitsCnt);
     }
-    
+
     public BitString(BitString src) {
-        setValue(src.getValue(),src.getTrailBitsCnt());        
+        setValue(src.getValue(), src.getTrailBitsCnt());
     }
-    
+
     public int getLength() {
         return bitStrValue.length;
     }
-    
+
     public int getTrailBitsCnt() {
         return trailBitsCnt;
     }
 
     public int getLengthInBits() {
-	return getLength()*8 - getTrailBitsCnt();
+        return getLength() * 8 - getTrailBitsCnt();
     }
-    
+
     public byte[] getValue() {
         return bitStrValue;
     }
-    
+
     public void setValue(byte[] val) {
         this.bitStrValue = val;
         this.trailBitsCnt = 0;
     }
-    
+
     public void setValue(byte[] val, int trailBitsCnt) {
         setValue(val);
         this.trailBitsCnt = trailBitsCnt;
-    }    
+    }
 }

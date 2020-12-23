@@ -7,6 +7,21 @@ package com.hisense.hiatmp.asn.v2x.common;
 public class Utils {
     /**
      * 功能描述: <br>
+     * <p>将byte[]转换为16进制字符串</p >
+     * 修改描述: <br>
+     * <p>修改人:</p >
+     * <p>修改原因:</p >
+     *
+     * @param bytes byte[]
+     * @return: java.lang.String
+     * @since: 1.0.0
+     * @Author: zhangyong
+     * @Date: 2020/10/30 14:00
+     */
+    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
+    /**
+     * 功能描述: <br>
      * <p>将16进制字符串转换成byte[]数组</p>
      * 修改描述: <br>
      * <p>修改人:</p>
@@ -31,20 +46,7 @@ public class Utils {
         }
         return data;
     }
-    /**
-     * 功能描述: <br>
-     * <p>将byte[]转换为16进制字符串</p >
-     * 修改描述: <br>
-     * <p>修改人:</p >
-     * <p>修改原因:</p >
-     *
-     * @param bytes byte[]
-     * @return: java.lang.String
-     * @since: 1.0.0
-     * @Author: zhangyong
-     * @Date: 2020/10/30 14:00
-     */
-    final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
     public static String hexStringFromBytes(byte[] bytes) {
 
         char[] hexChars = new char[bytes.length * 2];

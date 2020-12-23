@@ -11,11 +11,12 @@ import java.util.Arrays;
  */
 public class DSecondTest {
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         DDateTime.DSecond secMark = new DDateTime.DSecond(47091);
         System.out.println(Arrays.toString(UperEncoder.encode(secMark)));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

@@ -9,8 +9,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/17  0:28
@@ -30,7 +28,7 @@ public class PathHistoryTest {
     }
 
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         byte[] decodeBytes = new byte[]{96, 4, 104, -100, 39, 91, 47, 61, 17, -1, 0, 44, 64, -76, 10, -119, -32, 79, 1, -12, 20};
         final PathHistory pathHistory = PathHistory.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(pathHistory);
@@ -41,7 +39,8 @@ public class PathHistoryTest {
         System.out.println(Arrays.toString(bytes));
         Assert.assertArrayEquals(decodeBytes, bytes);
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

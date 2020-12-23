@@ -21,7 +21,7 @@ public class PathHistoryTest {
         Position3D position3D = new Position3D(
                 new Position3D.Latitude(283433333),
                 new Position3D.Longitude(1202323232)
-                );
+        );
         FullPositionVector fullPositionVector = new FullPositionVector(position3D);
         //---------------------------------------------------------------------
         List<Boolean> gs = Arrays.asList(true, true, true, true, false, false, false, false);

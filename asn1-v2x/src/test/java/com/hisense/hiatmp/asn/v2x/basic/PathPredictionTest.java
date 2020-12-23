@@ -7,14 +7,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/15  16:36
  */
 public class PathPredictionTest {
     PathPrediction pathPrediction;
+
     @Before
     public void setUp() throws Exception {
         pathPrediction = new PathPrediction(new PathPrediction.RadiusOfCurvature(3276),
@@ -24,12 +23,14 @@ public class PathPredictionTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(pathPrediction);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
     }
 }

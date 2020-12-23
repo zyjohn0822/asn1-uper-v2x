@@ -2,6 +2,7 @@ package com.hisense.hiatmp.asn.v2x;
 
 import lombok.Getter;
 import net.gcdc.asn1.datatypes.Choice;
+import net.gcdc.asn1.datatypes.HasExtensionMarker;
 
 /**
  * @author zhangyong
@@ -9,27 +10,24 @@ import net.gcdc.asn1.datatypes.Choice;
  */
 @Choice
 @Getter
+@HasExtensionMarker
 public class MessageFrame {
-    public static final int bsmFrameChosen = 0;
-    public static final int mapFrameChosen = 1;
-    public static final int rsmFrameChosen = 2;
-    public static final int spatFrameChosen = 3;
-    public static final int rsiFrameChosen = 4;
-
-    public final int choiceID;
-    public final BasicSafetyMessage bsmFrame;
-    public final MapData mapData;
-    public final RoadsideSafetyMessage rsmFrame;
-    public final SPAT spatFrame;
-    public final RoadSideInformation rsiFrame;
 
 
-    private MessageFrame(int choiceID, BasicSafetyMessage bsmFrame,
-                         MapData mapData,
-                         RoadsideSafetyMessage rsmFrame,
-                         SPAT spatFrame,
-                         RoadSideInformation rsiFrame) {
-        this.choiceID = choiceID;
+    public BasicSafetyMessage bsmFrame;
+    public MapData mapData;
+    public RoadsideSafetyMessage rsmFrame;
+    public SPAT spatFrame;
+    public RoadSideInformation rsiFrame;
+
+    public MessageFrame() {
+    }
+
+    public MessageFrame(BasicSafetyMessage bsmFrame,
+                        MapData mapData,
+                        RoadsideSafetyMessage rsmFrame,
+                        SPAT spatFrame,
+                        RoadSideInformation rsiFrame) {
         this.bsmFrame = bsmFrame;
         this.mapData = mapData;
         this.rsmFrame = rsmFrame;
@@ -38,23 +36,40 @@ public class MessageFrame {
     }
 
     public static MessageFrame bsmFrame(BasicSafetyMessage bsm) {
-        return new MessageFrame(bsmFrameChosen, bsm, null, null, null, null);
+        return new MessageFrame(bsm, null, null, null, null);
     }
 
     public static MessageFrame mapFrame(MapData mapData) {
-        return new MessageFrame(mapFrameChosen, null, mapData, null, null, null);
+        return new MessageFrame(null, mapData, null, null, null);
     }
 
     public static MessageFrame rsmFrame(RoadsideSafetyMessage rsm) {
-        return new MessageFrame(rsmFrameChosen, null, null, rsm, null, null);
+        return new MessageFrame(null, null, rsm, null, null);
     }
 
     public static MessageFrame spatFrame(SPAT spat) {
-        return new MessageFrame(spatFrameChosen, null, null, null, spat, null);
+        return new MessageFrame(null, null, null, spat, null);
     }
 
     public static MessageFrame rsiFrame(RoadSideInformation rsi) {
-        return new MessageFrame(rsiFrameChosen, null, null, null, null, rsi);
+        return new MessageFrame(null, null, null, null, rsi);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"bsmFrame\":")
+                .append(bsmFrame);
+        sb.append(",\"mapData\":")
+                .append(mapData);
+        sb.append(",\"rsmFrame\":")
+                .append(rsmFrame);
+        sb.append(",\"spatFrame\":")
+                .append(spatFrame);
+        sb.append(",\"rsiFrame\":")
+                .append(rsiFrame);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

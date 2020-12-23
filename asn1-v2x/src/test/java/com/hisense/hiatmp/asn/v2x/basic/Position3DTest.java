@@ -1,14 +1,14 @@
 package com.hisense.hiatmp.asn.v2x.basic;
 
-import com.hisense.hiatmp.asn.v2x.basic.Position3D.*;
+import com.hisense.hiatmp.asn.v2x.basic.Position3D.Elevation;
+import com.hisense.hiatmp.asn.v2x.basic.Position3D.Latitude;
+import com.hisense.hiatmp.asn.v2x.basic.Position3D.Longitude;
 import net.gcdc.asn1.uper.UperEncoder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zhangyong
@@ -28,13 +28,15 @@ public class Position3DTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(position3D);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
 
     }
 }

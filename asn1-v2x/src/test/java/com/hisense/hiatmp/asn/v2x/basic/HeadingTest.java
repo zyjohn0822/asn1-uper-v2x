@@ -1,25 +1,24 @@
-package com.hisense.hiatmp.asn.v2x.basic; 
+package com.hisense.hiatmp.asn.v2x.basic;
 
-import org.junit.Test; 
-import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+import org.junit.Before;
 
-/** 
-* Heading Tester. 
-* 
-* @author <Authors name> 
-* @since <pre>12/15/2020</pre> 
-* @version 1.0 
-*/ 
-public class HeadingTest { 
+/**
+ * Heading Tester.
+ *
+ * @author <Authors name>
+ * @version 1.0
+ * @since <pre>12/15/2020</pre>
+ */
+public class HeadingTest {
 
-@Before
-public void before() throws Exception { 
-} 
+    @Before
+    public void before() throws Exception {
+    }
 
-@After
-public void after() throws Exception { 
-} 
+    @After
+    public void after() throws Exception {
+    }
 
 
 } 

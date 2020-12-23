@@ -9,11 +9,12 @@ import java.util.Collection;
 
 /**
  * PathHistory ::= SEQUENCE {<br/>
- * 		initialPosition FullPositionVector OPTIONAL,<br/>
- * 		currGNSSstatus GNSSstatus OPTIONAL,<br/>
- * 		crumbData PathHistoryPointList,<br/>
- * 		...<br/>
- *                }<br/>
+ * initialPosition FullPositionVector OPTIONAL,<br/>
+ * currGNSSstatus GNSSstatus OPTIONAL,<br/>
+ * crumbData PathHistoryPointList,<br/>
+ * ...<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:13
  */
@@ -55,6 +56,7 @@ public class PathHistory {
 
     /**
      * PathHistoryPointList ::= SEQUENCE (SIZE(1..23)) OF PathHistoryPoint<br/>
+     *
      * @author zhangyong
      * @date 2020-12-19 12:10
      */

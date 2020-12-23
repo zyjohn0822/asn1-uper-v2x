@@ -17,39 +17,36 @@
 
 package org.bn.metadata;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import org.bn.annotations.ASN1Any;
 import org.bn.annotations.ASN1BitString;
 import org.bn.coders.DecodedObject;
 import org.bn.coders.ElementInfo;
 import org.bn.coders.IASN1TypesDecoder;
 import org.bn.coders.IASN1TypesEncoder;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 /**
  * @author zy
  */
 public class ASN1BitStringMetadata
-    extends ASN1FieldMetadata
-{
-    public ASN1BitStringMetadata(String name)
-    {
+        extends ASN1FieldMetadata {
+    public ASN1BitStringMetadata(String name) {
         super(name);
     }
-    
+
     public ASN1BitStringMetadata(ASN1BitString annotation) {
         this(annotation.name());
     }
-    
-    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, 
-               ElementInfo elementInfo) throws Exception {
+
+    public int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream,
+                      ElementInfo elementInfo) throws Exception {
         return encoder.encodeBitString(object, stream, elementInfo);
     }
-    
+
     public DecodedObject decode(IASN1TypesDecoder decoder, DecodedObject decodedTag, Class objectClass, ElementInfo elementInfo, InputStream stream) throws Exception {
-        return decoder.decodeBitString(decodedTag,objectClass,elementInfo,stream);
+        return decoder.decodeBitString(decodedTag, objectClass, elementInfo, stream);
     }
-    
-    
+
+
 }

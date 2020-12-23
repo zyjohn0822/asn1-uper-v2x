@@ -12,6 +12,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IntRange {
     long minValue();
+
     long maxValue();
+
     boolean hasExtensionMarker() default false;
 }

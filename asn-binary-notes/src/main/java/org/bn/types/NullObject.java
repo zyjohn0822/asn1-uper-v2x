@@ -19,15 +19,16 @@ package org.bn.types;
 
 /**
  * Dummy class declaration for ASN.1 NULL type
+ *
  * @author zhangyong
  */
 public class NullObject {
     public NullObject() {
     }
-       
+
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof NullObject && obj!=null) {
+        if (obj instanceof NullObject && obj != null) {
             return true;
         } else {
             return false;

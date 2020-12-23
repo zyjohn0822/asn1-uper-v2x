@@ -8,8 +8,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  21:36
@@ -18,8 +16,8 @@ public class SPATTest {
 
     @Test
     public void per_decode() throws IOException {
-        byte[] decodeBytes = new byte[]{107, 111, -87, -37, -114, 108, 0, -128, 0, -128, 16, -126, -128, 96, 8, 35, 0, 0, 0, 6, -52, 4, 8, -64, 0, 0, 1, -77, 1, -126, 80, 0, 0, 0, 0, 0,-96, -116, 0, 0, 0, 16, -112, 48, 35, 0, 0, 0, 6, -52,14, 9, 64, 0, 0, 0, 0, 4,  -126, 80, 0, 0, 0, 17, -127, 64, -108, 0, 0, 0, 4, 96, 88, 37, 0, 0, 0, 0, 0, 26, 8, -64, 0, 0, 0, 85, 7, 2, 48, 0, 0, 0, 21, 65, -64, -116, 0, 0, 0, 5, 80, 120, 37, 0, 0, 0, 0, 0
-};
+        byte[] decodeBytes = new byte[]{107, 111, -87, -37, -114, 108, 0, -128, 0, -128, 16, -126, -128, 96, 8, 35, 0, 0, 0, 6, -52, 4, 8, -64, 0, 0, 1, -77, 1, -126, 80, 0, 0, 0, 0, 0, -96, -116, 0, 0, 0, 16, -112, 48, 35, 0, 0, 0, 6, -52, 14, 9, 64, 0, 0, 0, 0, 4, -126, 80, 0, 0, 0, 17, -127, 64, -108, 0, 0, 0, 4, 96, 88, 37, 0, 0, 0, 0, 0, 26, 8, -64, 0, 0, 0, 85, 7, 2, 48, 0, 0, 0, 21, 65, -64, -116, 0, 0, 0, 5, 80, 120, 37, 0, 0, 0, 0, 0
+        };
         final SPAT spat = SPAT.per_decode(false, new ByteArrayInputStream(decodeBytes));
         System.out.println(spat);
 

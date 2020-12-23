@@ -8,11 +8,12 @@ import net.gcdc.asn1.datatypes.Sequence;
 
 /**
  * PositionOffsetLLV ::= SEQUENCE { <br/>
- * 		offsetLL PositionOffsetLL,<br/>
- * 		-- offset in lon/lat<br/>
- * 		offsetV VerticalOffset OPTIONAL<br/>
- * 		-- offset in elevation<br/>
- *        }<br/>
+ * offsetLL PositionOffsetLL,<br/>
+ * -- offset in lon/lat<br/>
+ * offsetV VerticalOffset OPTIONAL<br/>
+ * -- offset in elevation<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:55
  */

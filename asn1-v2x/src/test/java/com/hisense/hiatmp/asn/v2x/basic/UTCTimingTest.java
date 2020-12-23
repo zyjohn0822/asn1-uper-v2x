@@ -9,14 +9,13 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
-
 /**
  * @author zhangyong
  * @date 2020/12/21  15:56
  */
 public class UTCTimingTest {
     UTCTiming utcTiming;
+
     @Before
     public void setUp() throws Exception {
         TimeMark startTime = new TimeMark(3600);
@@ -39,13 +38,15 @@ public class UTCTimingTest {
     @After
     public void tearDown() throws Exception {
     }
+
     @Test
-    public void encode() throws Exception{
+    public void encode() throws Exception {
         final byte[] encode = UperEncoder.encode(utcTiming);
         System.out.println(Arrays.toString(encode));
     }
+
     @Test
-    public void decode() throws Exception{
+    public void decode() throws Exception {
         byte[] decodeBytes = new byte[]{-8, 112, -128, 103, -128, 38, 112, 106, -7, 32, 112, -128, 103, 32};
         final UTCTiming decode = UperEncoder.decode(decodeBytes, UTCTiming.class);
         System.out.println(decode);

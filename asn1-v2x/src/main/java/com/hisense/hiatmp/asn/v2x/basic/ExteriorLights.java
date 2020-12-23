@@ -8,17 +8,18 @@ import java.util.Collection;
 
 /**
  * ExteriorLights ::= BIT STRING {<br/>
- * 		-- All lights off is indicated by no bits set<br/>
- * 		lowBeamHeadlightsOn (0),<br/>
- * 		highBeamHeadlightsOn (1),<br/>
- * 		leftTurnSignalOn (2),<br/>
- * 		rightTurnSignalOn (3),<br/>
- * 		hazardSignalOn (4),<br/>
- * 		automaticLightControlOn (5),<br/>
- * 		daytimeRunningLightsOn (6),<br/>
- * 		fogLightOn (7),<br/>
- * 		parkingLightsOn (8)<br/>
- *                } (SIZE (9, ...))<br/>
+ * -- All lights off is indicated by no bits set<br/>
+ * lowBeamHeadlightsOn (0),<br/>
+ * highBeamHeadlightsOn (1),<br/>
+ * leftTurnSignalOn (2),<br/>
+ * rightTurnSignalOn (3),<br/>
+ * hazardSignalOn (4),<br/>
+ * automaticLightControlOn (5),<br/>
+ * daytimeRunningLightsOn (6),<br/>
+ * fogLightOn (7),<br/>
+ * parkingLightsOn (8)<br/>
+ * } (SIZE (9, ...))<br/>
+ *
  * @author zhangyong
  * @date 2020/11/5  14:17
  */
@@ -70,5 +71,19 @@ public class ExteriorLights extends Asn1SequenceOf<Boolean> {
 
     public boolean parkingLightsOn() {
         return getOrFalse(8);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("\"");
+        for (boolean s : bakingList) {
+            if (s) {
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+        }
+        sb.append("\"");
+        return sb.toString();
     }
 }

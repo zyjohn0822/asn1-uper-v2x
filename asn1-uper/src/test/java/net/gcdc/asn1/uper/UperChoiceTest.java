@@ -11,6 +11,25 @@ import java.util.Objects;
  * @date 2020/11/11  14:20
  */
 public class UperChoiceTest {
+    @Test
+    public void choiceEncodeTest() {
+        UperSequenceOne one = new UperSequenceOne("one", new Number(14));
+        UperSequenceTwo two = new UperSequenceTwo("two", new Number(22), new Number(0));
+        UperSequenceThird third = new UperSequenceThird("third", new Number(33), new Number(44));
+        final UperChoice choice = UperChoice.oneChoice(one);
+        final byte[] encode = UperEncoder.encode(choice);
+        Assert.assertArrayEquals(encode, new byte[]{0, -9, -18, -54, 56});
+        //System.out.println(Arrays.toString(encode));
+    }
+
+    @Test
+    public void choiceDecodeTest() {
+        byte[] des = new byte[]{0, -9, -18, -54, 56};
+        final UperChoice decode = UperEncoder.decode(des, UperChoice.class);
+        UperSequenceOne one = new UperSequenceOne("one", new Number(14));
+        Assert.assertEquals(decode.getOne(), one);
+    }
+
     @Choice
     public static class UperChoice {
         UperSequenceOne one;
@@ -130,24 +149,5 @@ public class UperChoiceTest {
             super(value);
         }
 
-    }
-
-    @Test
-    public void choiceEncodeTest() {
-        UperSequenceOne one = new UperSequenceOne("one", new Number(14));
-        UperSequenceTwo two = new UperSequenceTwo("two", new Number(22), new Number(0));
-        UperSequenceThird third = new UperSequenceThird("third", new Number(33), new Number(44));
-        final UperChoice choice = UperChoice.oneChoice(one);
-        final byte[] encode = UperEncoder.encode(choice);
-        Assert.assertArrayEquals(encode, new byte[]{0, -9, -18, -54, 56});
-        //System.out.println(Arrays.toString(encode));
-    }
-
-    @Test
-    public void choiceDecodeTest() {
-        byte[] des = new byte[]{0, -9, -18, -54, 56};
-        final UperChoice decode = UperEncoder.decode(des, UperChoice.class);
-        UperSequenceOne one = new UperSequenceOne("one", new Number(14));
-        Assert.assertEquals(decode.getOne(), one);
     }
 }

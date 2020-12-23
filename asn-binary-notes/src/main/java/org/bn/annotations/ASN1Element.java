@@ -16,21 +16,30 @@
  */
 package org.bn.annotations;
 
-import java.lang.annotation.*;
-
 import org.bn.coders.TagClass;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author zhangyong
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD })
+@Target({ElementType.FIELD})
 public @interface ASN1Element {
     String name() default "";
+
     boolean isOptional() default true;
-    boolean hasTag() default false;    
+
+    boolean hasTag() default false;
+
     boolean isImplicitTag() default true;
+
     int tagClass() default TagClass.ContextSpecific;
+
     int tag() default 0;
+
     boolean hasDefaultValue() default false;
 }

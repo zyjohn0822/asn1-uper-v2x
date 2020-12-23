@@ -38,8 +38,8 @@ import java.util.Collection;
 import java.util.SortedMap;
 
 /**
- * @author zhangyong
  * @param <T>
+ * @author zhangyong
  */
 public class PERAlignedEncoder<T> extends Encoder<T> {
 

@@ -7,10 +7,11 @@ import net.gcdc.asn1.datatypes.Component;
 import net.gcdc.asn1.datatypes.Sequence;
 
 /**
- *PositionConfidenceSet ::= SEQUENCE {<br/>
- * 		pos PositionConfidence, -- for both horizontal directions<br/>
- * 		elevation ElevationConfidence OPTIONAL<br/>
- *        }<br/>
+ * PositionConfidenceSet ::= SEQUENCE {<br/>
+ * pos PositionConfidence, -- for both horizontal directions<br/>
+ * elevation ElevationConfidence OPTIONAL<br/>
+ * }<br/>
+ *
  * @author zhangyong
  * @date 2020/11/4  19:13
  */
@@ -45,23 +46,23 @@ public class PositionConfidenceSet {
 
     /**
      * PositionConfidence ::= ENUMERATED {<br/>
-     * 		unavailable (0), -- Not Equipped or unavailable<br/>
-     * 		a500m (1), -- 500m or about 5 * 10 ^ -3 decimal degrees<br/>
-     * 		a200m (2), -- 200m or about 2 * 10 ^ -3 decimal degrees<br/>
-     * 		a100m (3), -- 100m or about 1 * 10 ^ -3 decimal degrees<br/>
-     * 		a50m (4), -- 50m or about 5 * 10 ^ -4 decimal degrees<br/>
-     * 		a20m (5), -- 20m or about 2 * 10 ^ -4 decimal degrees<br/>
-     * 		a10m (6), -- 10m or about 1 * 10 ^ -4 decimal degrees<br/>
-     * 		a5m (7), -- 5m or about 5 * 10 ^ -5 decimal degrees<br/>
-     * 		a2m (8), -- 2m or about 2 * 10 ^ -5 decimal degrees<br/>
-     * 		a1m (9), -- 1m or about 1 * 10 ^ -5 decimal degrees<br/>
-     * 		a50cm (10), -- 0.50m or about 5 * 10 ^ -6 decimal degrees<br/>
-     * 		a20cm (11), -- 0.20m or about 2 * 10 ^ -6 decimal degrees<br/>
-     * 		a10cm (12), -- 0.10m or about 1 * 10 ^ -6 decimal degrees<br/>
-     * 		a5cm (13), -- 0.05m or about 5 * 10 ^ -7 decimal degrees<br/>
-     * 		a2cm (14), -- 0.02m or about 2 * 10 ^ -7 decimal degrees<br/>
-     * 		a1cm (15) -- 0.01m or about 1 * 10 ^ -7 decimal degrees<br/>
-     *        }
+     * unavailable (0), -- Not Equipped or unavailable<br/>
+     * a500m (1), -- 500m or about 5 * 10 ^ -3 decimal degrees<br/>
+     * a200m (2), -- 200m or about 2 * 10 ^ -3 decimal degrees<br/>
+     * a100m (3), -- 100m or about 1 * 10 ^ -3 decimal degrees<br/>
+     * a50m (4), -- 50m or about 5 * 10 ^ -4 decimal degrees<br/>
+     * a20m (5), -- 20m or about 2 * 10 ^ -4 decimal degrees<br/>
+     * a10m (6), -- 10m or about 1 * 10 ^ -4 decimal degrees<br/>
+     * a5m (7), -- 5m or about 5 * 10 ^ -5 decimal degrees<br/>
+     * a2m (8), -- 2m or about 2 * 10 ^ -5 decimal degrees<br/>
+     * a1m (9), -- 1m or about 1 * 10 ^ -5 decimal degrees<br/>
+     * a50cm (10), -- 0.50m or about 5 * 10 ^ -6 decimal degrees<br/>
+     * a20cm (11), -- 0.20m or about 2 * 10 ^ -6 decimal degrees<br/>
+     * a10cm (12), -- 0.10m or about 1 * 10 ^ -6 decimal degrees<br/>
+     * a5cm (13), -- 0.05m or about 5 * 10 ^ -7 decimal degrees<br/>
+     * a2cm (14), -- 0.02m or about 2 * 10 ^ -7 decimal degrees<br/>
+     * a1cm (15) -- 0.01m or about 1 * 10 ^ -7 decimal degrees<br/>
+     * }
      */
     public enum PositionConfidence {
         /**
@@ -147,26 +148,26 @@ public class PositionConfidenceSet {
             return sb.toString();
         }
     }
+
     /**
-     *ElevationConfidence ::= ENUMERATED {<br/>
-     * 		unavailable (0), -- Not Equipped or unavailable<br/>
-     * 		elev-500-00 (1), -- (500 m)<br/>
-     * 		elev-200-00 (2), -- (200 m)<br/>
-     * 		elev-100-00 (3), -- (100 m)<br/>
-     * 		elev-050-00 (4), -- (50 m)<br/>
-     * 		elev-020-00 (5), -- (20 m)<br/>
-     * 		elev-010-00 (6), -- (10 m)<br/>
-     * 		elev-005-00 (7), -- (5 m)<br/>
-     * 		elev-002-00 (8), -- B(2 m)<br/>
-     * 		elev-001-00 (9), -- (1 m)<br/>
-     * 		elev-000-50 (10), -- (50 cm)<br/>
-     * 		elev-000-20 (11), -- (20 cm)<br/>
-     * 		elev-000-10 (12), -- (10 cm)<br/>
-     * 		elev-000-05 (13), -- (5 cm)<br/>
-     * 		elev-000-02 (14), -- B(2 cm)<br/>
-     * 		elev-000-01 (15) -- (1 cm)<br/>
-     *        }
-     *
+     * ElevationConfidence ::= ENUMERATED {<br/>
+     * unavailable (0), -- Not Equipped or unavailable<br/>
+     * elev-500-00 (1), -- (500 m)<br/>
+     * elev-200-00 (2), -- (200 m)<br/>
+     * elev-100-00 (3), -- (100 m)<br/>
+     * elev-050-00 (4), -- (50 m)<br/>
+     * elev-020-00 (5), -- (20 m)<br/>
+     * elev-010-00 (6), -- (10 m)<br/>
+     * elev-005-00 (7), -- (5 m)<br/>
+     * elev-002-00 (8), -- B(2 m)<br/>
+     * elev-001-00 (9), -- (1 m)<br/>
+     * elev-000-50 (10), -- (50 cm)<br/>
+     * elev-000-20 (11), -- (20 cm)<br/>
+     * elev-000-10 (12), -- (10 cm)<br/>
+     * elev-000-05 (13), -- (5 cm)<br/>
+     * elev-000-02 (14), -- B(2 cm)<br/>
+     * elev-000-01 (15) -- (1 cm)<br/>
+     * }
      */
     public enum ElevationConfidence {
         /**

@@ -9,5 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RestrictedString {
     CharacterRestriction value();
+
     Class<? extends Alphabet> alphabet() default DefaultAlphabet.class;
 }

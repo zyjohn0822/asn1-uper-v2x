@@ -16,13 +16,16 @@
  */
 package org.bn.annotations;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author zhangyong
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target( {ElementType.FIELD,ElementType.TYPE} )
+@Target({ElementType.FIELD, ElementType.TYPE})
 public @interface ASN1Null {
-    String name() default ""; 
+    String name() default "";
 }

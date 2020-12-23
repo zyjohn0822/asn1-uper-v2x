@@ -17,13 +17,13 @@
 
 package org.bn.metadata;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import org.bn.coders.DecodedObject;
 import org.bn.coders.ElementInfo;
 import org.bn.coders.IASN1TypesDecoder;
 import org.bn.coders.IASN1TypesEncoder;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * @author zhangyong
@@ -35,6 +35,7 @@ public interface IASN1Metadata {
      * 修改描述: <br>
      * <p>修改人:</p>
      * <p>修改原因:</p>
+     *
      * @param
      * @return: java.lang.String
      * @since: 1.0.0
@@ -42,33 +43,37 @@ public interface IASN1Metadata {
      * @Date: 2020/12/11 15:07
      */
     String getName();
+
     /**
      * 功能描述: <br>
      * <p>解码方法</p>
      * 修改描述: <br>
      * <p>修改人:</p>
      * <p>修改原因:</p>
-     * @param encoder {@link IASN1TypesEncoder}
-	 * @param object obj
-	 * @param stream out stream
-	 * @param elementInfo info
+     *
+     * @param encoder     {@link IASN1TypesEncoder}
+     * @param object      obj
+     * @param stream      out stream
+     * @param elementInfo info
      * @return: int
      * @since: 1.0.0
      * @Author: zhangyong
      * @Date: 2020/12/11 15:07
      */
     int encode(IASN1TypesEncoder encoder, Object object, OutputStream stream, ElementInfo elementInfo) throws Exception;
+
     /**
      * 功能描述: <br>
      * <p>编码方法</p>
      * 修改描述: <br>
      * <p>修改人:</p>
      * <p>修改原因:</p>
-     * @param decoder {@link IASN1TypesDecoder}
-	 * @param decodedTag tag
-	 * @param objectClass clazz
-	 * @param elementInfo info
-	 * @param stream stream
+     *
+     * @param decoder     {@link IASN1TypesDecoder}
+     * @param decodedTag  tag
+     * @param objectClass clazz
+     * @param elementInfo info
+     * @param stream      stream
      * @return: org.bn.coders.DecodedObject
      * @since: 1.0.0
      * @Author: zhangyong

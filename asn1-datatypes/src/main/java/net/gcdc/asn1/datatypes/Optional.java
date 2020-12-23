@@ -3,14 +3,16 @@ package net.gcdc.asn1.datatypes;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-/** Represents optional values.
- *
+/**
+ * Represents optional values.
+ * <p>
  * Should be replaced by java.util.Optional from Java 8, when project moves to Java 8.
  *
- * @param <T> type of contained elements */
+ * @param <T> type of contained elements
+ */
 public class Optional<T> {
 
-    private final T       element;
+    private final T element;
     private final boolean isPresent;
 
     private Optional(T element, boolean isPresent) {
@@ -18,13 +20,38 @@ public class Optional<T> {
         this.isPresent = isPresent;
     }
 
-    /** @return true if the Option contains a value */
+    /**
+     * Returns an Option containing the value.
+     *
+     * @param <A>     the type of the value
+     * @param element contained value
+     * @return a new Option that contains the value
+     */
+    public static <A> Optional<A> of(final A element) {
+        return new Optional<A>(element, true);
+    }
+
+    /**
+     * Returns an empty option.
+     *
+     * @param <A> the type of the value
+     * @return an empty Option
+     */
+    public static <A> Optional<A> empty() {
+        return new Optional<A>(null, false);
+    }
+
+    /**
+     * @return true if the Option contains a value
+     */
     public boolean isPresent() {
         return isPresent;
     }
 
-    /** @return the element if the option is not empty
-     * @throws java.util.NoSuchElementException if the option is empty */
+    /**
+     * @return the element if the option is not empty
+     * @throws java.util.NoSuchElementException if the option is empty
+     */
     public T get() {
         if (isPresent) {
             return element;
@@ -33,8 +60,10 @@ public class Optional<T> {
         }
     }
 
-    /** @return the value, if present, otherwise return {@code other}
-     * @param other the value to be returned if there is no value present */
+    /**
+     * @param other the value to be returned if there is no value present
+     * @return the value, if present, otherwise return {@code other}
+     */
     public T orElse(T other) {
         return isPresent() ? get() : other;
     }
@@ -75,22 +104,5 @@ public class Optional<T> {
     @Override
     public int hashCode() {
         return Objects.hashCode(element);
-    }
-
-    /** Returns an Option containing the value.
-     *
-     * @param <A> the type of the value
-     * @param element contained value
-     * @return a new Option that contains the value */
-    public static <A> Optional<A> of(final A element) {
-        return new Optional<A>(element, true);
-    }
-
-    /** Returns an empty option.
-     *
-     * @param <A> the type of the value
-     * @return an empty Option */
-    public static <A> Optional<A> empty() {
-        return new Optional<A>(null, false);
     }
 }
