@@ -33,25 +33,25 @@ import java.util.List;
 public class BrakeSystemStatus {
     @Component(0)
     @Asn1Optional
-    BrakePedalStatus brakePadel;
+    public BrakePedalStatus brakePadel;
     @Component(1)
     @Asn1Optional
-    BrakeAppliedStatus wheelBrakes;
+    public BrakeAppliedStatus wheelBrakes;
     @Component(2)
     @Asn1Optional
-    TractionControlStatus traction;
+    public TractionControlStatus traction;
     @Component(3)
     @Asn1Optional
-    AntiLockBrakeStatus abs;
+    public AntiLockBrakeStatus abs;
     @Component(4)
     @Asn1Optional
-    StabilityControlStatus scs;
+    public StabilityControlStatus scs;
     @Component(5)
     @Asn1Optional
-    BrakeBoostApplied brakeBoost;
+    public BrakeBoostApplied brakeBoost;
     @Component(6)
     @Asn1Optional
-    AuxiliaryBrakeStatus auxBrakes;
+    public AuxiliaryBrakeStatus auxBrakes;
 
     public BrakeSystemStatus() {
     }

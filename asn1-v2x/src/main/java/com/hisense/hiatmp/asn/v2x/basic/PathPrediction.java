@@ -24,9 +24,9 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class PathPrediction {
     @Component(0)
-    RadiusOfCurvature radiusOfCurve;
+    public RadiusOfCurvature radiusOfCurve;
     @Component(1)
-    Confidence confidence;
+    public Confidence confidence;
 
     public PathPrediction() {
     }

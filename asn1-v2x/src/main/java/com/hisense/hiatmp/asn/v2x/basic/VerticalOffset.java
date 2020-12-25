@@ -28,19 +28,19 @@ import net.gcdc.asn1.datatypes.IntRange;
 @Setter
 public class VerticalOffset {
     @Component(0)
-    VertOffset_B07 offset1;
+    public VertOffset_B07 offset1;
     @Component(1)
-    VertOffset_B08 offset2;
+    public VertOffset_B08 offset2;
     @Component(2)
-    VertOffset_B09 offset3;
+    public VertOffset_B09 offset3;
     @Component(3)
-    VertOffset_B10 offset4;
+    public VertOffset_B10 offset4;
     @Component(4)
-    VertOffset_B11 offset5;
+    public VertOffset_B11 offset5;
     @Component(5)
-    VertOffset_B12 offset6;
+    public VertOffset_B12 offset6;
     @Component(6)
-    Position3D.Elevation elevation;
+    public Position3D.Elevation elevation;
 
     public VerticalOffset() {
     }

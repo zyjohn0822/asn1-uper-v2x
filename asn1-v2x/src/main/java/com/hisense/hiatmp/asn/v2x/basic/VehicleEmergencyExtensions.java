@@ -65,13 +65,13 @@ import net.gcdc.asn1.datatypes.Sequence;
 public class VehicleEmergencyExtensions {
     @Component(0)
     @Asn1Optional
-    ResponseType responseType;
+    public ResponseType responseType;
     @Component(1)
     @Asn1Optional
-    SirenInUse sirenUse;
+    public SirenInUse sirenUse;
     @Component(2)
     @Asn1Optional
-    LightbarInUse lightsUse;
+    public LightbarInUse lightsUse;
 
     public VehicleEmergencyExtensions() {
     }

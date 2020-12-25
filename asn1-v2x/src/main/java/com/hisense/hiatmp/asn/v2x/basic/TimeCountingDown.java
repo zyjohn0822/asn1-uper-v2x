@@ -41,16 +41,16 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Getter
 @Sequence
 public class TimeCountingDown {
-    TimeMark startTime;
+    public TimeMark startTime;
     @Asn1Optional
-    TimeMark minEndTime;
+    public TimeMark minEndTime;
     @Asn1Optional
-    TimeMark maxEndTime;
-    TimeMark likelyEndTime;
+    public TimeMark maxEndTime;
+    public TimeMark likelyEndTime;
     @Asn1Optional
-    Confidence timeConfidence;
+    public Confidence timeConfidence;
     @Asn1Optional
-    TimeMark nextStartTime;
+    public TimeMark nextStartTime;
     @Asn1Optional
     TimeMark nextDuration;
 

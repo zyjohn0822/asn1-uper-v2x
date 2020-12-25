@@ -31,30 +31,30 @@ import net.gcdc.asn1.datatypes.Sequence;
 public class FullPositionVector {
     @Component(0)
     @Asn1Optional
-    DDateTime utcTime;
+    public DDateTime utcTime;
     @Component(1)
-    Position3D pos;
+    public Position3D pos;
     @Component(2)
     @Asn1Optional
-    Heading heading;
+    public Heading heading;
     @Component(3)
     @Asn1Optional
-    TransmissionState transmission;
+    public TransmissionState transmission;
     @Component(4)
     @Asn1Optional
-    Speed speed;
+    public Speed speed;
     @Component(5)
     @Asn1Optional
-    PositionalAccuracy posAccuracy;
+    public PositionalAccuracy posAccuracy;
     @Component(6)
     @Asn1Optional
-    PositionConfidenceSet posConficence;
+    public PositionConfidenceSet posConficence;
     @Component(7)
     @Asn1Optional
-    TimeConfidence timeConfidence;
+    public TimeConfidence timeConfidence;
     @Component(8)
     @Asn1Optional
-    MotionConfidenceSet motionCfd;
+    public MotionConfidenceSet motionCfd;
 
     public FullPositionVector() {
     }

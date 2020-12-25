@@ -30,22 +30,22 @@ import java.util.Collection;
 @Setter
 @Sequence
 @HasExtensionMarker
-public class RoadSideInformation {
+public class RoadSideInformation implements AsnV2x{
     @Component(0)
-    MsgCount msgCount;
+    public MsgCount msgCount;
     @Asn1Optional
     @Component(1)
-    DDateTime.MinuteOfTheYear moy;
+    public DDateTime.MinuteOfTheYear moy;
     @Component(2)
-    ID id;
+    public ID id;
     @Component(3)
-    Position3D refPos;
+    public Position3D refPos;
     @Component(4)
     @Asn1Optional
-    RTEList rtes;
+    public RTEList rtes;
     @Component(5)
     @Asn1Optional
-    RTSList rtss;
+    public RTSList rtss;
 
     public RoadSideInformation() {
     }

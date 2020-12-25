@@ -35,19 +35,19 @@ import net.gcdc.asn1.datatypes.*;
 @Setter
 public class PositionOffsetLL {
     @Component(0)
-    PositionLL24B positionLL1;
+    public PositionLL24B positionLL1;
     @Component(1)
-    PositionLL28B positionLL2;
+    public PositionLL28B positionLL2;
     @Component(2)
-    PositionLL32B positionLL3;
+    public PositionLL32B positionLL3;
     @Component(3)
-    PositionLL36B positionLL4;
+    public PositionLL36B positionLL4;
     @Component(4)
-    PositionLL44B positionLL5;
+    public PositionLL44B positionLL5;
     @Component(5)
-    PositionLL48B positionLL6;
+    public PositionLL48B positionLL6;
     @Component(6)
-    PositionLLmD64b positionLatLon;
+    public PositionLLmD64b positionLatLon;
 
     private PositionOffsetLL(
             PositionLL24B positionLL1,
@@ -179,8 +179,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL24B {
-        OffsetLLB12 log;
-        OffsetLLB12 lat;
+        public OffsetLLB12 log;
+        public OffsetLLB12 lat;
 
         public PositionLL24B() {
         }
@@ -217,8 +217,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL28B {
-        OffsetLLB14 log;
-        OffsetLLB14 lat;
+        public OffsetLLB14 log;
+        public OffsetLLB14 lat;
 
         public PositionLL28B() {
         }
@@ -255,8 +255,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL32B {
-        OffsetLLB16 log;
-        OffsetLLB16 lat;
+        public OffsetLLB16 log;
+        public OffsetLLB16 lat;
 
         public PositionLL32B() {
         }
@@ -293,8 +293,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL36B {
-        OffsetLLB18 log;
-        OffsetLLB18 lat;
+        public OffsetLLB18 log;
+        public OffsetLLB18 lat;
 
         public PositionLL36B() {
         }
@@ -331,8 +331,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL44B {
-        OffsetLLB22 log;
-        OffsetLLB22 lat;
+        public OffsetLLB22 log;
+        public OffsetLLB22 lat;
 
         public PositionLL44B() {
         }
@@ -369,8 +369,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLL48B {
-        OffsetLLB24 log;
-        OffsetLLB24 lat;
+        public OffsetLLB24 log;
+        public OffsetLLB24 lat;
 
         public PositionLL48B() {
         }
@@ -406,8 +406,8 @@ public class PositionOffsetLL {
     @Getter
     @Setter
     public static class PositionLLmD64b {
-        Position3D.Longitude lon;
-        Position3D.Latitude lat;
+        public Position3D.Longitude lon;
+        public Position3D.Latitude lat;
 
         public PositionLLmD64b(Position3D.Longitude lon, Position3D.Latitude lat) {
             this.lon = lon;

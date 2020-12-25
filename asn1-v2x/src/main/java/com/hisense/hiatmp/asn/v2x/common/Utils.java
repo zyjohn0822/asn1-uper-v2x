@@ -57,4 +57,48 @@ public class Utils {
         }
         return new String(hexChars);
     }
+    /**
+     * 功能描述: <br>
+     * <p></p>
+     * 修改描述: <br>
+     * <p>修改人:</p>
+     * <p>修改原因:</p>
+     * @param s
+     * @return: java.lang.String
+     * @since: 1.0.0
+     * @Author: zhangyong
+     * @Date: 2020/12/23 19:04
+     */
+    public static String hexStringToString(String s) {
+        if (s == null || s.equals("")) {
+            return null;
+        }
+        s = s.replace(" ", "");
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            s = new String(baKeyword, "UTF-8");
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+    public static int DIVISION_TWO = 2;
+    public static String hexLowerSort(String hexHeight) throws Exception {
+        if (hexHeight.length() % DIVISION_TWO != 0){
+            throw new Exception("长度不为偶数");
+        }
+        StringBuilder hexBuilder = new StringBuilder();
+        for(int i = 8; i > 0; i --){
+            int begin = i*2;
+            hexBuilder.append(hexHeight, begin -2, begin);
+        }
+        return hexBuilder.toString();
+    }
 }

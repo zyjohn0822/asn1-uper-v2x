@@ -22,10 +22,10 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Getter
 @Sequence
 public class ReferenceLink {
-    NodeReferenceID upstreamNodeId;
-    NodeReferenceID downstreamNodeId;
+    public NodeReferenceID upstreamNodeId;
+    public NodeReferenceID downstreamNodeId;
     @Asn1Optional
-    ReferenceLanes referenceLanes;
+    public ReferenceLanes referenceLanes;
 
     public ReferenceLink() {
 

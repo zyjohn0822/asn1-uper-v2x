@@ -21,9 +21,9 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Setter
 @Getter
 public class PositionalAccuracy {
-    SemiMajorAxisAccuracy semiMajor;
-    SemiMinorAxisAccuracy semiMinor;
-    SemiMajorAxisOrientation orientation;
+    public SemiMajorAxisAccuracy semiMajor;
+    public SemiMinorAxisAccuracy semiMinor;
+    public SemiMajorAxisOrientation orientation;
 
     public PositionalAccuracy() {
 

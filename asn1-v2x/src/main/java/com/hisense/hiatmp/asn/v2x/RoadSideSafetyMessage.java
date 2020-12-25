@@ -30,15 +30,15 @@ import java.util.Collection;
 @Setter
 @Sequence
 @HasExtensionMarker
-public class RoadsideSafetyMessage {
+public class RoadSideSafetyMessage implements AsnV2x{
     @Component(0)
-    MsgCount msgCount;
+    public MsgCount msgCount;
     @Component(1)
-    ID id;
+    public ID id;
     @Component(2)
-    Position3D refPos;
+    public Position3D refPos;
     @Component(3)
-    ParticipantList participants;
+    public ParticipantList participants;
 
     /**
      * ParticipantList ::= SEQUENCE (SIZE(1..16)) OF ParticipantData

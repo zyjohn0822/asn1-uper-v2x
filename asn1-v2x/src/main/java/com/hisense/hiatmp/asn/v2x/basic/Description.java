@@ -22,8 +22,8 @@ import java.util.Collection;
 @Setter
 @Choice
 public class Description {
-    TextString textString;
-    TextGB2312 textGB2312;
+    public TextString textString;
+    public TextGB2312 textGB2312;
 
     public Description() {
     }

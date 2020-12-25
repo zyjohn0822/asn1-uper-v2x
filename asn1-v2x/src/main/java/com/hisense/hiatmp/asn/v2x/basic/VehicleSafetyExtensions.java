@@ -38,16 +38,16 @@ import net.gcdc.asn1.datatypes.Sequence;
 public class VehicleSafetyExtensions {
     @Component(0)
     @Asn1Optional
-    VehicleEventFlags events;
+    public VehicleEventFlags events;
     @Component(1)
     @Asn1Optional
-    PathHistory pathHistory;
+    public PathHistory pathHistory;
     @Component(2)
     @Asn1Optional
-    PathPrediction pathPrediction;
+    public PathPrediction pathPrediction;
     @Component(3)
     @Asn1Optional
-    ExteriorLights lights;
+    public ExteriorLights lights;
 
     public VehicleSafetyExtensions() {
     }

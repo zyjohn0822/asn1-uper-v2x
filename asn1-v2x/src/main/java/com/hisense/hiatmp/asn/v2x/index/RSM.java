@@ -1,11 +1,11 @@
 package com.hisense.hiatmp.asn.v2x.index;
 
-import com.hisense.hiatmp.asn.v2x.RoadsideSafetyMessage;
+import com.hisense.hiatmp.asn.v2x.RoadSideSafetyMessage;
 import com.hisense.hiatmp.asn.v2x.basic.ParticipantData;
 
 /**
- * {@link RoadsideSafetyMessage}
- * {@link RoadsideSafetyMessage.ParticipantList}
+ * {@link RoadSideSafetyMessage}
+ * {@link RoadSideSafetyMessage.ParticipantList}
  * {@link ParticipantData}
  * {@link ParticipantData.ParticipantType}
  * {@link ParticipantData.SourceType}

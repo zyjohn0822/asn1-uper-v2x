@@ -29,8 +29,8 @@ import java.util.Collection;
 @Setter
 @Sequence
 public class ReferencePath {
-    PathPointList activePath;
-    Radius radius;
+    public PathPointList activePath;
+    public Radius radius;
 
     public ReferencePath() {
     }

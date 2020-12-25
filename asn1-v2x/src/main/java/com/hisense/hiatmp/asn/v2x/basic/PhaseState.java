@@ -26,10 +26,10 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class PhaseState {
     @Component(0)
-    LightState light;
+    public LightState light;
     @Component(1)
     @Asn1Optional
-    TimeChangeDetails timing;
+    public TimeChangeDetails timing;
 
     public PhaseState() {
     }
@@ -138,8 +138,8 @@ public class PhaseState {
     @Choice
     @HasExtensionMarker
     public static class TimeChangeDetails {
-        TimeCountingDown counting;
-        UTCTiming utcTiming;
+        public TimeCountingDown counting;
+        public UTCTiming utcTiming;
 
         public TimeChangeDetails() {
         }

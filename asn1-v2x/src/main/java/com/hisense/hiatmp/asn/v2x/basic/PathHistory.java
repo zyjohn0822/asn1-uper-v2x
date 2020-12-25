@@ -25,12 +25,12 @@ import java.util.Collection;
 public class PathHistory {
     @Component(0)
     @Asn1Optional
-    FullPositionVector initialPosition;
+    public FullPositionVector initialPosition;
     @Component(1)
     @Asn1Optional
-    GNSSstatus currGNSSstatus;
+    public GNSSstatus currGNSSstatus;
     @Component(2)
-    PathHistoryPointList crumbData;
+    public PathHistoryPointList crumbData;
 
     public PathHistory() {
     }

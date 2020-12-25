@@ -44,20 +44,20 @@ import java.util.Collection;
 @HasExtensionMarker
 public class IntersectionState {
     @Component(0)
-    NodeReferenceID intersectionId;
+    public NodeReferenceID intersectionId;
     @Component(1)
-    IntersectionStatusObject status;
+    public IntersectionStatusObject status;
     @Asn1Optional
     @Component(2)
-    MinuteOfTheYear moy;
+    public MinuteOfTheYear moy;
     @Asn1Optional
     @Component(3)
-    DSecond timestamp;
+    public DSecond timestamp;
     @Asn1Optional
     @Component(4)
-    TimeConfidence timeConfidence;
+    public TimeConfidence timeConfidence;
     @Component(5)
-    PhaseList phases;
+    public PhaseList phases;
 
     public IntersectionState() {
     }

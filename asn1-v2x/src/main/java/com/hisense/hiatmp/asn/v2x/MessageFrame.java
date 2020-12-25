@@ -41,7 +41,7 @@ public class MessageFrame {
 
     public BasicSafetyMessage bsmFrame;
     public MapData mapData;
-    public RoadsideSafetyMessage rsmFrame;
+    public RoadSideSafetyMessage rsmFrame;
     public SPAT spatFrame;
     public RoadSideInformation rsiFrame;
 
@@ -50,7 +50,7 @@ public class MessageFrame {
 
     public MessageFrame(BasicSafetyMessage bsmFrame,
                         MapData mapData,
-                        RoadsideSafetyMessage rsmFrame,
+                        RoadSideSafetyMessage rsmFrame,
                         SPAT spatFrame,
                         RoadSideInformation rsiFrame) {
         this.bsmFrame = bsmFrame;
@@ -68,7 +68,7 @@ public class MessageFrame {
         return new MessageFrame(null, mapData, null, null, null);
     }
 
-    public static MessageFrame rsmFrame(RoadsideSafetyMessage rsm) {
+    public static MessageFrame rsmFrame(RoadSideSafetyMessage rsm) {
         return new MessageFrame(null, null, rsm, null, null);
     }
 

@@ -1,6 +1,7 @@
 package com.hisense.hiatmp.asn.v2x;
 
 import com.hisense.hiatmp.asn.v2x.basic.*;
+import com.hisense.hiatmp.asn.v2x.basic.DDateTime.DSecond;
 import lombok.Getter;
 import lombok.Setter;
 import net.gcdc.asn1.datatypes.Asn1Optional;
@@ -57,72 +58,72 @@ import net.gcdc.asn1.datatypes.Sequence;
  * @author zhangyong
  * @date 2020/11/4  19:06
  */
-@Sequence
 @Getter
 @Setter
+@Sequence
 @HasExtensionMarker
-public class BasicSafetyMessage {
+public class BasicSafetyMessage implements AsnV2x{
 
     @Component(0)
-    MsgCount msgCnt;
+    public MsgCount msgCnt;
 
     @Component(1)
-    ID id;
+    public ID id;
 
     @Component(2)
-    DDateTime.DSecond secMark;
+    public DSecond secMark;
 
     @Component(3)
     @Asn1Optional
-    TimeConfidence timeConfidence;
+    public TimeConfidence timeConfidence;
 
     @Component(4)
-    Position3D pos;
+    public Position3D pos;
 
     @Component(5)
     @Asn1Optional
-    PositionalAccuracy posAccuracy;
+    public PositionalAccuracy posAccuracy;
 
     @Component(6)
     @Asn1Optional
-    PositionConfidenceSet posConfidence;
+    public PositionConfidenceSet posConfidence;
 
     @Component(7)
-    TransmissionState transmission;
+    public TransmissionState transmission;
 
     @Component(8)
-    Speed speed;
+    public Speed speed;
 
     @Component(9)
-    Heading heading;
+    public Heading heading;
 
     @Component(10)
     @Asn1Optional
-    SteeringWheelAngle angle;
+    public SteeringWheelAngle angle;
 
     @Component(11)
     @Asn1Optional
-    MotionConfidenceSet motionCfd;
+    public MotionConfidenceSet motionCfd;
 
     @Component(12)
-    AccelerationSet4Way accelSet;
+    public AccelerationSet4Way accelSet;
 
     @Component(13)
-    BrakeSystemStatus brakes;
+    public BrakeSystemStatus brakes;
 
     @Component(14)
-    VehicleSize size;
+    public VehicleSize size;
 
     @Component(15)
-    VehicleClassification vehicleClass;
+    public VehicleClassification vehicleClass;
 
     @Component(16)
     @Asn1Optional
-    VehicleSafetyExtensions safetyExt;
+    public VehicleSafetyExtensions safetyExt;
 
     @Component(17)
     @Asn1Optional
-    VehicleEmergencyExtensions emergencyExt;
+    public VehicleEmergencyExtensions emergencyExt;
 
     public BasicSafetyMessage() {
     }
@@ -130,7 +131,7 @@ public class BasicSafetyMessage {
     public BasicSafetyMessage(
             MsgCount msgCnt,
             ID id,
-            DDateTime.DSecond secMark,
+            DSecond secMark,
             TimeConfidence timeConfidence,
             Position3D pos,
             PositionalAccuracy posAccuracy,

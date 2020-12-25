@@ -20,10 +20,10 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Getter
 public class PositionConfidenceSet {
     @Component(0)
-    PositionConfidence pos;
+    public PositionConfidence pos;
     @Component(1)
     @Asn1Optional
-    ElevationConfidence elevation;
+    public ElevationConfidence elevation;
 
     public PositionConfidenceSet() {
     }

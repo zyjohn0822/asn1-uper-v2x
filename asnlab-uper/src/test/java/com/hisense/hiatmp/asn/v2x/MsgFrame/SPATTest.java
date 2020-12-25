@@ -26,14 +26,15 @@ public class SPATTest {
     @Test
     public void per_encode() throws IOException {
         String hex = "36B6FA9DB8E6C0080008010828058082300000006CC0408C0000001B30182500000000000A08C0000001090302300000004240E094000000000048250000000118140940000000460582500000000001A08C0000000550702300000001541E09400000000000";
-        final byte[] bytes = Utils.bytesFromHexString(hex);
+        String hex2 = "3706FC04CDEF853060C183060C183060C001000100C1040030224604000002D0000100100B400B40000400402D002D00000209281000000B40000400402D002D0000100100B400B400000A24604000002D0000100100B400B40000400402D002D00000409281000000B40000400402D002D0000100100B400B400000";
+        final byte[] bytes = Utils.bytesFromHexString(hex2);
         final MessageFrame messageFrame = MessageFrame.per_decode(false, new ByteArrayInputStream(bytes));
         final SPAT spat = messageFrame.spatFrame;
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         messageFrame.spatFrame.per_encode(false, outputStream);
         System.out.println(messageFrame.spatFrame);
-        System.out.println(Arrays.toString(outputStream.toByteArray()));
+        //System.out.println(Arrays.toString(outputStream.toByteArray()));
     }
 
 }

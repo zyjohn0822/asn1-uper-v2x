@@ -28,10 +28,10 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class VehicleClassification {
     @Component(0)
-    BasicVehicleClass classification;
+    public BasicVehicleClass classification;
     @Component(1)
     @Asn1Optional
-    FuelType fuelType;
+    public FuelType fuelType;
 
     public VehicleClassification() {
     }

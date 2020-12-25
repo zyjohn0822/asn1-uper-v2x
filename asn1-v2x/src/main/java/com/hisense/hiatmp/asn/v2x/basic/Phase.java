@@ -33,9 +33,9 @@ import java.util.Collection;
 @Sequence
 public class Phase {
     @Component(0)
-    PhaseID id;
+    public PhaseID id;
     @Component(1)
-    PhaseStateList phaseStates;
+    public PhaseStateList phaseStates;
 
     public Phase() {
     }

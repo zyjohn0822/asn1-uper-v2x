@@ -46,20 +46,20 @@ import java.util.Collection;
 @Setter
 @Sequence
 @HasExtensionMarker
-public class SPAT {
+public class SPAT implements AsnV2x{
     @Component(0)
-    MsgCount msgCount;
+    public MsgCount msgCount;
     @Component(1)
     @Asn1Optional
-    MinuteOfTheYear moy;
+    public MinuteOfTheYear moy;
     @Component(2)
     @Asn1Optional
-    DSecond timestamp;
+    public DSecond timestamp;
     @Component(3)
     @Asn1Optional
-    DescriptiveName name;
+    public DescriptiveName name;
     @Component(4)
-    IntersectionStateList intersections;
+    public IntersectionStateList intersections;
 
     public SPAT() {
     }

@@ -22,10 +22,10 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Setter
 public class PositionOffsetLLV {
     @Component(0)
-    PositionOffsetLL offsetLL;
+    public PositionOffsetLL offsetLL;
     @Component(1)
     @Asn1Optional
-    VerticalOffset offsetV;
+    public VerticalOffset offsetV;
 
     public PositionOffsetLLV() {
     }

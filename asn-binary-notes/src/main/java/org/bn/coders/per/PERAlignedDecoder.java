@@ -86,7 +86,7 @@ public class PERAlignedDecoder extends Decoder {
      */
     protected int decodeConstraintLengthDeterminant(int min, int max, BitArrayInputStream stream) throws Exception {
         if (max <= 0xFFFF) {
-            // 10.9. NOTE 2 � (Tutorial) In the case of the ALIGNED variant 
+            // 10.9. NOTE 2  (Tutorial) In the case of the ALIGNED variant
             // if the length count is bounded above by an upper bound that is 
             // less than 64K, then the constrained whole number encoding 
             // is used for the length.
@@ -127,7 +127,7 @@ public class PERAlignedDecoder extends Decoder {
     /**
      * Decode of the constrained whole number
      * ITU-T X.691. 10.5.
-     * NOTE � (Tutorial) This subclause is referenced by other clauses,
+     * NOTE  (Tutorial) This subclause is referenced by other clauses,
      * and itself references earlier clauses for the production of
      * a nonnegative-binary-integer or a 2's-complement-binary-integer encoding.
      */
@@ -187,7 +187,7 @@ public class PERAlignedDecoder extends Decoder {
     /**
      * Decode the semi-constrained whole number
      * ITU-T X.691. 10.7.
-     * NOTE � (Tutorial) This procedure is used when a lower bound can be
+     * NOTE  (Tutorial) This procedure is used when a lower bound can be
      * identified but not an upper bound. The encoding procedure places
      * the offset from the lower bound into the minimum number of octets
      * as a non-negative-binary-integer, and requires an explicit length
@@ -205,7 +205,7 @@ public class PERAlignedDecoder extends Decoder {
     /**
      * Decode the normally small number
      * ITU-T X.691. 10.6
-     * NOTE � (Tutorial) This procedure is used when encoding
+     * NOTE  (Tutorial) This procedure is used when encoding
      * a non-negative whole number that is expected to be small, but whose size
      * is potentially unlimited due to the presence of an extension marker.
      * An example is a choice index.
@@ -236,7 +236,7 @@ public class PERAlignedDecoder extends Decoder {
     /**
      * Decode the unconstrained whole number
      * ITU-T X.691. 10.8.
-     * NOTE � (Tutorial) This case only arises in the encoding of the
+     * NOTE  (Tutorial) This case only arises in the encoding of the
      * value of an integer type with no lower bound. The procedure
      * encodes the value as a 2's-complement-binary-integer into
      * the minimum number of octets required to accommodate the encoding,

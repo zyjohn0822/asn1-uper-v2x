@@ -24,25 +24,25 @@ import net.gcdc.asn1.datatypes.*;
 public class DDateTime {
     @Component(0)
     @Asn1Optional
-    DYear year;
+    public DYear year;
     @Component(1)
     @Asn1Optional
-    DMonth month;
+    public DMonth month;
     @Component(2)
     @Asn1Optional
-    DDay day;
+    public DDay day;
     @Component(3)
     @Asn1Optional
-    DHour hour;
+    public DHour hour;
     @Component(4)
     @Asn1Optional
-    DMinute minute;
+    public DMinute minute;
     @Component(5)
     @Asn1Optional
-    DSecond second;
+    public DSecond second;
     @Component(6)
     @Asn1Optional
-    DTimeOffset offset;
+    public DTimeOffset offset;
 
     public DDateTime() {
 

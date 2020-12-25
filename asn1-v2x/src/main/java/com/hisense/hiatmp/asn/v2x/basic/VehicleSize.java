@@ -26,12 +26,12 @@ import net.gcdc.asn1.datatypes.*;
 @Getter
 public class VehicleSize {
     @Component(0)
-    VehicleWidth width;
+    public VehicleWidth width;
     @Component(1)
-    VehicleLength length;
+    public VehicleLength length;
     @Component(2)
     @Asn1Optional
-    VehicleHeight height;
+    public VehicleHeight height;
 
     public VehicleSize() {
     }

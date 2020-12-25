@@ -44,35 +44,35 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class RTEData {
     @Component(0)
-    RteId id;
+    public RteId id;
     @Component(1)
-    EventType eventType;
+    public EventType eventType;
     @Component(2)
-    EventSource eventSource;
+    public EventSource eventSource;
     @Component(3)
     @Asn1Optional
-    PositionOffsetLLV eventPos;
+    public PositionOffsetLLV eventPos;
     @Component(4)
     @Asn1Optional
-    Radius eventRadius;
+    public Radius eventRadius;
     @Component(5)
     @Asn1Optional
-    Description description;
+    public Description description;
     @Component(6)
     @Asn1Optional
-    RSITimeDetails timeDetails;
+    public RSITimeDetails timeDetails;
     @Component(7)
     @Asn1Optional
-    RSIPriority priority;
+    public RSIPriority priority;
     @Component(8)
     @Asn1Optional
-    ReferencePathList referencePaths;
+    public ReferencePathList referencePaths;
     @Component(9)
     @Asn1Optional
-    ReferenceLinkList referenceLinks;
+    public ReferenceLinkList referenceLinks;
     @Component(10)
     @Asn1Optional
-    Confidence eventConfidence;
+    public Confidence eventConfidence;
 
     public RTEData() {
     }

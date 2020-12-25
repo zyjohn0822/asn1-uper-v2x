@@ -33,13 +33,13 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Getter
 public class AccelerationSet4Way {
     @Component(0)
-    Acceleration lon;
+    public Acceleration lon;
     @Component(1)
-    Acceleration lat;
+    public Acceleration lat;
     @Component(2)
-    VerticalAcceleration vert;
+    public VerticalAcceleration vert;
     @Component(3)
-    YawRate yaw;
+    public YawRate yaw;
 
     public AccelerationSet4Way() {
     }

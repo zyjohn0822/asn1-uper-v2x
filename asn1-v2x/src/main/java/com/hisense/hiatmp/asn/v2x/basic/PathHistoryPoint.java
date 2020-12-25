@@ -30,18 +30,18 @@ import net.gcdc.asn1.datatypes.Sequence;
 @HasExtensionMarker
 public class PathHistoryPoint {
     @Component(0)
-    PositionOffsetLLV llvOffset;
+    public PositionOffsetLLV llvOffset;
     @Component(1)
-    DDateTime.TimeOffset timeOffset;
+    public DDateTime.TimeOffset timeOffset;
     @Component(2)
     @Asn1Optional
-    Speed speed;
+    public Speed speed;
     @Component(3)
     @Asn1Optional
-    PositionConfidenceSet posAccuracy;
+    public PositionConfidenceSet posAccuracy;
     @Component(4)
     @Asn1Optional
-    CoarseHeading heading;
+    public CoarseHeading heading;
 
     public PathHistoryPoint() {
     }

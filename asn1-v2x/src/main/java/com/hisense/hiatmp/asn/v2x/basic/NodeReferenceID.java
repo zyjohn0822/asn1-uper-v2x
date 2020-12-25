@@ -24,9 +24,9 @@ import net.gcdc.asn1.datatypes.*;
 public class NodeReferenceID {
     @Component(0)
     @Asn1Optional
-    RoadRegulatorID region;
+    public RoadRegulatorID region;
     @Component(1)
-    NodeID id;
+    public NodeID id;
 
     public NodeReferenceID() {
     }

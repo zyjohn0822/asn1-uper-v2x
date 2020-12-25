@@ -35,27 +35,27 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class RTSData {
     @Component(0)
-    RtsId rtsId;
+    public RtsId rtsId;
     @Component(1)
-    SignType signType;
+    public SignType signType;
     @Component(2)
     @Asn1Optional
-    PositionOffsetLLV signPos;
+    public PositionOffsetLLV signPos;
     @Component(3)
     @Asn1Optional
-    Description description;
+    public Description description;
     @Component(4)
     @Asn1Optional
-    RSITimeDetails timeDetails;
+    public RSITimeDetails timeDetails;
     @Component(5)
     @Asn1Optional
-    RSIPriority priority;
+    public RSIPriority priority;
     @Component(6)
     @Asn1Optional
-    ReferencePathList referencePaths;
+    public ReferencePathList referencePaths;
     @Component(7)
     @Asn1Optional
-    ReferenceLinkList referenceLinks;
+    public ReferenceLinkList referenceLinks;
 
     public RTSData() {
     }

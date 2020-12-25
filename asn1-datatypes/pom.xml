@@ -9,27 +9,10 @@
     <inceptionYear>2015</inceptionYear>
 
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>  <!-- manual or repo -->
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
-
-    <scm>
-        <connection>scm:git:git://github.com/alexvoronov/gcdc-asn1.git</connection>
-        <developerConnection>scm:git:git@github.com:alexvoronov/gcdc-asn1.git</developerConnection>
-        <url>https://github.com/alexvoronov/gcdc-asn1</url>
-        <tag>HEAD</tag>
-    </scm>
-
     <build>
         <plugins>
             <plugin>
@@ -41,19 +24,6 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>

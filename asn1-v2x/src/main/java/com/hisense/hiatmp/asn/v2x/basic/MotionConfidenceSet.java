@@ -22,13 +22,13 @@ import net.gcdc.asn1.datatypes.Sequence;
 public class MotionConfidenceSet {
     @Component(0)
     @Asn1Optional
-    SpeedConfidence speedCfd;
+    public SpeedConfidence speedCfd;
     @Component(1)
     @Asn1Optional
-    HeadingConfidence headingCfd;
+    public HeadingConfidence headingCfd;
     @Component(2)
     @Asn1Optional
-    SteeringWheelAngleConfidence steerCfd;
+    public SteeringWheelAngleConfidence steerCfd;
 
     public MotionConfidenceSet() {
     }

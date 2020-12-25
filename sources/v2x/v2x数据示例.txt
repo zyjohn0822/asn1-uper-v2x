@@ -1,0 +1,730 @@
+SPAT发送的消息：755f69645f313233bd2a89c57501000005013660dfcbe28ec00807f80048200390925060000003c003c003c9c1800f000f001e00002306003c003c007800004649418000000f000f000f2706003c003c007800008c1800f000f001e00001492306000003980398039894180e600e601cc0000270603980398073000005648c18000001e001e001e25060078007800f000009c1801e001e003c000018925060000003c003c003c9c1800f000f001e00002306003c003c007800006649418000000f000f000f2706003c003c007800008c1800f000f001e00001c92306000003980398039894180e600e601cc0000270603980398073000007648c18000001e001e001e25060078007800f000009c1801e001e003c000000
+SPAT解析：
+SPAT ::= {
+    msgCnt: 109
+    moy: 458304
+    timeStamp: 9250
+    intersections: IntersectionStateList ::= {
+        IntersectionState ::= {
+            intersectionId: NodeReferenceID ::= {
+                region: 255
+                id: 9
+            }
+            status: 04 00
+            phases: PhaseList ::= {
+                Phase ::= {
+                    id: 33
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 30
+                                nextStartTime: 30
+                                nextDuration: 30
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 35
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 30
+                                nextStartTime: 30
+                                nextDuration: 30
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 41
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 460
+                                nextStartTime: 460
+                                nextDuration: 460
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 460
+                                likelyEndTime: 460
+                                nextStartTime: 920
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 460
+                                likelyEndTime: 460
+                                nextStartTime: 920
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 43
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 60
+                                nextStartTime: 60
+                                nextDuration: 60
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 60
+                                likelyEndTime: 60
+                                nextStartTime: 120
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 60
+                                likelyEndTime: 60
+                                nextStartTime: 120
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 49
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 30
+                                nextStartTime: 30
+                                nextDuration: 30
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 51
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 30
+                                nextStartTime: 30
+                                nextDuration: 30
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 30
+                                likelyEndTime: 30
+                                nextStartTime: 60
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 57
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 460
+                                nextStartTime: 460
+                                nextDuration: 460
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 460
+                                likelyEndTime: 460
+                                nextStartTime: 920
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 460
+                                likelyEndTime: 460
+                                nextStartTime: 920
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+                Phase ::= {
+                    id: 59
+                    phaseStates: PhaseStateList ::= {
+                        PhaseState ::= {
+                            light: 3 (red)
+                            timing: TimeCountingDown ::= {
+                                startTime: 0
+                                likelyEndTime: 60
+                                nextStartTime: 60
+                                nextDuration: 60
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 5 (permissive-green)
+                            timing: TimeCountingDown ::= {
+                                startTime: 60
+                                likelyEndTime: 60
+                                nextStartTime: 120
+                                nextDuration: 0
+                            }
+                        }
+                        PhaseState ::= {
+                            light: 7 (yellow)
+                            timing: TimeCountingDown ::= {
+                                startTime: 60
+                                likelyEndTime: 60
+                                nextStartTime: 120
+                                nextDuration: 0
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+BSM样例：755f69645f313233a476bdc575010000025600002eb7d528470707070704a399af1ab4b614721fc22efc0006047e87e8401fffe022587080a68000060d614712f335e34fdc00101ac28e335a6bc6a578002035851c6f54d78d4c2000406b0a38e9c9af1a94800080003500002ca00000000000000004a399af1aa2561471dba23a7c000de7fe87e8401fffe022587080a68000000d61471ce135e355bc001000
+BSM解析：
+BasicSafetyMessage ::= {
+    msgCnt: 101
+    id: 00 00 00 00 00 00 00 00
+    secMark: 9500
+    pos: Position3D ::= {
+        lat: 399764498
+        long: 1163508958
+        elevation: 467
+    }
+    transmission: 7 (unavailable)
+    speed: 0
+    heading: 14239
+    accelSet: AccelerationSet4Way ::= {
+        long: 2001
+        lat: 2001
+        vert: -127
+        yaw: 0
+    }
+    brakes: BrakeSystemStatus ::= {
+        brakePadel: 1 (off)
+    }
+    size: VehicleSize ::= {
+        width: 150
+        length: 450
+    }
+    vehicleClass: VehicleClassification ::= {
+        classification: 10
+    }
+    safetyExt: VehicleSafetyExtensions ::= {
+        events: 00 00 (3 bits unused)
+        pathHistory: PathHistory ::= {
+            crumbData: PathHistoryPointList ::= {
+                PathHistoryPoint ::= {
+                    llvOffset: PositionOffsetLLV ::= {
+                        offsetLL: Position-LLmD-64b ::= {
+                            lon: 1163508849
+                            lat: 399764591
+                        }
+                    }
+                    timeOffset: 5
+                }
+            }
+        }
+        lights: 00 00 (7 bits unused)
+    }
+}
+
+BasicSafetyMessage ::= {
+    msgCnt: 118
+    id: BE A9 42 38 38 38 38 38
+    secMark: 9600
+    pos: Position3D ::= {
+        lat: 399764645
+        long: 1163509503
+        elevation: 375
+    }
+    transmission: 7 (unavailable)
+    speed: 0
+    heading: 6161
+    accelSet: AccelerationSet4Way ::= {
+        long: 2001
+        lat: 2001
+        vert: -127
+        yaw: 0
+    }
+    brakes: BrakeSystemStatus ::= {
+        brakePadel: 1 (off)
+    }
+    size: VehicleSize ::= {
+        width: 150
+        length: 450
+    }
+    vehicleClass: VehicleClassification ::= {
+        classification: 10
+    }
+    safetyExt: VehicleSafetyExtensions ::= {
+        events: 00 00 (3 bits unused)
+        pathHistory: PathHistory ::= {
+            crumbData: PathHistoryPointList ::= {
+                PathHistoryPoint ::= {
+                    llvOffset: PositionOffsetLLV ::= {
+                        offsetLL: Position-LLmD-64b ::= {
+                            lon: 1163507578
+                            lat: 399764215
+                        }
+                    }
+                    timeOffset: 5
+                }
+                PathHistoryPoint ::= {
+                    llvOffset: PositionOffsetLLV ::= {
+                        offsetLL: Position-LLmD-64b ::= {
+                            lon: 1163508439
+                            lat: 399764399
+                        }
+                    }
+                    timeOffset: 5
+                }
+                PathHistoryPoint ::= {
+                    llvOffset: PositionOffsetLLV ::= {
+                        offsetLL: Position-LLmD-64b ::= {
+                            lon: 1163508715
+                            lat: 399764418
+                        }
+                    }
+                    timeOffset: 5
+                }
+                PathHistoryPoint ::= {
+                    llvOffset: PositionOffsetLLV ::= {
+                        offsetLL: Position-LLmD-64b ::= {
+                            lon: 1163508893
+                            lat: 399764388
+                        }
+                    }
+                    timeOffset: 5
+                }
+            }
+        }
+        lights: 00 00 (7 bits unused)
+    }
+}
+
+RSM样例：755f69645f31323366d77d0476010000280020131323334350000004ce3d680b06e03ff00040002664ccd569f9f811d71d944010269e80000000
+RSM解析：
+RoadsideSafetyMessage ::= {
+    msgCnt: 1
+    id: 31 32 33 34 35 00 00 00
+    refPos: Position3D ::= {
+        lat: 390000000
+        long: 1160000000
+    }
+    participants: ParticipantList ::= {
+        ParticipantData ::= {
+            ptcType: 2 (non-motor)
+            ptcId: 1
+            source: 3 (video)
+            secMark: 12902
+            pos: PositionOffsetLLV ::= {
+                offsetLL: Position-LLmD-64b ::= {
+                    lon: 1074134465
+                    lat: 297241937
+                }
+            }
+            posConfidence: PositionConfidenceSet ::= {
+                pos: 0 (unavailable)
+            }
+            speed: 258
+            heading: 13556
+            size: VehicleSize ::= {
+                width: 0
+                length: 0
+            }
+        }
+    }
+}
+
+RSI样例：755f69645f31323338b5ab04760100004f004224626466686a0000018cc8e5275d434d0c2000198f64d5c110010002001f40081f5750d0aa4664b8adc2001d5d4343b11992c457080075750d209c66491bac2001d5d434d0d1991ca4f080000640
+RSI解析：
+RoadSideInformation ::= {
+    msgCnt: 18
+    id: 31 32 33 34 35 00 00 00
+    refPos: Position3D ::= {
+        lat: 280988051
+        long: 1129829511
+        elevation: 0
+    }
+    rtes: RTEList ::= {
+        RTEData ::= {
+            rteId: 123
+            eventType: 9902
+            eventSource: 0 (unknown)
+            eventPos: PositionOffsetLLV ::= {
+                offsetLL: Position-LL-24B ::= {
+                    lon: 0
+                    lat: 0
+                }
+                offsetV: 0
+            }
+            eventRadius: 1000
+            priority: 01
+            referencePaths: ReferencePathList ::= {
+                ReferencePath ::= {
+                    activePath: PathPointList ::= {
+                        PositionOffsetLLV ::= {
+                            offsetLL: Position-LLmD-64b ::= {
+                                lon: 1129828181
+                                lat: 281005997
+                            }
+                            offsetV: 0
+                        }
+                        PositionOffsetLLV ::= {
+                            offsetLL: Position-LLmD-64b ::= {
+                                lon: 1129828313
+                                lat: 281004053
+                            }
+                            offsetV: 0
+                        }
+                        PositionOffsetLLV ::= {
+                            offsetLL: Position-LLmD-64b ::= {
+                                lon: 1129828884
+                                lat: 280996026
+                            }
+                            offsetV: 0
+                        }
+                        PositionOffsetLLV ::= {
+                            offsetLL: Position-LLmD-64b ::= {
+                                lon: 1129829511
+                                lat: 280988051
+                            }
+                            offsetV: 0
+                        }
+                    }
+                    pathRadius: 200
+                }
+            }
+        }
+    }
+}
+
+MAP样例：755f69645f31323339d29a047601000011021403a1a10060002012a8cc8cf555d43533e33e00020128251a110000226046aea1a01a8cc995c26aea1a1d88cc9622a6aea1a4138cc923746aea1a6868cc8e5262c0004110c070001009602c0004111c0c0b40444c700170001044380a0000f0001009680c0001700010447809000188d5d43403519932b84d5d4343b11992c454d5d434827199246e8d5d434d0d1991ca4cf8000804b0946844000089811aba86cd26332012b9aba86c74a3320e261aba86bfca3321e479aba86b46e3322e0e0b0001044709c000402502b000104430b02d011131c005c0004111e0280003c000402520300005c0004110e0240006235750d9a4c664025735750d8e946641c4c35750d7f946643c8f35750d68dc6645c1c3e00020886251a110000145046aea2001b8cc8da906aea1e2268cc8d8dc6aea1cc508cc8d80a6aea1b78e8cc8d79e2c00040258170001044706c000402501c0b40428a700170001009680a0002f0001044780c0003700010094809000388d5d4400371991b520d5d43c44d1991b1b8d5d4398a11991b014d5d436f1d1991af3cf800082238946844000051411aba8533e233230a29aba85a26a332316c9aba861582332326c1aba8670ee332332d0b000100940dc0004110c3b000100960f02d010a29c005c00040252028001bc0004110e030001dc0004025a024001e235750a67c4664614535750b44d466462d935750c2b0466464d835750ce1dc664665a
+MAP解析：
+MapData ::= {
+    msgCnt: 0
+    timeStamp: 475988
+    nodes: NodeList ::= {
+        Node ::= {
+            id: NodeReferenceID ::= {
+                region: 1
+                id: 149
+            }
+            refPos: Position3D ::= {
+                lat: 280985258
+                long: 1129830304
+            }
+            inLinks: LinkList ::= {
+                Link ::= {
+                    upstreamNodeId: NodeReferenceID ::= {
+                        region: 1
+                        id: 148
+                    }
+                    speedLimits: SpeedLimitList ::= {
+                        RegulatorySpeedLimit ::= {
+                            type: 5 (vehicleMaxSpeed)
+                            speed: 834
+                        }
+                        RegulatorySpeedLimit ::= {
+                            type: 4 (vehicleMinSpeed)
+                            speed: 0
+                        }
+                    }
+                    linkWidth: 2200
+                    points: PointList ::= {
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129827867
+                                    lat: 281010657
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129828313
+                                    lat: 281004053
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129828884
+                                    lat: 280996026
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129829511
+                                    lat: 280988051
+                                }
+                            }
+                        }
+                    }
+                    movements: MovementList ::= {
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1
+                                id: 1091
+                            }
+                            phaseId: 1
+                        }
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1
+                                id: 150
+                            }
+                            phaseId: 2
+                        }
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1
+                                id: 1095
+                            }
+                            phaseId: 3
+                        }
+                    }
+                    lanes: LaneList ::= {
+                        Lane ::= {
+                            laneID: 1
+                            laneWidth: 2200
+                            maneuvers: E0 00 (4 bits unused)
+                            connectsTo: ConnectsToList ::= {
+                                Connection ::= {
+                                    remoteIntersection: NodeReferenceID ::= {
+                                        region: 1
+                                        id: 1091
+                                    }
+                                    connectingLane: ConnectingLane ::= {
+                                        lane: 1
+                                        maneuver: 40 00 (4 bits unused)
+                                    }
+                                    phaseId: 1
+                                }
+                                Connection ::= {
+                                    remoteIntersection: NodeReferenceID ::= {
+                                        region: 1
+                                        id: 150
+                                    }
+                                    connectingLane: ConnectingLane ::= {
+                                        lane: 1
+                                        maneuver: 80 00 (4 bits unused)
+                                    }
+                                    phaseId: 2
+                                }
+                                Connection ::= {
+                                    remoteIntersection: NodeReferenceID ::= {
+                                        region: 1
+                                        id: 1095
+                                    }
+                                    connectingLane: ConnectingLane ::= {
+                                        lane: 1
+                                        maneuver: 20 00 (4 bits unused)
+                                    }
+                                    phaseId: 3
+                                }
+                            }
+                            points: PointList ::= {
+                                RoadPoint ::= {
+                                    posOffset: PositionOffsetLLV ::= {
+                                        offsetLL: Position-LLmD-64b ::= {
+                                            lon: 1129827867
+                                            lat: 281010657
+                                        }
+                                    }
+                                }
+                                RoadPoint ::= {
+                                    posOffset: PositionOffsetLLV ::= {
+                                        offsetLL: Position-LLmD-64b ::= {
+                                            lon: 1129828313
+                                            lat: 281004053
+                                        }
+                                    }
+                                }
+                                RoadPoint ::= {
+                                    posOffset: PositionOffsetLLV ::= {
+                                        offsetLL: Position-LLmD-64b ::= {
+                                            lon: 1129828884
+                                            lat: 280996026
+                                        }
+                                    }
+                                }
+                                RoadPoint ::= {
+                                    posOffset: PositionOffsetLLV ::= {
+                                        offsetLL: Position-LLmD-64b ::= {
+                                            lon: 1129829511
+                                            lat: 280988051
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                Link ::= {
+                    upstreamNodeId: NodeReferenceID ::= {
+                        region: 1
+                        id: 150
+                    }
+                    speedLimits: SpeedLimitList ::= {
+                        RegulatorySpeedLimit ::= {
+                            type: 5 (vehicleMaxSpeed)
+                            speed: 834
+                        }
+                        RegulatorySpeedLimit ::= {
+                            type: 4 (vehicleMinSpeed)
+                            speed: 0
+                        }
+                    }
+                    linkWidth: 2200
+                    points: PointList ::= {
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129832778
+                                    lat: 280959319
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129832403
+                                    lat: 280965964
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129831923
+                                    lat: 280974223
+                                }
+                            }
+                        }
+                        RoadPoint ::= {
+                            posOffset: PositionOffsetLLV ::= {
+                                offsetLL: Position-LLmD-64b ::= {
+                                    lon: 1129831196
+                                    lat: 280982300
+                                }
+                            }
+                        }
+                    }
+                    movements: MovementList ::= {
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1
+                                id: 1095
+                            }
+                            phaseId: 9
+                        }
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1
+                                id: 148
+                            }
+                            phaseId: 10
+                        }
+                        Movement ::= {
+                            remoteIntersection: NodeReferenceID ::= {
+                                region: 1

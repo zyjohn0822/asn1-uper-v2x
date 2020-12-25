@@ -40,41 +40,41 @@ import net.gcdc.asn1.datatypes.*;
 @HasExtensionMarker
 public class ParticipantData {
     @Component(0)
-    ParticipantType ptcType;
+    public ParticipantType ptcType;
     @Component(1)
-    PtcId ptcId;
+    public PtcId ptcId;
     @Component(2)
-    SourceType source;
+    public SourceType source;
     @Component(3)
     @Asn1Optional
-    ID id;
+    public ID id;
     @Component(4)
-    DDateTime.DSecond secMark;
+    public DDateTime.DSecond secMark;
     @Component(5)
-    PositionOffsetLLV pos;
+    public PositionOffsetLLV pos;
     @Component(6)
-    PositionConfidenceSet posConfidence;
+    public PositionConfidenceSet posConfidence;
     @Component(7)
     @Asn1Optional
-    TransmissionState transmission;
+    public TransmissionState transmission;
     @Component(8)
-    Speed speed;
+    public Speed speed;
     @Component(9)
-    Heading heading;
+    public Heading heading;
     @Component(10)
     @Asn1Optional
-    SteeringWheelAngle angle;
+    public SteeringWheelAngle angle;
     @Component(11)
     @Asn1Optional
-    MotionConfidenceSet motionCfd;
+    public MotionConfidenceSet motionCfd;
     @Component(12)
     @Asn1Optional
-    AccelerationSet4Way accelSet;
+    public AccelerationSet4Way accelSet;
     @Component(13)
-    VehicleSize size;
+    public VehicleSize size;
     @Component(14)
     @Asn1Optional
-    VehicleClassification vehicleClass;
+    public VehicleClassification vehicleClass;
 
     /**
      * ParticipantType ::= ENUMERATED {<br/>

@@ -22,12 +22,12 @@ import net.gcdc.asn1.datatypes.*;
 @Getter
 public class Position3D {
     @Component(0)
-    Latitude lat;
+    public Latitude lat;
     @Component(1)
-    Longitude lon;
+    public Longitude lon;
     @Component(2)
     @Asn1Optional
-    Elevation elevation;
+    public Elevation elevation;
 
     public Position3D() {
     }

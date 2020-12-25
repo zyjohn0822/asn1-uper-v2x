@@ -24,13 +24,13 @@ import net.gcdc.asn1.datatypes.Sequence;
 public class RSITimeDetails {
     @Component(0)
     @Asn1Optional
-    MinuteOfTheYear startTime;
+    public MinuteOfTheYear startTime;
     @Component(1)
     @Asn1Optional
-    MinuteOfTheYear endTime;
+    public MinuteOfTheYear endTime;
     @Component(2)
     @Asn1Optional
-    TimeConfidence endTimeConfidence;
+    public TimeConfidence endTimeConfidence;
 
     public RSITimeDetails() {
     }

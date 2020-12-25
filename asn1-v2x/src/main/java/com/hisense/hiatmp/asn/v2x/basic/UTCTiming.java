@@ -41,24 +41,24 @@ import net.gcdc.asn1.datatypes.Sequence;
 @Sequence
 public class UTCTiming {
     @Component(0)
-    TimeMark startUTCTime;
+    public TimeMark startUTCTime;
     @Component(1)
     @Asn1Optional
-    TimeMark minEndUTCTime;
+    public TimeMark minEndUTCTime;
     @Component(2)
     @Asn1Optional
-    TimeMark maxEndUTCTime;
+    public TimeMark maxEndUTCTime;
     @Component(3)
-    TimeMark likelyEndUTCTime;
+    public TimeMark likelyEndUTCTime;
     @Component(4)
     @Asn1Optional
-    Confidence timeConfidence;
+    public Confidence timeConfidence;
     @Component(5)
     @Asn1Optional
-    TimeMark nextStartUTCTime;
+    public TimeMark nextStartUTCTime;
     @Component(6)
     @Asn1Optional
-    TimeMark nextEndUTCTime;
+    public TimeMark nextEndUTCTime;
 
     public UTCTiming() {
     }
