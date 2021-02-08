@@ -10,19 +10,12 @@ import java.io.IOException;
  */
 public interface UperAsnProcess {
     /**
-     * ¹¦ÄÜÃèÊö: <br>
-     * <p>UPER ASN½âÂë</p>
-     * ĞŞ¸ÄÃèÊö: <br>
-     * <p>ĞŞ¸ÄÈË:</p>
-     * <p>ĞŞ¸ÄÔ­Òò:</p>
-     *
-     * @param in     ÊäÈëÁ÷
-     * @param type   v2xÏûÏ¢ÀàĞÍ
-     * @param isUper ÊÇ·ñÎªuper±àÂë trueÎªÊÇuper£¬·ñÔò²»ÊÇ
-     * @return: T
-     * @since: 1.0.0
-     * @Author: zhangyong
-     * @Date: 2020/11/6 19:49
+     * è§£æå·¥å…·å®ç°
+     * @param in è¾“å…¥æµ
+     * @param type æ¶ˆæ¯çš„ç±»å‹
+     * @param isUper æ˜¯å¦uperç¼–ç 
+     * @return
+     * @throws IOException
      */
     AsnV2x decode(byte[] in, AsnV2x.Type type, boolean isUper) throws IOException;
 }

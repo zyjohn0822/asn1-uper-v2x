@@ -12,11 +12,11 @@ import static com.hisense.hiatmp.asn.v2x.common.Utils.hexStringToString;
 public class Parse implements IV2xUperParse{
     private static final Logger logger = LoggerFactory.getLogger(Parse.class);
     /**
-     * 功能描述: <br>
+     * @description: <br>
      * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
+     * <br>
+     * <p></p>
+     * <p></p>
      *
      * @param message hex
      * @return: com.hisense.hiatmp.asn.v2x.common.MessageContainer
@@ -30,11 +30,7 @@ public class Parse implements IV2xUperParse{
     }
 
     /**
-     * 功能描述: <br>
-     * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
+     * @description:<br>
      *
      * @param message hex
      * @return: com.hisense.hiatmp.asn.v2x.common.MessageContainer
@@ -49,7 +45,7 @@ public class Parse implements IV2xUperParse{
             long timestamp = getTimestamp(message);
 
         }catch (Exception e){
-            logger.error("BSM解析出错!" + e.getMessage());
+            logger.error("BSM锟斤拷锟斤拷锟斤拷锟斤拷!" + e.getMessage());
         }
 
 
@@ -62,11 +58,7 @@ public class Parse implements IV2xUperParse{
     }
 
     /**
-     * 功能描述: <br>
-     * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
+     * @description: <br>
      *
      * @param message hex
      * @return: com.hisense.hiatmp.asn.v2x.common.MessageContainer
@@ -80,11 +72,11 @@ public class Parse implements IV2xUperParse{
     }
 
     /**
-     * 功能描述: <br>
+     * @description: <br>
      * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
+     * 锟睫革拷锟斤拷锟斤拷: <br>
+     * <p>锟睫革拷锟斤拷:</p>
+     * <p>锟睫革拷原锟斤拷:</p>
      *
      * @param message hex
      * @return: com.hisense.hiatmp.asn.v2x.common.MessageContainer
@@ -98,11 +90,8 @@ public class Parse implements IV2xUperParse{
     }
 
     /**
-     * 功能描述: <br>
+     * @description: <br>
      * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
      *
      * @param message hex
      * @return: com.hisense.hiatmp.asn.v2x.common.MessageContainer
@@ -115,11 +104,8 @@ public class Parse implements IV2xUperParse{
         return null;
     }
     /**
-     * 功能描述: <br>
+     * @description: <br>
      * <p></p>
-     * 修改描述: <br>
-     * <p>修改人:</p>
-     * <p>修改原因:</p>
      * @param message
      * @return: java.lang.String
      * @since: 1.0.0

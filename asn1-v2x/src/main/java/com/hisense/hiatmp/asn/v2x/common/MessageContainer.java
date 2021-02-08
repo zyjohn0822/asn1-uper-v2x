@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * 包装解析出来的asn信息
+ * asn瑙ｆ瀽瀹瑰櫒
  *
  * @author zhangyong
  * @date 2020/12/23  18:37

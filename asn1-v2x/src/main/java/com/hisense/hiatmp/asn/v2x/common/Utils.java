@@ -6,12 +6,6 @@ package com.hisense.hiatmp.asn.v2x.common;
  */
 public class Utils {
     /**
-     * ¹¦ÄÜÃèÊö: <br>
-     * <p>½«byte[]×ª»»Îª16½øÖÆ×Ö·û´®</p >
-     * ĞŞ¸ÄÃèÊö: <br>
-     * <p>ĞŞ¸ÄÈË:</p >
-     * <p>ĞŞ¸ÄÔ­Òò:</p >
-     *
      * @param bytes byte[]
      * @return: java.lang.String
      * @since: 1.0.0
@@ -21,14 +15,9 @@ public class Utils {
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
     /**
-     * ¹¦ÄÜÃèÊö: <br>
-     * <p>½«16½øÖÆ×Ö·û´®×ª»»³Ébyte[]Êı×é</p>
-     * ĞŞ¸ÄÃèÊö: <br>
-     * <p>ĞŞ¸ÄÈË:</p>
-     * <p>ĞŞ¸ÄÔ­Òò:</p>
-     *
-     * @param s 16½øÖÆ×Ö·û´®
-     * @return: byte[] byte[]Êı×é
+     * @param s 16è¿›åˆ¶å­—ç¬¦ä¸²
+     * @description: <br>
+     * @return: byte[] byte[]
      * @since: 1.0.0
      * @Author: zhangyong
      * @Date: 2020/10/30 14:02
@@ -57,12 +46,8 @@ public class Utils {
         }
         return new String(hexChars);
     }
+
     /**
-     * ¹¦ÄÜÃèÊö: <br>
-     * <p></p>
-     * ĞŞ¸ÄÃèÊö: <br>
-     * <p>ĞŞ¸ÄÈË:</p>
-     * <p>ĞŞ¸ÄÔ­Òò:</p>
      * @param s
      * @return: java.lang.String
      * @since: 1.0.0
@@ -89,15 +74,17 @@ public class Utils {
         }
         return s;
     }
+
     public static int DIVISION_TWO = 2;
+
     public static String hexLowerSort(String hexHeight) throws Exception {
-        if (hexHeight.length() % DIVISION_TWO != 0){
-            throw new Exception("³¤¶È²»ÎªÅ¼Êı");
+        if (hexHeight.length() % DIVISION_TWO != 0) {
+            throw new Exception("ï¿½ï¿½ï¿½È²ï¿½ÎªÅ¼ï¿½ï¿½");
         }
         StringBuilder hexBuilder = new StringBuilder();
-        for(int i = 8; i > 0; i --){
-            int begin = i*2;
-            hexBuilder.append(hexHeight, begin -2, begin);
+        for (int i = 8; i > 0; i--) {
+            int begin = i * 2;
+            hexBuilder.append(hexHeight, begin - 2, begin);
         }
         return hexBuilder.toString();
     }
