@@ -1,13 +1,15 @@
 # 基于JAVA的ASN.1-UPER在网联车（V2X）消息编解码框架介绍
-## 整体项目结构
+
+## 整体项目结构介绍
+
 ```
-├─asn-binary-notes
-├─asn1-datatypes
-├─asn1-uper      
-├─asn1-v2x
-├─asnlab-uper
+├─asn-binary-notes  自动化构建程序，根据asn文件自动构建java代码（更新中）
+├─asn1-datatypes    asn文件类型抽象，即asn类型与java类型的对应
+├─asn1-uper         asn编解码处理程序，即算法的实现 
+├─asn1-v2x          v2x数据java的实现
+├─asnlab-uper       此为收费的解析工具（已废弃，作为解决方案的保留）
 │                                          
-├─dos
+├─dos 算法实现的参考官方文件
 │      ASN.1及其UPER编码在LTE中的应用研究_文小强.pdf
 │      T-REC-X.694-201508-Mapping W3C XML schema definitions into ASN.1.pdf
 │      T-REC-X.695-201508-Registration and application of PER encoding instructions.pdf
@@ -21,7 +23,7 @@
 │      X.693-0112-XML encoding rules (XER).pdf
 │      X.693-0112.pdf
 │      
-└─sources
+└─sources asn文件资源
     └─v2x
         │  v2x数据示例.txt
         │  路侧RSU数据对接方案11-23.docx
@@ -51,6 +53,7 @@
                 VehSize.asn
                 VehStatus.asn
 ```
+
 ## ASN.1的学习、参考文档（算法实现的基础）
 
 [ASN.1-DOC](https://github.com/zyjohn0822/asn1-uper-v2x/tree/master/dos)
@@ -58,7 +61,6 @@
 ## 标准车联网消息集ASN文件参考（包括：BSM、SPAT、RSI、RSM、MAP）
 
 [V2X-ASN-DOC](https://github.com/zyjohn0822/asn1-uper-v2x/tree/master/sources/v2x)
-
 
 ## ASN.1与框架的对应关系
 
@@ -78,6 +80,7 @@ ASN.1 | Java
 `SET OF T`                | also `List<T>`
 
 ## 注解介绍
+
 - @Asn1Optional
 - @Bitstring
 - @Choice
@@ -85,8 +88,8 @@ ASN.1 | Java
 - @HasExtensionMarker
 - @IntRange
 - @OctetString
-- @Sequence 
-- @SizeRange 
+- @Sequence
+- @SizeRange
 
 ## 框架用例介绍
 
