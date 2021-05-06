@@ -1,33 +1,66 @@
-# ASN.1 Datatypes
+# 基于JAVA的ASN.1-UPER在网联车（V2X）消息编解码框架介绍
+## 整体项目结构
+```
+├─asn-binary-notes
+├─asn1-datatypes
+├─asn1-uper      
+├─asn1-v2x
+├─asnlab-uper
+│                                          
+├─dos
+│      ASN.1及其UPER编码在LTE中的应用研究_文小强.pdf
+│      T-REC-X.694-201508-Mapping W3C XML schema definitions into ASN.1.pdf
+│      T-REC-X.695-201508-Registration and application of PER encoding instructions.pdf
+│      X.680-0207-Specification of basic notation.pdf
+│      X.681-0207-Abstract Syntax Notation One (ASN.1)Information object specification.pdf
+│      X.682-0207-Abstract Syntax Notation One (ASN.1) Constraint specification.pdf
+│      X.683-0207-Abstract Syntax Notation One (ASN.1) Parameterization of ASN.1 specifications.pdf
+│      X.690-0207-asn1-ber-der-cer.pdf
+│      X.691-0207-asn1-uper.pdf
+│      X.692-0203-Specification of encoding control notation (ECN).pdf
+│      X.693-0112-XML encoding rules (XER).pdf
+│      X.693-0112.pdf
+│      
+└─sources
+    └─v2x
+        │  v2x数据示例.txt
+        │  路侧RSU数据对接方案11-23.docx
+        │  
+        └─Release20190724
+                BSM.asn
+                DefAcceleration.asn
+                DefMotion.asn
+                DefPosition.asn
+                DefPositionOffset.asn
+                DefTime.asn
+                Map.asn
+                MapLane.asn
+                MapLink.asn
+                MapNode.asn
+                MapPoint.asn
+                MapSpeedLimit.asn
+                MsgFrame.asn
+                RSI.asn
+                RSM.asn
+                SignalPhaseAndTiming.asn
+                SPATIntersectionState.asn
+                VehBrake.asn
+                VehClass.asn
+                VehEmgExt.asn
+                VehSafetyExt.asn
+                VehSize.asn
+                VehStatus.asn
+```
+## ASN.1的学习、参考文档（算法实现的基础）
 
-Java annotations to augment Java classes with information from [ASN.1](http://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One) specifications. These annotations can later be used by encoders like [asn1-uper](https://github.com/alexvoronov/gcdc-asn1/tree/master/asn1-uper).
+[ASN.1-DOC](https://github.com/zyjohn0822/asn1-uper-v2x/tree/master/dos)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents:**
+## 标准车联网消息集ASN文件参考（包括：BSM、SPAT、RSI、RSM、MAP）
 
-  - [Status](#status)
-  - [Supported ASN.1 Features](#supported-asn1-features)
-  - [Design choices](#design-choices)
-  - [Examples](#examples)
-    - [Example 1: Without restrictions or extension markers](#example-1-without-restrictions-or-extension-markers)
-    - [Example 2: With Restrictions, no extension markers](#example-2-with-restrictions-no-extension-markers)
-    - [Example 3: With restrictions and extension markers](#example-3-with-restrictions-and-extension-markers)
-  - [Other ASN.1 tools](#other-asn1-tools)
-  - [Acknowledgments](#acknowledgments)
-  - [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+[V2X-ASN-DOC](https://github.com/zyjohn0822/asn1-uper-v2x/tree/master/sources/v2x)
 
 
-## Status
-
-Datatypes are enough to handle [camdenm](https://github.com/alexvoronov/camdenm). There is no compiler yet, so Java classes and annotations have to be created and added manually.
-
-
-
-## Supported ASN.1 Features
-The following ASN.1 features are implemented:
+## ASN.1与框架的对应关系
 
 ASN.1 | Java
 ----- | ----
@@ -44,608 +77,552 @@ ASN.1 | Java
 `SEQUENCE OF T`           | `List<T>` (or `SequenceOfT extends Asn1SequenceOf<T>`)
 `SET OF T`                | also `List<T>`
 
+## 注解介绍
+- @Asn1Optional
+- @Bitstring
+- @Choice
+- @Component
+- @HasExtensionMarker
+- @IntRange
+- @OctetString
+- @Sequence 
+- @SizeRange 
 
-## Design choices
+## 框架用例介绍
 
+### Example 1: 基本类型
 
-Design goal was to make the library as clean and simple as possible for the end user, even if it will not be very performant. Inspiration was taken from GSON, where they use reflection to extract fields from classes.
+- INTEGER
 
-ASN.1 has three major ways to construct complex datatypes: `SEQUENCE`, `CHOICE` and `SEQUENCE OF`. They correspond to `struct `, `union` and arrays of C language. (ASN.1 `SET` and `SET OF` are pretty much identical to `SEQUENCE` and `SEQUENCE OF`, at least for PER, so they are not considered separately).
-
-A `SEQUENCE` is encoded as an ordinary Java class. Java Reflection API `Class.getFields()` can return all fields of a class. The documentation says that there is no guarantee on the order in which the fields are returned, however, since Java version 1.6 the fields are returned in the declaration order.
-
-A `CHOICE` is encoded as an ordinary Java class as well, with exactly one field in the class being non-null, corresponding to the element present.
-
-A `SEQUENCE OF` is encoded as `List<T>`. Java type erasure in generics results in the type being lost at run-time if there is no object, so decoding will not work for generics (encoding is fine). So the class have to be non-generic and extend `List<T>`. GSON allows generic classes by using extra parameters. Scala also solved this issue, using Manifests and implicit parameters. For this library, just making a non-generic wrapper class with a concrete type for `List` is good enough. To make instantiation of abstract `List<T>` easier, there is `Asn1SequenceOF<T>` (it was not possible to extend, for example, `ArrayList<T>` directly). 
-
-`OCTET STRING` is just a `SEQUENCE OF byte`. `BIT STRING` is a `SEQUENCE OF boolean`. `ENUMERATED` is an enum.
-
-Integers in ASN.1 are unbounded by default, so `BigInteger` is used to represent them. If an integer is constrained, then `long`, `int` or `short` will be enough to represent it.
-
-All strings, including `IA5String`, `UTF8String` and  `VisibleString` are represented by Java `String`, the difference is only in annotations.
-
-`OPTIONAL` is implemented as a nullable field with an annotation. Using built-in Java 8 `Optional<T>` was not possible due to type erasure, and creating non-generic wrapper classes every time `OPTIONAL` is used is too much of a burden, so a simple nullable field is used. The name for annotation is `@Asn1Optional`, to not clash with built-in `Optional`.
-
-`DEFAULT` is treated in ASN.1 almost exactly as `OPTIONAL`, so the annotation from `OPTIONAL` is used for `DEFAULT` as well. The only difference is that `DEFAULT` have a static initializer in the Java class.
-
-ASN.1 restrictions are implemented as Java Annotations. Integers have `@IntRange`, sequences have `@SizeRange` and `@FixedSize`, strings have alphabets etc.
-
-ASN.1 Extensions are marked by annotations too. A sequence that has an extension marker have annotation `@HasExtensionMarker`, and all elements that come after that marker in ASN.1 are marked with `@IsExtension` in the Java class. `@IntRange()` and `@SizeRange()` also support an optional argument `hasExtension=true`, which is set to `false` by default.
-
-
-
-
-## Examples
-
-
-
-Here's how three examples from the Annex A of the UPER standard ([ITU X.691](https://www.itu.int/rec/T-REC-X.691/en)) would be encoded in Java.
-
-### Example 1: Without restrictions or extension markers
-
-See this code in action as a part of [asn1-uper](https://github.com/alexvoronov/gcdc-asn1/tree/master/asn1-uper) test suite in [UperEncoderExample1BasicTest.java](https://github.com/alexvoronov/gcdc-asn1/blob/master/asn1-uper/src/test/java/net/gcdc/asn1/uper/UperEncoderExample1BasicTest.java).
-
-ASN.1:
-
-
-```asn1
-PersonnelRecord ::= [APPLICATION 0] IMPLICIT SET { 
-  name Name,
-  title [0] VisibleString, 
-  number EmployeeNumber, 
-  dateOfHire [1] Date, 
-  nameOfSpouse [2] Name,
-  children [3] IMPLICIT
-  SEQUENCE OF ChildInformation DEFAULT {} }
-
-ChildInformation ::= SET { 
-  name Name,
-  dateOfBirth [0] Date} 
-
-Name ::= [APPLICATION 1] IMPLICIT SEQUENCE { 
-  givenName VisibleString,
-  initial VisibleString,
-  familyName VisibleString }
-
-EmployeeNumber ::= [APPLICATION 2] IMPLICIT INTEGER
-
-Date ::= [APPLICATION 3] IMPLICIT VisibleString -- YYYYMMDD
+```asn.1
+MsgCount ::= INTEGER (0..127)
 ```
 
-
-Corresponding Java code:
+对应Java代码：
 
 ```java
+
+@IntRange(minValue = 0, maxValue = 127)
+public class MsgCount extends Asn1Integer {
+    public MsgCount() {
+        this(0);
+    }
+
+    public MsgCount(int value) {
+        super(value);
+    }
+}
+```
+
+- ENUMERATED - Without restrictions or extension markers
+
+```asn.1
+PositionConfidence ::= ENUMERATED {
+		unavailable (0), -- Not Equipped or unavailable
+		a500m (1), -- 500m or about 5 * 10 ^ -3 decimal degrees
+		a200m (2), -- 200m or about 2 * 10 ^ -3 decimal degrees
+		a100m (3), -- 100m or about 1 * 10 ^ -3 decimal degrees
+		a50m (4), -- 50m or about 5 * 10 ^ -4 decimal degrees
+		a20m (5), -- 20m or about 2 * 10 ^ -4 decimal degrees
+		a10m (6), -- 10m or about 1 * 10 ^ -4 decimal degrees
+		a5m (7), -- 5m or about 5 * 10 ^ -5 decimal degrees
+		a2m (8), -- 2m or about 2 * 10 ^ -5 decimal degrees
+		a1m (9), -- 1m or about 1 * 10 ^ -5 decimal degrees
+		a50cm (10), -- 0.50m or about 5 * 10 ^ -6 decimal degrees
+		a20cm (11), -- 0.20m or about 2 * 10 ^ -6 decimal degrees
+		a10cm (12), -- 0.10m or about 1 * 10 ^ -6 decimal degrees
+		a5cm (13), -- 0.05m or about 5 * 10 ^ -7 decimal degrees
+		a2cm (14), -- 0.02m or about 2 * 10 ^ -7 decimal degrees
+		a1cm (15) -- 0.01m or about 1 * 10 ^ -7 decimal degrees
+	}
+```
+
+对应的java代码：
+
+```java
+public enum PositionConfidence {
+    /**
+     * -- Not Equipped or unavailable
+     */
+    unavailable(0),
+    /**
+     * -- 500m or about 5 * 10 ^ -3 decimal degrees
+     */
+    a500m(1),
+    /**
+     * -- 200m or about 2 * 10 ^ -3 decimal degrees
+     */
+    a200m(2),
+    /**
+     * -- 100m or about 1 * 10 ^ -3 decimal degrees
+     */
+    a100m(3),
+    /**
+     * -- 50m or about 5 * 10 ^ -4 decimal degrees
+     */
+    a50m(4),
+    /**
+     * -- 20m or about 2 * 10 ^ -4 decimal degrees
+     */
+    a20m(5),
+    /**
+     * -- 10m or about 1 * 10 ^ -4 decimal degrees
+     */
+    a10m(6),
+    /**
+     * -- 5m or about 5 * 10 ^ -5 decimal degrees
+     */
+    a5m(7),
+    /**
+     * -- 2m or about 2 * 10 ^ -5 decimal degrees
+     */
+    a2m(8),
+    /**
+     * -- 1m or about 1 * 10 ^ -5 decimal degrees
+     */
+    a1m(9),
+    /**
+     * -- 0.50m or about 5 * 10 ^ -6 decimal degrees
+     */
+    a50cm(10),
+    /**
+     * -- 0.20m or about 2 * 10 ^ -6 decimal degrees
+     */
+    a20cm(11),
+    /**
+     * -- 0.10m or about 1 * 10 ^ -6 decimal degrees
+     */
+    a10cm(12),
+    /**
+     * -- 0.05m or about 5 * 10 ^ -7 decimal degrees
+     */
+    a5cm(13),
+    /**
+     * -- 0.02m or about 2 * 10 ^ -7 decimal degrees
+     */
+    a2cm(14),
+    /**
+     * -- 0.01m or about 1 * 10 ^ -7 decimal degrees
+     */
+    a1cm(15);
+    private final int value;
+
+    PositionConfidence(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"value\":")
+                .append(value);
+        sb.append('}');
+        return sb.toString();
+    }
+}
+```
+
+- ENUMERATED - restrictions or extension markers
+
+```asn.1
+ResponseType ::= ENUMERATED {
+		notInUseOrNotEquipped (0),
+		emergency (1), -- active service call at emergency level
+		nonEmergency (2), -- also used when returning from service call
+		pursuit (3), -- sender driving may be erratic
+		stationary (4), -- sender is not moving, stopped along roadside
+		slowMoving (5), -- such a litter trucks, etc.
+		stopAndGoMovement (6), -- such as school bus or garbage truck
+		...
+	}
+```
+
+对应java代码：
+
+```java
+
+@HasExtensionMarker
+public enum ResponseType {
+    /**
+     *
+     */
+    notInUseOrNotEquipped(0),
+    /**
+     * -- active service call at emergency level
+     */
+    emergency(1),
+    /**
+     * -- also used when returning from service call
+     */
+    nonEmergency(2),
+    /**
+     * -- sender driving may be erratic
+     */
+    pursuit(3),
+    /**
+     * -- sender is not moving, stopped along roadside
+     */
+    stationary(4),
+    /**
+     * -- such a litter trucks, etc.
+     */
+    slowMoving(5),
+    /**
+     * -- such as school bus or garbage truck
+     */
+    stopAndGoMovement(6),
+    zoro(7);
+    private final int value;
+
+    ResponseType(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(value);
+        return builder.toString();
+    }
+}
+```
+
+- IA5String
+
+```asn.1
+DescriptiveName ::= IA5String (SIZE(1..63))
+```
+
+对应java代码：
+
+```java
+
+@RestrictedString(CharacterRestriction.IA5String)
+@SizeRange(minValue = 1, maxValue = 63)
+public class DescriptiveName extends Asn1String {
+    public DescriptiveName() {
+        this("");
+    }
+
+    public DescriptiveName(String value) {
+        super(value);
+    }
+}
+```
+
+- OCTET STRING
+
+```asn.1
+id OCTET STRING (SIZE(8))
+``` 
+
+对应的Java代码：
+
+```java
+
+@SizeRange(minValue = 8, maxValue = 8)
+public class ID extends Asn1SequenceOf<Byte> {
+    // Two constructors -- choose any, or add more.
+    public ID(Byte... coll) {
+        this(Arrays.asList(coll));
+    }
+
+    public ID(Collection<Byte> coll) {
+        super(coll);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\"");
+        byte[] bytes = new byte[bakingList.size()];
+        for (int i = 0; i < bakingList.size(); i++) {
+            bytes[i] = bakingList.get(i);
+        }
+        sb.append(new String(bytes));
+        sb.append("\"");
+        return sb.toString();
+    }
+}
+```
+
+### Example 2:复合类型 restrictions or extension markers
+
+- SEQUENCE:
+
+```asn1
+BSM DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+-- imports and exports
+
+EXPORTS BasicSafetyMessage;
+IMPORTS AccelerationSet4Way FROM DefAcceleration
+		BrakeSystemStatus FROM VehBrake
+		VehicleSize FROM VehSize
+		Position3D, PositionConfidenceSet, PositionalAccuracy FROM DefPosition
+		DSecond, TimeConfidence FROM DefTime
+		TransmissionState FROM VehStatus
+		Speed, Heading, SteeringWheelAngle, MotionConfidenceSet FROM DefMotion
+		MsgCount FROM MsgFrame
+		VehicleClassification FROM VehClass
+		VehicleSafetyExtensions FROM VehSafetyExt
+		VehicleEmergencyExtensions FROM VehEmgExt;
+	
+	BasicSafetyMessage ::= SEQUENCE {
+		msgCnt MsgCount,
+		id OCTET STRING (SIZE(8)),
+		-- temperary vehicle ID
+		secMark DSecond,
+		timeConfidence TimeConfidence OPTIONAL,
+		pos Position3D,
+		posAccuracy PositionalAccuracy OPTIONAL,
+		-- Accuracy for GNSS system
+		posConfidence PositionConfidenceSet OPTIONAL,
+		-- Realtime position confidence
+		transmission TransmissionState,
+		speed Speed,
+		heading Heading,
+		angle SteeringWheelAngle OPTIONAL,
+		motionCfd MotionConfidenceSet OPTIONAL,
+		accelSet AccelerationSet4Way,
+		brakes BrakeSystemStatus,
+		size VehicleSize,
+		vehicleClass VehicleClassification,
+		-- VehicleClassification includes BasicVehicleClass and other extendible type
+		safetyExt VehicleSafetyExtensions OPTIONAL,
+		emergencyExt VehicleEmergencyExtensions OPTIONAL,
+		...
+	}
+	
+END
+```
+
+对应的java代码：
+
+```java
+
+@Getter
+@Setter
 @Sequence
-public static class PersonenelRecord {
-  Name name;
-  EmployeeNumber number;
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String title;
-  Date dateOfHire;
-  Name nameOfSpouse;
-  @Asn1Optional SequenceOfChildInformation sequenceOfChildInformation = new SequenceOfChildInformation();
+@HasExtensionMarker
+public class BasicSafetyMessage implements AsnV2x {
 
-  public PersonenelRecord() {
-  this(new Name(), new EmployeeNumber(), "", new Date(), new Name(), new SequenceOfChildInformation());
-  }
+    @Component(0)
+    public MsgCount msgCnt;
 
-  public PersonenelRecord(
-    Name name,
-    EmployeeNumber number,
-    String title,
-    Date dateOfHire,
-    Name nameOfSpouse,
-    SequenceOfChildInformation sequenceOfChildInformation
+    @Component(1)
+    public ID id;
+
+    @Component(2)
+    public DSecond secMark;
+
+    @Component(3)
+    @Asn1Optional
+    public TimeConfidence timeConfidence;
+
+    @Component(4)
+    public Position3D pos;
+
+    @Component(5)
+    @Asn1Optional
+    public PositionalAccuracy posAccuracy;
+
+    @Component(6)
+    @Asn1Optional
+    public PositionConfidenceSet posConfidence;
+
+    @Component(7)
+    public TransmissionState transmission;
+
+    @Component(8)
+    public Speed speed;
+
+    @Component(9)
+    public Heading heading;
+
+    @Component(10)
+    @Asn1Optional
+    public SteeringWheelAngle angle;
+
+    @Component(11)
+    @Asn1Optional
+    public MotionConfidenceSet motionCfd;
+
+    @Component(12)
+    public AccelerationSet4Way accelSet;
+
+    @Component(13)
+    public BrakeSystemStatus brakes;
+
+    @Component(14)
+    public VehicleSize size;
+
+    @Component(15)
+    public VehicleClassification vehicleClass;
+
+    @Component(16)
+    @Asn1Optional
+    public VehicleSafetyExtensions safetyExt;
+
+    @Component(17)
+    @Asn1Optional
+    public VehicleEmergencyExtensions emergencyExt;
+
+    public BasicSafetyMessage() {
+    }
+
+    public BasicSafetyMessage(
+            MsgCount msgCnt,
+            ID id,
+            DSecond secMark,
+            TimeConfidence timeConfidence,
+            Position3D pos,
+            PositionalAccuracy posAccuracy,
+            PositionConfidenceSet posConfidence,
+            TransmissionState transmission,
+            Speed speed,
+            Heading heading,
+            SteeringWheelAngle angle,
+            MotionConfidenceSet motionCfd,
+            AccelerationSet4Way accelSet,
+            BrakeSystemStatus brakes,
+            VehicleSize size,
+            VehicleClassification vehicleClass,
+            VehicleSafetyExtensions safetyExt,
+            VehicleEmergencyExtensions emergencyExt
     ) {
-  this.name = name;
-  this.number = number;
-  this.title = title;
-  this.dateOfHire = dateOfHire;
-  this.nameOfSpouse = nameOfSpouse;
-  this.sequenceOfChildInformation = sequenceOfChildInformation;
-  }
-}
-
-@Sequence
-public static class Name {
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String givenName;
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String initial;
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String familyName;
-
-  public Name() { this("", "", ""); }
-  public Name(String givenName, String initial, String familyName) {
-  this.givenName = givenName;
-  this.initial = initial;
-  this.familyName = familyName;
-  }
-}
-
-public static class EmployeeNumber extends Asn1BigInteger {
-  public EmployeeNumber() { this(0); }
-  public EmployeeNumber(long value) { this(BigInteger.valueOf(value)); }
-  public EmployeeNumber(BigInteger value) { super(value); }
-}
-
-@RestrictedString(CharacterRestriction.VisibleString)
-public static class Date extends Asn1String {
-  public Date() { this(""); }
-  public Date(String value) { super(value); }
-}
-
-@Sequence
-public static class ChildInformation {
-  Name name;
-  Date dateOfBirth;
-
-  public ChildInformation() { this(new Name(), new Date()); }
-  public ChildInformation(Name name, Date dateOfBirth) {
-  this.name = name;
-  this.dateOfBirth = dateOfBirth;
-  }
-}
-
-public static class SequenceOfChildInformation extends Asn1SequenceOf<ChildInformation> {
-  public SequenceOfChildInformation() { super(); }
-  public SequenceOfChildInformation(Collection<ChildInformation> coll) { super(coll); }
+        this.msgCnt = msgCnt;
+        this.id = id;
+        this.secMark = secMark;
+        this.timeConfidence = timeConfidence;
+        this.pos = pos;
+        this.posAccuracy = posAccuracy;
+        this.posConfidence = posConfidence;
+        this.transmission = transmission;
+        this.speed = speed;
+        this.heading = heading;
+        this.angle = angle;
+        this.motionCfd = motionCfd;
+        this.accelSet = accelSet;
+        this.brakes = brakes;
+        this.size = size;
+        this.vehicleClass = vehicleClass;
+        this.safetyExt = safetyExt;
+        this.emergencyExt = emergencyExt;
+    }
 }
 ```
 
-And the use of those classes:
-
-```java
-PersonenelRecord record = new PersonenelRecord(
-  new Name(
-  "John",
-  "P",
-  "Smith"
-  ),
-  new EmployeeNumber(51),
-  "Director",
-  new Date("19710917"),
-  new Name(
-  "Mary",
-  "T",
-  "Smith"),
-  new SequenceOfChildInformation(Arrays.asList(
-  new ChildInformation(
-    new Name(
-    "Ralph",
-    "T",
-    "Smith"
-    ),
-    new Date("19571111")
-  ),
-  new ChildInformation(
-    new Name(
-    "Susan",
-    "B",
-    "Jones"
-    ),
-    new Date("19590717")
-  )
-  ))
-);
-```
-
-
-
-### Example 2: With Restrictions, no extension markers
-
-See code in [UperEncoderExample2RestrictionTest.java](https://github.com/alexvoronov/geonetworking/blob/master/asn1-uper/src/test/java/net/gcdc/asn1/uper/UperEncoderExample2RestrictionTest.java)
-
-ASN.1:
+- CHOICE
 
 ```asn1
-PersonnelRecord ::= [APPLICATION 0] IMPLICIT SET {
-  name Name,
-  title [0] VisibleString,
-  number EmployeeNumber,
-  dateOfHire [1] Date,
-  nameOfSpouse [2] Name,
-  children [3] IMPLICIT
-  SEQUENCE OF ChildInformation DEFAULT {} }
-
-ChildInformation ::= SET {
-  name Name,
-  dateOfBirth [0] Date}
-
-Name ::= [APPLICATION 1] IMPLICIT SEQUENCE {
-  givenName NameString,
-  initial NameString (SIZE(1)),
-  familyName NameString }
-
-EmployeeNumber ::= [APPLICATION 2] IMPLICIT INTEGER
-
-Date ::= [APPLICATION 3] IMPLICIT VisibleString (FROM("0".."9") ^ SIZE(8)) -- YYYYMMDD
-
-NameString ::= VisibleString (FROM("a".."z" | "A".."Z" | "-.") ^ SIZE(1..64))
+MessageFrame ::= CHOICE { 
+		bsmFrame BasicSafetyMessage,
+		mapFrame MapData,
+		rsmFrame RoadsideSafetyMessage,
+		spatFrame SPAT,
+		rsiFrame RoadSideInformation,
+		...
+	}
 ```
 
-Java classes:
+对应的java代码：
 
 ```java
-@Sequence
-public static class PersonenelRecord {
-  Name name;
-  EmployeeNumber number;
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String title;
-  Date dateOfHire;
-  Name nameOfSpouse;
-  @Asn1Optional SequenceOfChildInformation sequenceOfChildInformation = new SequenceOfChildInformation();
 
-  public PersonenelRecord() {
-    this(new Name(), new EmployeeNumber(), "", new Date(), new Name(), new SequenceOfChildInformation());
-  }
-
-  public PersonenelRecord(
-      Name name,
-      EmployeeNumber number,
-      String title,
-      Date dateOfHire,
-      Name nameOfSpouse,
-      SequenceOfChildInformation sequenceOfChildInformation
-      ) {
-    this.name = name;
-    this.number = number;
-    this.title = title;
-    this.dateOfHire = dateOfHire;
-    this.nameOfSpouse = nameOfSpouse;
-    this.sequenceOfChildInformation = sequenceOfChildInformation;
-  }
-}
-
-@Sequence
-public static class Name {
-  NameString givenName;
-  @FixedSize(1)
-  NameString initial;
-  NameString familyName;
-
-  public Name() { this(new NameString(), new NameString(), new NameString()); }
-  public Name(NameString givenName, NameString initial, NameString familyName) {
-    this.givenName = givenName;
-    this.initial = initial;
-    this.familyName = familyName;
-  }
-}
-
-//"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-."
-@RestrictedString(value = CharacterRestriction.VisibleString, alphabet = NameString.NameStringAlphabet.class)
-@SizeRange(minValue = 1, maxValue = 64)
-public static class NameString extends Asn1String {
-  public NameString() { this(""); }
-  public NameString(String value) { super(value); }
-
-  public static class NameStringAlphabet extends Alphabet {
-    private final static String chars =
-        new AlphabetBuilder().withRange('a', 'z').withRange('A','Z').withChars("-.").chars();
-    public NameStringAlphabet() {
-      super(chars);
-    }
-  }
-}
-
-public static class EmployeeNumber extends Asn1BigInteger {
-  public EmployeeNumber() { this(0); }
-  public EmployeeNumber(long value) { this(BigInteger.valueOf(value)); }
-  public EmployeeNumber(BigInteger value) { super(value); }
-}
-
-@RestrictedString(value = CharacterRestriction.VisibleString, alphabet = Date.DateAlphabet.class)
-@FixedSize(8)
-public static class Date extends Asn1String {
-  public Date() { this(""); }
-  public Date(String value) { super(value); }
-  public static class DateAlphabet extends Alphabet {
-    private final static String chars = new AlphabetBuilder().withRange('0', '9').chars();
-    public DateAlphabet() {
-      super(chars);
-    }
-  }
-}
-
-@Sequence
-public static class ChildInformation {
-  Name name;
-  Date dateOfBirth;
-
-  public ChildInformation() { this(new Name(), new Date()); }
-  public ChildInformation(Name name, Date dateOfBirth) {
-    this.name = name;
-    this.dateOfBirth = dateOfBirth;
-  }
-}
-
-public static class SequenceOfChildInformation extends Asn1SequenceOf<ChildInformation> {
-  public SequenceOfChildInformation() { super(); }
-  public SequenceOfChildInformation(Collection<ChildInformation> coll) { super(coll); }
-}
-```
-
-And example object instantiation:
-
-```java
-PersonenelRecord record = new PersonenelRecord(
-  new Name(
-    new NameString("John"),
-    new NameString("P"),
-    new NameString("Smith")
-  ),
-  new EmployeeNumber(51),
-  "Director",
-  new Date("19710917"),
-  new Name(
-    new NameString("Mary"),
-    new NameString("T"),
-    new NameString("Smith")
-  ),
-  new SequenceOfChildInformation(Arrays.asList(
-    new ChildInformation(
-      new Name(
-        new NameString("Ralph"),
-        new NameString("T"),
-        new NameString("Smith")
-      ),
-      new Date("19571111")
-    ),
-    new ChildInformation(
-      new Name(
-        new NameString("Susan"),
-        new NameString("B"),
-        new NameString("Jones")
-      ),
-      new Date("19590717")
-    )
-  ))
-);
-```
-
-### Example 3: With restrictions and extension markers
-
-See code in [UperEncoderExample3ExtensionTest.java](https://github.com/alexvoronov/geonetworking/blob/master/asn1-uper/src/test/java/net/gcdc/asn1/uper/UperEncoderExample3ExtensionTest.java).
-
-ASN.1 schema:
-
-```asn1
-PersonnelRecord ::= [APPLICATION 0] IMPLICIT SET {
-name Name,
-title [0] VisibleString, 
-number EmployeeNumber, 
-dateOfHire [1] Date, 
-nameOfSpouse [2] Name,
-children [3] IMPLICIT
-SEQUENCE (SIZE(2, ...)) OF ChildInformation OPTIONAL,
-... }
-
-ChildInformation ::= SET { 
-name Name, 
-dateOfBirth [0] Date,
-...,
-sex [1] IMPLICIT ENUMERATED {male(1), female(2),
-unknown(3)} OPTIONAL 
-}
-
-Name ::= [APPLICATION 1] IMPLICIT SEQUENCE { 
-  givenName NameString,
-  initial NameString (SIZE(1)),
-  familyName NameString,
-  ... 
-}
-
-EmployeeNumber ::= [APPLICATION 2] IMPLICIT INTEGER (0..9999, ...)
-
-Date ::= [APPLICATION 3] IMPLICIT VisibleString
-(FROM("0".."9") ^ SIZE(8, ..., 9..20)) -- YYYYMMDD 
-
-NameString ::= VisibleString
-(FROM("a".."z" | "A".."Z" | "-.") ^ SIZE(1..64, ...))
-```
-
-Corresponding Java code:
-
-```java
-@Sequence
+@Choice
+@Getter
 @HasExtensionMarker
-public static class PersonenelRecord {
-  Name name;
-  EmployeeNumber number;
-  @RestrictedString(CharacterRestriction.VisibleString)
-  String title;
-  Date dateOfHire;
-  Name nameOfSpouse;
-  @Asn1Optional SequenceOfChildInformation sequenceOfChildInformation;
+public class MessageFrame {
 
-  public PersonenelRecord() {
-    this(new Name(), new EmployeeNumber(), "", new Date(), new Name(), new SequenceOfChildInformation());
-  }
 
-  public PersonenelRecord(
-      Name name,
-      EmployeeNumber number,
-      String title,
-      Date dateOfHire,
-      Name nameOfSpouse,
-      SequenceOfChildInformation sequenceOfChildInformation
-      ) {
-    this.name = name;
-    this.number = number;
-    this.title = title;
-    this.dateOfHire = dateOfHire;
-    this.nameOfSpouse = nameOfSpouse;
-    this.sequenceOfChildInformation = sequenceOfChildInformation;
-  }
-}
+    public BasicSafetyMessage bsmFrame;
+    public MapData mapData;
+    public RoadSideSafetyMessage rsmFrame;
+    public SPAT spatFrame;
+    public RoadSideInformation rsiFrame;
 
-@Sequence
-@HasExtensionMarker
-public static class Name {
-  NameString givenName;
-  @FixedSize(1)
-  NameString initial;
-  NameString familyName;
-
-  public Name() { this(new NameString(), new NameString(), new NameString()); }
-  public Name(NameString givenName, NameString initial, NameString familyName) {
-    this.givenName = givenName;
-    this.initial = initial;
-    this.familyName = familyName;
-  }
-}
-
-//"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-."
-@RestrictedString(value = CharacterRestriction.VisibleString, alphabet = NameString.NameStringAlphabet.class)
-@SizeRange(minValue = 1, maxValue = 64, hasExtensionMarker = true)
-public static class NameString extends Asn1String {
-  public NameString() { this(""); }
-  public NameString(String value) { super(value); }
-
-  public static class NameStringAlphabet extends Alphabet {
-    private final static String chars =
-        new AlphabetBuilder().withRange('a', 'z').withRange('A','Z').withChars("-.").chars();
-    public NameStringAlphabet() {
-      super(chars);
+    public MessageFrame() {
     }
-  }
-}
 
-@IntRange(minValue = 0, maxValue = 9999, hasExtensionMarker = true)
-public static class EmployeeNumber extends Asn1Integer {
-  public EmployeeNumber() { this(0); }
-  public EmployeeNumber(long value) { super(value); }
-}
-
-@RestrictedString(value = CharacterRestriction.VisibleString, alphabet = Date.DateAlphabet.class)
-@SizeRange(minValue = 8, maxValue = 8, hasExtensionMarker = true)
-public static class Date extends Asn1String {
-  public Date() { this(""); }
-  public Date(String value) { super(value); }
-  public static class DateAlphabet extends Alphabet {
-    private final static String chars = new AlphabetBuilder().withRange('0', '9').chars();
-    public DateAlphabet() {
-      super(chars);
+    public MessageFrame(BasicSafetyMessage bsmFrame,
+                        MapData mapData,
+                        RoadSideSafetyMessage rsmFrame,
+                        SPAT spatFrame,
+                        RoadSideInformation rsiFrame) {
+        this.bsmFrame = bsmFrame;
+        this.mapData = mapData;
+        this.rsmFrame = rsmFrame;
+        this.spatFrame = spatFrame;
+        this.rsiFrame = rsiFrame;
     }
-  }
-}
 
-@Sequence
-@HasExtensionMarker
-public static class ChildInformation {
-  Name name;
-  Date dateOfBirth;
+    public static MessageFrame bsmFrame(BasicSafetyMessage bsm) {
+        return new MessageFrame(bsm, null, null, null, null);
+    }
 
-  @IsExtension
-  @Asn1Optional
-  Sex sex;
+    public static MessageFrame mapFrame(MapData mapData) {
+        return new MessageFrame(null, mapData, null, null, null);
+    }
 
-  public ChildInformation() { this(new Name(), new Date()); }
-  public ChildInformation(Name name, Date dateOfBirth) {
-    this(name, dateOfBirth, null);
-  }
-  public ChildInformation(Name name, Date dateOfBirth, Sex sex) {
-    this.name = name;
-    this.dateOfBirth = dateOfBirth;
-    this.sex = sex;
-  }
-}
+    public static MessageFrame rsmFrame(RoadSideSafetyMessage rsm) {
+        return new MessageFrame(null, null, rsm, null, null);
+    }
 
-public static enum Sex {
-  male(1),
-  female(2),
-  unknown(3);
+    public static MessageFrame spatFrame(SPAT spat) {
+        return new MessageFrame(null, null, null, spat, null);
+    }
 
-  private final int value;
-  public int value() { return value; }
-  private Sex(int value) { this.value = value; }
-}
+    public static MessageFrame rsiFrame(RoadSideInformation rsi) {
+        return new MessageFrame(null, null, null, null, rsi);
+    }
 
-@SizeRange(minValue=2, maxValue=2, hasExtensionMarker=true)
-public static class SequenceOfChildInformation extends Asn1SequenceOf<ChildInformation> {
-  public SequenceOfChildInformation() { super(); }
-  public SequenceOfChildInformation(Collection<ChildInformation> coll) { super(coll); }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"bsmFrame\":")
+                .append(bsmFrame);
+        sb.append(",\"mapData\":")
+                .append(mapData);
+        sb.append(",\"rsmFrame\":")
+                .append(rsmFrame);
+        sb.append(",\"spatFrame\":")
+                .append(spatFrame);
+        sb.append(",\"rsiFrame\":")
+                .append(rsiFrame);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
 ```
 
-And example instantiation code:
+- SEQUENCE OF
+
+```asn.1
+IntersectionStateList ::= SEQUENCE (SIZE(1..32)) OF IntersectionState
+``` 
+
+对应java代码：
 
 ```java
-PersonenelRecord record = new PersonenelRecord(
-  new Name(
-    new NameString("John"),
-    new NameString("P"),
-    new NameString("Smith")
-  ),
-  new EmployeeNumber(51),
-  "Director",
-  new Date("19710917"),
-  new Name(
-    new NameString("Mary"),
-    new NameString("T"),
-    new NameString("Smith")
-  ),
-  new SequenceOfChildInformation(Arrays.asList(
-    new ChildInformation(
-      new Name(
-        new NameString("Ralph"),
-        new NameString("T"),
-        new NameString("Smith")
-      ),
-      new Date("19571111")
-    ),
-    new ChildInformation(
-      new Name(
-        new NameString("Susan"),
-        new NameString("B"),
-        new NameString("Jones")
-      ),
-      new Date("19590717"),
-      Sex.female
-    )
-  ))
-);
+
+@SizeRange(minValue = 1, maxValue = 32)
+public static class IntersectionStateList extends Asn1SequenceOf<IntersectionState> {
+    public IntersectionStateList(IntersectionState... intersectionStates) {
+        this(Arrays.asList(intersectionStates));
+    }
+
+    public IntersectionStateList(Collection<IntersectionState> coll) {
+        super(coll);
+    }
+}
 ```
-
-## Other ASN.1 tools
-ITU-T have a [list of ASN.1 tools](http://www.itu.int/en/ITU-T/asn1/Pages/Tools.aspx). IvmaiAsn project also have [its own list](http://ivmaiasn.sourceforge.net/asn1lnk.html).
-
-Here is my (incomplete) list of the open-source tools:
-
-Name | License | Runtime | Compiler | BER, DER? | UPER?
----- | ------- | ------- | -------- | --- | ---
-[asn1c](https://github.com/vlm/asn1c) | BSD 2-clause | C | C | ✓ | ✓
-[asn1scc](https://github.com/ttsiodras/asn1scc) | Dual: LGPL, commercial | C, Ada | F#, Antlr/Java | ✓ | ✓
-[snacc](https://github.com/nevali/snacc) | GPL | C | C, C++ | ✓
-[III ASN.1](http://iiiasn1.sourceforge.net/main.html) | Mozilla | C++ | C++ | ✓ | ✓
-[libtasn1](http://www.gnu.org/software/libtasn1/) | LGPL | ANSI C99 | C | ✓ (DER) | 
-[pyasn1](http://pyasn1.sourceforge.net/) | BSD 2-clause | Python |  [asn1ate](https://github.com/kimgr/asn1ate) (Python) | ✓ | 
-[dpkt](https://github.com/kbandla/dpkt/blob/master/dpkt/asn1.py) | BSD 3-Clause | Python | . | ✓ | 
-[libmich](https://github.com/mitshell/libmich/blob/master/libmich/asn1/) | GPLv2 | Python | Python | ✓ | ✓ 
-[ans1tools](https://github.com/eerimoq/asn1tools) | MIT | Python | Python | ✓ | ✓ 
-[ASN1js](https://github.com/GlobalSign/ASN1.js) | BSD 3-clause | JavaScript | . | ✓
-[asn1js](https://github.com/lapo-luchini/asn1js) | MIT | JavaScript | . | ✓
-[node-asn1](https://github.com/mcavage/node-asn1) | MIT | JavaScript | . | ✓ (BER) |
-[ASN1.js](https://github.com/indutny/asn1.js) | MIT | JavaScript | . | ✓ (DER) | 
-[ASN1s](https://github.com/lastrix/ASN1S) | GPL | Java | Java/Antlr | ✓ (BER) |
-[jASN1](https://github.com/juherr/jASN1) | LGPL | Java | Java | ✓ (BER) |
-[openASN.1](http://sourceforge.net/projects/openasn1/) | LGPL | Java | Java | ✓ | ✓
-[asn1forj](http://sourceforge.net/projects/asn1forj) | GPL | Java | ? | ✓ |
-[JAC](http://sourceforge.net/projects/jac-asn1) | GPL | Java | ? | ✓ (BER, CER, DER) | 
-[JASN](http://sourceforge.net/projects/jasn) |  GPL | Java | ? | ✓ (BER, DER) | 
-[Binary Notes](http://sourceforge.net/projects/bnotes) | Apache | Java, .NET | XSLT | ✓ | ✓
-[arc](http://www.forge.com.au/Research/products/arc/arc.htm) | BSD 4-clause | Java | javacc/Java | 
-[Cryptix](http://cryptix-asn1.sourceforge.net/) | BSD 2-clause | Java | SableCC | 
-[Legion of The Bouncy Castle](https://www.bouncycastle.org/) | MIT, MIT X11 |  Java, C# | . | ✓ (DER, BER) | 
-[Apache Harmony](https://harmony.apache.org/subcomponents/classlibrary/asn1_framework.html) | Apache | Java | . | 
-
-## Acknowledgments
-This implementation was partly developed within [i-GAME](http://gcdc.net/i-game) project that has received funding from the European Union's Seventh Framework Programme for research, technological development and demonstration under grant agreement no [612035](http://cordis.europa.eu/project/rcn/110506_en.html).
-
-Use of annotations and reflection was inspired by [Gson](https://code.google.com/p/google-gson/).
-
-## License
-
-This code is released under Apache 2.0 license.
