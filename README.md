@@ -14,9 +14,9 @@
 
 [6、框架用例介绍](#框架用例介绍) 
 
-- [基本类型](#Example 1:基本类型) 
+- [基本类型](#基本类型) 
 
-- [复合类型](#Example 2:复合类型)
+- [复合类型](#复合类型)
 ## 整体项目结构介绍
 
 ```
@@ -110,7 +110,7 @@ ASN.1 | Java
 
 ## 框架用例介绍
 
-### Example 1:基本类型
+### 基本类型
 
 - INTEGER
 
@@ -461,7 +461,7 @@ public class ExteriorLights extends Asn1SequenceOf<Boolean> {
 }
 ```
 
-### Example 2:复合类型
+### 复合类型
 
 - SEQUENCE:
 
