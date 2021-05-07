@@ -355,6 +355,93 @@ public class ID extends Asn1SequenceOf<Byte> {
         return sb.toString();
     }
 }
+``` 
+
+- BIT STRING
+
+```asn.1
+ExteriorLights ::= BIT STRING { 
+		-- All lights off is indicated by no bits set
+		lowBeamHeadlightsOn (0),
+		highBeamHeadlightsOn (1),
+		leftTurnSignalOn (2),
+		rightTurnSignalOn (3),
+		hazardSignalOn (4),
+		automaticLightControlOn (5),
+		daytimeRunningLightsOn (6),
+		fogLightOn (7),
+		parkingLightsOn (8)
+		} (SIZE (9, ...))
+``` 
+
+对应的java代码：
+
+```java
+
+@SizeRange(minValue = 9, maxValue = 9, hasExtensionMarker = true)
+public class ExteriorLights extends Asn1SequenceOf<Boolean> {
+    public ExteriorLights() {
+        this(new ArrayList<Boolean>());
+    }
+
+    public ExteriorLights(Collection<Boolean> coll) {
+        super(coll);
+    }
+
+    public boolean getOrFalse(int i) {
+        return (i < size()) ? get(i) : false;
+    }
+
+    public boolean lowBeamHeadlightsOn() {
+        return getOrFalse(0);
+    }
+
+    public boolean highBeamHeadlightsOn() {
+        return getOrFalse(1);
+    }
+
+    public boolean leftTurnSignalOn() {
+        return getOrFalse(2);
+    }
+
+    public boolean rightTurnSignalOn() {
+        return getOrFalse(3);
+    }
+
+    public boolean hazardSignalOn() {
+        return getOrFalse(4);
+    }
+
+    public boolean automaticLightControlOn() {
+        return getOrFalse(5);
+    }
+
+    public boolean daytimeRunningLightsOn() {
+        return getOrFalse(6);
+    }
+
+    public boolean fogLightOn() {
+        return getOrFalse(7);
+    }
+
+    public boolean parkingLightsOn() {
+        return getOrFalse(8);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("\"");
+        for (boolean s : bakingList) {
+            if (s) {
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+        }
+        sb.append("\"");
+        return sb.toString();
+    }
+}
 ```
 
 ### Example 2:复合类型 restrictions or extension markers
